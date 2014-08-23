@@ -7,6 +7,7 @@ import com.endreman0.endermechanics.block.ModBlocks;
 import com.endreman0.endermechanics.tile.TileEntityMachineFrame;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -29,5 +30,4 @@ public class RenderMachineFrame extends TileEntitySpecialRenderer{
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}
-
 }

@@ -6,4 +6,6 @@ itemGroup.endermechanics=Ender Mechanics
 #Blocks
 tile.blockMachineFrame.name=Machine Frame
 
+tile.endermechanics:blockBasic.name=Basic FMP Block
+
 #Config

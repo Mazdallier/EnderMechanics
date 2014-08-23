@@ -1,5 +1,6 @@
 package com.endreman0.endermechanics.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import cpw.mods.fml.common.registry.GameRegistry;
 

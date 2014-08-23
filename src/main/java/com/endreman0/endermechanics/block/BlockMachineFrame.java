@@ -5,6 +5,7 @@ import com.endreman0.endermechanics.tile.TileEntityMachineFrame;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,6 +20,7 @@ public class BlockMachineFrame extends BlockContainer{
 		setBlockTextureName("blockMachineFrame");
 		blockHardness=10;
 		setCreativeTab(Utility.EM_TAB);
+		setBlockBounds(0.125F, 0.125F, 0.125F, 0.875F, 0.875F, 0.875F);
 	}
 	
 	public String getUnwrappedUnlocalizedName(String unlocalizedName){return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);}
