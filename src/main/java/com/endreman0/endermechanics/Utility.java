@@ -4,6 +4,9 @@ import java.io.File;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
@@ -16,15 +19,25 @@ public class Utility{
 	public static final String SERVER_PROXY = "com.endreman0.endermechanics.CommonProxy";
 	public static final String GUI_FACTORY = "com.endreman0.endermechanics.gui.GuiFactory";
 	public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase();
+	public static final CreativeTabs EM_TAB = new CreativeTabs(MOD_ID.toLowerCase()){
+		@Override
+		public Item getTabIconItem(){
+			//return ModItems.scythe;
+			return Items.ender_eye;
+		}
+	};
 	
 	//Helper methods
 	
 	//Config variables
+	public static boolean test = false;
+	public static boolean test2 = true;
 	
 	
 	//Config stuff
 	public static Configuration config;
 	public static final String catGeneral = Configuration.CATEGORY_GENERAL;
+	public static final String catEnable = "enable";
 	public static void init(File file){
 		if(config==null){
 			config = new Configuration(file);
@@ -32,7 +45,8 @@ public class Utility{
 		}
 	}
 	private static void readConfig(){
-		//Update variables based on file
+		test = getBoolean(catGeneral, "test", test);
+		test2 = getBoolean(catEnable, "test2", test2);
 		if(config.hasChanged()){config.save();}
 	}
 	//Config helper methods
