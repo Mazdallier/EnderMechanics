@@ -1,6 +1,6 @@
 package com.endreman0.endermechanics;
 
-import com.endreman0.endermechanics.tile.TileEntityMachineFrame;
+import com.endreman0.endermechanics.tile.*;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -11,5 +11,6 @@ public class CommonProxy {
 	}
 	public void registerTileEntities(){
 		GameRegistry.registerTileEntity(TileEntityMachineFrame.class, "tileMachineFrame");
+		GameRegistry.registerTileEntity(TileEntityGenerator.class, "generator");
 	}
 }

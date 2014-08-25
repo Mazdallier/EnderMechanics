@@ -1,7 +1,10 @@
-Get Machine Frame working with FMP
+Figure out why PartMachineFrame has no collision box
+Make PartMachineFrame implement IWrenchBreakable
+	Make sure every multipart drops when the frame is broken
 Add generator, implements IInventory, with GUI, input slot, power buffer, and produces power off of any item
-Add interfaces IPowerSender and IPowerReceiver with methods
-Add Ender Nodes that can take power from an IPowerSender and give it to an IPowerReceiver
+Add interface IPowerSender with methods for ejecting power and letting power be extracted
+Add interface IPowerReceiver with methods for having power ejected into it and extracting power
+Add Ender Nodes that can take power from an IPowerSender (via ejection or extraction) and give it to an IPowerReceiver
 	Class EnderNodeNetwork
 	When an Ender Node is placed in the world, it finds any other Ender Nodes in range
 	If there are none, it creates a new EnderNodeNetwork

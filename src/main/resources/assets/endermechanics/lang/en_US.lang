@@ -1,11 +1,13 @@
 itemGroup.endermechanics=Ender Mechanics
 
 #Items
-
+item.endermechanics:wrench.name=Ender Wrench
 
 #Blocks
-tile.blockMachineFrame.name=Machine Frame
+tile.machineFrame.name=Machine Frame
+tile.generator.name=Generator
 
-tile.endermechanics:blockBasic.name=Basic FMP Block
+#GUI Names
+endermechanics.tileGenerator=Generator
 
 #Config
