@@ -1,16 +1,22 @@
 package com.endreman0.endermechanics.block;
 
 import com.endreman0.endermechanics.EnderMechanics;
+import com.endreman0.endermechanics.LogHelper;
 import com.endreman0.endermechanics.tile.TileEntityGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 public class BlockGenerator extends BlockContainerEM{
 	public BlockGenerator() {
@@ -20,11 +26,20 @@ public class BlockGenerator extends BlockContainerEM{
 	}
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float par8, float par9, float par10){
-		TileEntity tile = world.getTileEntity(x, y, z);
+		TileEntityGenerator tile = (TileEntityGenerator)world.getTileEntity(x, y, z);
 		if(tile == null || player.isSneaking()){
 			return false;
 		}
-		player.openGui(EnderMechanics.instance, 0, world, x, y, z);
+		FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(player.inventory.getCurrentItem());
+		if(fluid!=null && fluid.getFluid()!=null && fluid.getFluid().equals(FluidRegistry.LAVA)){
+			LogHelper.info("Filled " + tile.fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME), true) + "mB from bucket");
+			//If a mod adds a container that holds less than 1000mB of lava, this will be a fluid dupe bug.
+			
+			LogHelper.info("Tank currently storing " + tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount + "/10000mB");
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
+		}else{
+			player.openGui(EnderMechanics.instance, 0, world, x, y, z);
+		}
 		return true;
 	}
 	@Override

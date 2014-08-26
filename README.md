@@ -1,6 +1,6 @@
 Ender Mechanics Mod
 =========
-This is a Minecraft mod that adds some elements of a few already-popular mods, like Applied Energistics 2, Thermal Expansion 4, 
+This is a Minecraft mod that adds some elements of a few already-popular mods, like Applied Energistics 2, Thermal Expansion 4, PneumaticCraft (Drones), and more.
 #Developers and Credits#
 **Developer:** endreman0
 

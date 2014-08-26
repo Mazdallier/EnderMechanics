@@ -14,7 +14,7 @@ public class ContainerGenerator extends Container{
 	public ContainerGenerator(InventoryPlayer inventoryPlayer, TileEntityGenerator tileEntity){
 		tile = tileEntity;
 		
-		super.addSlotToContainer(new Slot(tile, 0, 44, 39));//TileEntity, slotNumber, x, y
+	super.addSlotToContainer(new Slot(tile, 0, 80, 39));//TileEntity, slotNumber, x, y
 		
 		//Render player inventory
 		bindPlayerInventory(inventoryPlayer);
