@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileEntityGenerator extends TileEntity implements IInventory, IFluidHandler{
 	private ItemStack[] inventory = new ItemStack[1];
-	protected FluidTank lavaTank = new FluidTank(10000);//capacity in mB
+	public FluidTank lavaTank = new FluidTank(10000);//capacity in mB
 	
 	@Override
 	public int getSizeInventory(){
@@ -155,7 +155,7 @@ public class TileEntityGenerator extends TileEntity implements IInventory, IFlui
 		return new FluidTankInfo[]{new FluidTankInfo(lavaTank)};
 	}
 	
-	@Override public String getInventoryName(){return Utility.RESOURCE_PREFIX + ".tileGenerator";}
+	@Override public String getInventoryName(){return getBlockType().getUnlocalizedName()+".name";}//Use block name as GUI name
 	@Override public boolean hasCustomInventoryName(){return false;}
 	@Override public int getInventoryStackLimit(){return 64;}
 	@Override public void openInventory(){}

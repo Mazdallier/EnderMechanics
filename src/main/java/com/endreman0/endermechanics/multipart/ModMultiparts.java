@@ -31,8 +31,7 @@ public class ModMultiparts implements IPartFactory, IPartConverter{
 		return Arrays.asList((Block)ModBlocks.machineFrame);
 	}
 	@Override
-	public TMultiPart convert(World world, BlockCoord pos)
-	{
+	public TMultiPart convert(World world, BlockCoord pos){
 		Block block = world.getBlock(pos.x, pos.y, pos.z);
 		//int meta = world.getBlockMetadata(pos.x, pos.y, pos.z);
 		if(block.equals(ModBlocks.machineFrame)) return new PartMachineFrame();

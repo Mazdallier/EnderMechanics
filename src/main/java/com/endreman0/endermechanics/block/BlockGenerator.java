@@ -5,6 +5,7 @@ import com.endreman0.endermechanics.LogHelper;
 import com.endreman0.endermechanics.tile.TileEntityGenerator;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,12 +18,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
 
-public class BlockGenerator extends BlockContainerEM{
+public class BlockGenerator extends BlockEM implements ITileEntityProvider{
 	public BlockGenerator() {
 		super(Material.iron);
-		setBlockName("generator");
-		setBlockTextureName("generator");
+		setBlockName("generatorFurnace");
+		setBlockTextureName("generatorFurnace");
+		blockHardness=10;
 	}
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float par8, float par9, float par10){
@@ -30,13 +33,10 @@ public class BlockGenerator extends BlockContainerEM{
 		if(tile == null || player.isSneaking()){
 			return false;
 		}
-		FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(player.inventory.getCurrentItem());
-		if(fluid!=null && fluid.getFluid()!=null && fluid.getFluid().equals(FluidRegistry.LAVA)){
-			LogHelper.info("Filled " + tile.fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME), true) + "mB from bucket");
-			//If a mod adds a container that holds less than 1000mB of lava, this will be a fluid dupe bug.
-			
-			LogHelper.info("Tank currently storing " + tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount + "/10000mB");
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
+		FluidStack bucket = FluidContainerRegistry.getFluidForFilledItem(player.inventory.getCurrentItem());
+		if(bucket!=null && bucket.getFluid().equals(FluidRegistry.LAVA) && tile.fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.LAVA, 1000), false)==1000){
+			tile.fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.LAVA, 1000), true);
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.bucket));
 		}else{
 			player.openGui(EnderMechanics.instance, 0, world, x, y, z);
 		}

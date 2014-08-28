@@ -1,6 +1,5 @@
 package com.endreman0.endermechanics.block;
 
-import com.endreman0.endermechanics.IWrenchBreakable;
 import com.endreman0.endermechanics.Utility;
 import com.endreman0.endermechanics.tile.TileEntityMachineFrame;
 
@@ -8,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -15,13 +15,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockMachineFrame extends BlockContainerEM implements IWrenchBreakable{
+public class BlockMachineFrame extends BlockEM implements ITileEntityProvider{
 	public BlockMachineFrame(){
 		super(Material.iron);
 		setBlockName("machineFrame");
 		setBlockTextureName("machineFrame");
 		blockHardness=10;
-		setCreativeTab(Utility.EM_TAB);
 		setBlockBounds(0.125F, 0.125F, 0.125F, 0.875F, 0.875F, 0.875F);
 	}
 	

@@ -7,19 +7,19 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMachineFrame extends TileEntity{
-	public int machine;
-	public int[] buses = new int[6];
+	public byte machine;
+	public byte[] buses = new byte[6];
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
-		nbt.setInteger("machine", machine);
-		nbt.setIntArray("buses", buses);
+		nbt.setByte("machine", machine);
+		nbt.setByteArray("buses", buses);
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
-		machine = nbt.getInteger("machine");
-		buses = nbt.getIntArray("buses");
+		machine = nbt.getByte("machine");
+		buses = nbt.getByteArray("buses");
 	}
 	@Override
 	public Packet getDescriptionPacket(){

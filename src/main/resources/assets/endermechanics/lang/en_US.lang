@@ -4,10 +4,7 @@ itemGroup.endermechanics=Ender Mechanics
 item.endermechanics:wrench.name=Ender Wrench
 
 #Blocks
-tile.machineFrame.name=Machine Frame
-tile.generator.name=Generator
-
-#GUI Names
-endermechanics.tileGenerator=Generator
+tile.endermechanics:machineFrame.name=Machine Frame
+tile.endermechanics:generatorFurnace.name=Infernal Generator
 
 #Config
