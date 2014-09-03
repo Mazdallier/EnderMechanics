@@ -25,7 +25,7 @@ public class RenderMachineFrame extends TileEntitySpecialRenderer{
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.5D, y-0.5D, z+0.5D);
 		GL11.glPushMatrix();
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/blocks/MachineFrameModel.png"));
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Utility.RESOURCE_PREFIX, "models/machineFrame.png"));
 		model.render(null, 0F, 0F, -0.1F, 0F, 0F, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();

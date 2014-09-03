@@ -29,6 +29,7 @@ public class BlockEM extends Block implements IWrenchBreakable{
 		String name = super.getUnlocalizedName();
 		return name.substring(name.indexOf('.')+1);
     }
+	@Override
 	public void breakWithWrench(World world, int x, int y, int z) {
 		dropBlockAsItem(world, x, y, z, new ItemStack(this.getItem(world, x, y, z)));
 		world.setBlockToAir(x, y, z);

@@ -6,8 +6,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ModBlocks{
 	public static final BlockEM machineFrame = new BlockMachineFrame();
 	public static final BlockEM generator = new BlockGenerator();
+	public static final BlockEM enderNode = new BlockEnderNode();
 	public static void init(){
 		GameRegistry.registerBlock(machineFrame, "machineFrame");
 		GameRegistry.registerBlock(generator, "generator");
+		GameRegistry.registerBlock(enderNode, "enderNode");
 	}
 }

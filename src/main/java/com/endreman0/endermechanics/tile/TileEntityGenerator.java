@@ -14,6 +14,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -123,7 +124,6 @@ public class TileEntityGenerator extends TileEntity implements IInventory, IFlui
 	
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill){
-		LogHelper.info(resource.getFluid().getID());
 		if(resource.getFluid().getID()!=2){
 			return 0;
 		}
@@ -142,7 +142,7 @@ public class TileEntityGenerator extends TileEntity implements IInventory, IFlui
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid){
-		return fluid.getID()==2;
+		return fluid.equals(FluidRegistry.LAVA);
 	}
 
 	@Override

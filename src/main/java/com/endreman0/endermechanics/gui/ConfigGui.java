@@ -21,7 +21,7 @@ public class ConfigGui extends GuiConfig{
 	private static List<IConfigElement> getConfigElements(){
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
 		list.addAll(new ConfigElement(Utility.config.getCategory(Utility.catGeneral)).getChildElements());
-		list.add(new DummyCategoryElement("Enable", "souleater.config.enable", EnableEntry.class));
+		list.add(new DummyCategoryElement("Enable", "endermechanics.config.enable", EnableEntry.class));
 		return list;
 	}
 	public static class EnableEntry extends CategoryEntry{
@@ -31,7 +31,7 @@ public class ConfigGui extends GuiConfig{
 		@Override
 		protected GuiScreen buildChildScreen(){
 			return new GuiConfig(this.owningScreen, new ConfigElement(Utility.config.getCategory(Utility.catEnable)).getChildElements(), Utility.MOD_ID,
-					Utility.catEnable, false, false, GuiConfig.getAbridgedConfigPath(Utility.config.toString()));
+					Utility.catEnable, true, true, GuiConfig.getAbridgedConfigPath(Utility.config.toString()));
 		}
 	}
 }

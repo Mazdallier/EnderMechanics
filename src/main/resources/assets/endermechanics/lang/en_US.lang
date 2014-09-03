@@ -1,10 +1,39 @@
 itemGroup.endermechanics=Ender Mechanics
 
 #Items
+item.endermechanics:redPearl.name=EnderMech Pearl
+item.endermechanics:darkIngot.name=Ender-Reinforced Ingot
+item.endermechanics:obsidianStick.name=Obsidian Stick
+
 item.endermechanics:wrench.name=Ender Wrench
+
+item.endermechanics:voidPearl.name=Void Pearl
+item.endermechanics:voidIngot.name=Voidsteel Ingot
+item.endermechanics:voidHelmet.name=Voidsteel Helmet
+item.endermechanics:voidChestplate.name=Voidsteel Chestplate
+item.endermechanics:voidLeggings.name=Voidsteel Leggings
+item.endermechanics:voidBoots.name=Voidsteel Boots
 
 #Blocks
 tile.endermechanics:machineFrame.name=Machine Frame
-tile.endermechanics:generatorFurnace.name=Infernal Generator
+tile.endermechanics:generatorFurnace.name=Infernal Reactor
+tile.endermechanics:enderNode.name=Ender Node
 
 #Config
+endermechanics.config.general.wrenchKey.name=Wrench Breaking
+endermechanics.config.general.wrenchKey.tooltip=If true, shift-left-clicking with a wrench on a block will break it. If false, shift-right-clicking will.
+endermechanics.config.general.nodeRange.name=Ender Node Range
+endermechanics.config.general.nodeRange.tooltip=How far, in blocks, the Ender Node's range should be. This might increase lag at high values.
+endermechanics.config.general.nodeUpdate.name=Ender Node Update Frequency
+endermechanics.config.general.nodeUpdate.tooltip=How often, in ticks, the Ender Node should begin an update cycle to check for adjacent nodes. Minimum is 2 times the range, plus one.
+
+endermechanics.config.enable=Enable/Disable Options
+endermechanics.config.enable.tooltip=A bunch of options for enabling or disabling parts of the mod.
+endermechanics.config.enable.wrench.name=Enable Wrench
+endermechanics.config.enable.wrench.tooltip=Enable the Ender Wrench
+endermechanics.config.enable.machineFrame.name=Enable Machine Frame
+endermechanics.config.enable.machineFrame.tooltip=Enable Machine Frames, frames that allow automation of blocks.
+endermechanics.config.enable.generatorFurnace.name=Enable Infernal Reactor
+endermechanics.config.enable.generatorFurnace.tooltip=Enable the Infernal Reactor, which creates Endergy from furnace fuel and lava
+endermechanics.config.enable.node.name=Enable Ender Nodes
+endermechanics.config.enable.node.tooltip=Enable Ender Nodes, the transport system of Ender Mechanics

@@ -27,7 +27,6 @@ public class EnderMechanics{
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
 		Utility.init(event.getSuggestedConfigurationFile());//Config
-		LogHelper.info("Testing Config Value: " + Utility.test);
 		ModItems.initItems();
 		ModBlocks.init();
 		if(Loader.isModLoaded("ForgeMultipart")){

@@ -2,16 +2,16 @@
 {
   "modid": "EnderMechanics",
   "name": "Ender Mechanics",
-  "description": "A magical tech mod focused on Ender magic. Mashup of Applied Energistics 2, Thermal Expansion 4 and some of my own flair",
-  "version": "$version",
-  "mcversion": "$mcversion",
-  "url": "",
+  "description": "A magical tech mod focused on Ender magic. Elements of Applied Energistics, Thermal Expansion, EnderIO, Thaumcraft, ComputerCraft, and my own flair.",
+  "version": "0.0.2",
+  "mcversion": "1.7.10",
+  "url": "https://github.com/endreman0/EnderMechanics",
   "updateUrl": "",
   "authorList": [
     "endreman0"
   ],
   "credits": "pahimar",
-  "logoFile": "",
+  "logoFile": "assets/endermechanics/textures/logo.png",
   "screenshots": [
   ],
   "parent":"",
