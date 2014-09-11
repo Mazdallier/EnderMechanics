@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics;
+package com.endreman0.endermechanics.util;
 
 import java.io.File;
 

@@ -2,8 +2,8 @@ package com.endreman0.endermechanics.render;
 
 import org.lwjgl.opengl.GL11;
 
-import com.endreman0.endermechanics.Utility;
-import com.endreman0.endermechanics.tile.TileEntityEnderNode;
+import com.endreman0.endermechanics.tile.TileEnderNode;
+import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -18,7 +18,7 @@ public class RenderEnderNode extends TileEntitySpecialRenderer{
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float scale) {
-		TileEntityEnderNode tileEN = (TileEntityEnderNode)tile;
+		TileEnderNode tileEN = (TileEnderNode)tile;
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.5D, y-0.5D, z+0.5D);
 		GL11.glPushMatrix();

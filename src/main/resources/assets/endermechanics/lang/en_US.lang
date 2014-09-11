@@ -17,6 +17,7 @@ item.endermechanics:voidBoots.name=Voidsteel Boots
 #Blocks
 tile.endermechanics:machineFrame.name=Machine Frame
 tile.endermechanics:generatorFurnace.name=Infernal Reactor
+tile.endermechanics:generatorLiving.name=Biotic Reactor
 tile.endermechanics:enderNode.name=Ender Node
 
 #Config

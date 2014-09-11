@@ -6,9 +6,9 @@ import codechicken.multipart.BlockMultipart;
 import codechicken.multipart.TMultiPart;
 import codechicken.multipart.TileMultipart;
 
-import com.endreman0.endermechanics.LogHelper;
-import com.endreman0.endermechanics.Utility;
-import com.endreman0.endermechanics.interfaces.IWrenchBreakable;
+import com.endreman0.endermechanics.util.IWrenchBreakable;
+import com.endreman0.endermechanics.util.LogHelper;
+import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;

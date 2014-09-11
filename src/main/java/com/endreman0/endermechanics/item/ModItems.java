@@ -1,7 +1,7 @@
 package com.endreman0.endermechanics.item;
 
-import com.endreman0.endermechanics.Utility;
 import com.endreman0.endermechanics.block.ModBlocks;
+import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -53,7 +53,7 @@ public class ModItems{
 		
 		//Blocks
 		if(Utility.enableGenFurnace){
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.generator), "blb", "rpr", "cfc", 'b', Items.blaze_powder, 'l', Items.lava_bucket, 'r', Items.blaze_rod, 'p', redPearl, 'c', Items.coal, 'f', Blocks.furnace);
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.generatorFurnace), "blb", "rpr", "cfc", 'b', Items.blaze_powder, 'l', Items.lava_bucket, 'r', Items.blaze_rod, 'p', redPearl, 'c', Items.coal, 'f', Blocks.furnace);
 		}
 		if(Utility.enableFrame){
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.machineFrame), "isi", "sps", "isi", 'i', darkIngot, 's', obsidianStick, 'p', redPearl);

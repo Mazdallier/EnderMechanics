@@ -1,7 +1,7 @@
 package com.endreman0.endermechanics.block;
 
-import com.endreman0.endermechanics.Utility;
-import com.endreman0.endermechanics.interfaces.IWrenchBreakable;
+import com.endreman0.endermechanics.util.IWrenchBreakable;
+import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,10 +11,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class BlockEM extends Block implements IWrenchBreakable{
-	public BlockEM(Material material) {
+public abstract class BlockEM extends Block{
+	public BlockEM(Material material, String name){
 		super(material);
 		setCreativeTab(Utility.EM_TAB);
+		setBlockName(name);
+		setBlockTextureName(name);
+		blockHardness = 10;
 	}
 	@Override
 	public String getUnlocalizedName(){
@@ -29,9 +32,4 @@ public class BlockEM extends Block implements IWrenchBreakable{
 		String name = super.getUnlocalizedName();
 		return name.substring(name.indexOf('.')+1);
     }
-	@Override
-	public void breakWithWrench(World world, int x, int y, int z) {
-		dropBlockAsItem(world, x, y, z, new ItemStack(this.getItem(world, x, y, z)));
-		world.setBlockToAir(x, y, z);
-	}
 }

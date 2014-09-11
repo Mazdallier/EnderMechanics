@@ -4,14 +4,14 @@ import com.endreman0.endermechanics.tile.*;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class CommonProxy {
+public class CommonProxy{
 	public void registerRenders(){}
 	public void registerEntities(){
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
 	}
 	public void registerTileEntities(){
-		GameRegistry.registerTileEntity(TileEntityMachineFrame.class, "tileMachineFrame");
-		GameRegistry.registerTileEntity(TileEntityGenerator.class, "generator");
-		GameRegistry.registerTileEntity(TileEntityEnderNode.class, "enderNode");
+		GameRegistry.registerTileEntity(TileMachineFrame.class, "tileMachineFrame");
+		GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generator");
+		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
 	}
 }

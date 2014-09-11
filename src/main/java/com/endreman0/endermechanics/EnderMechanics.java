@@ -1,10 +1,12 @@
 package com.endreman0.endermechanics;
 
 import com.endreman0.endermechanics.block.ModBlocks;
+import com.endreman0.endermechanics.gui.GuiFactory;
 import com.endreman0.endermechanics.gui.GuiHandler;
 import com.endreman0.endermechanics.item.ItemWrench;
 import com.endreman0.endermechanics.item.ModItems;
 import com.endreman0.endermechanics.multipart.ModMultiparts;
+import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -21,7 +23,7 @@ public class EnderMechanics{
 	@Mod.Instance(Utility.MOD_ID)
 	public static EnderMechanics instance;
 	
-	@SidedProxy(clientSide=Utility.CLIENT_PROXY,serverSide=Utility.SERVER_PROXY)
+	@SidedProxy(clientSide=Utility.CLIENT_PROXY, serverSide=Utility.SERVER_PROXY)
 	public static CommonProxy proxy;
 	
 	@Mod.EventHandler
@@ -47,5 +49,6 @@ public class EnderMechanics{
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event){
 		//if(Loader.isModLoaded("modid"){
+		//Update checker, if that ever gets figured out
 	}
 }

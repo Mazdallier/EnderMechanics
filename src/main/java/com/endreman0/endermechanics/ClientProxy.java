@@ -8,7 +8,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 public class ClientProxy extends CommonProxy{
 	@Override
 	public void registerRenders(){
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachineFrame.class, new RenderMachineFrame());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnderNode.class, new RenderEnderNode());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileMachineFrame.class, new RenderMachineFrame());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderNode.class, new RenderEnderNode());
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 
-import com.endreman0.endermechanics.Utility;
+import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import cpw.mods.fml.client.config.GuiConfig;

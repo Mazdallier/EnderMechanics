@@ -1,6 +1,6 @@
 package com.endreman0.endermechanics.item;
 
-import com.endreman0.endermechanics.Utility;
+import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemEM extends Item{
+public abstract class ItemEM extends Item{
 	public ItemEM() {
 		super();
 		maxStackSize=1;

@@ -3,11 +3,11 @@ package com.endreman0.endermechanics.multipart;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.endreman0.endermechanics.Utility;
 import com.endreman0.endermechanics.block.ModBlocks;
-import com.endreman0.endermechanics.interfaces.IWrenchBreakable;
 import com.endreman0.endermechanics.render.RenderMachineFrame;
-import com.endreman0.endermechanics.tile.TileEntityMachineFrame;
+import com.endreman0.endermechanics.tile.TileMachineFrame;
+import com.endreman0.endermechanics.util.IWrenchBreakable;
+import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -35,7 +35,6 @@ public class PartMachineFrame extends McMetaPart implements IWrenchBreakable{
 		super(meta);
 	}
 	@Override public Cuboid6 getBounds(){return new Cuboid6(0.125, 0.125, 0.125, 0.875, 0.875, 0.875);}
-
 	@Override public Block getBlock(){return ModBlocks.machineFrame;}
 	@Override public String getType(){return Utility.RESOURCE_PREFIX + ":machineFrame";}
 	
@@ -47,7 +46,7 @@ public class PartMachineFrame extends McMetaPart implements IWrenchBreakable{
 	@Override
 	public void invalidateConvertedTile(){
 		super.invalidateConvertedTile();
-		TileEntityMachineFrame tile = (TileEntityMachineFrame)world().getTileEntity(x(), y(), z());
+		TileMachineFrame tile = (TileMachineFrame)world().getTileEntity(x(), y(), z());
 		this.machine = tile.machine;
 		this.buses = tile.buses;
 	}

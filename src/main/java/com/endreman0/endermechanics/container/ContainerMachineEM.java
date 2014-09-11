@@ -1,6 +1,6 @@
 package com.endreman0.endermechanics.container;
 
-import com.endreman0.endermechanics.tile.TileEntityGenerator;
+import com.endreman0.endermechanics.tile.TileMachineEM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -8,33 +8,28 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerGenerator extends Container{
-	protected TileEntityGenerator tile;
-	
-	public ContainerGenerator(InventoryPlayer inventoryPlayer, TileEntityGenerator tileEntity){
+public class ContainerMachineEM extends Container{
+	protected TileMachineEM tile;
+	public ContainerMachineEM(InventoryPlayer inventoryPlayer, TileMachineEM tileEntity){
 		tile = tileEntity;
-		
-	super.addSlotToContainer(new Slot(tile, 0, 80, 39));//TileEntity, slotNumber, x, y
-		
-		//Render player inventory
-		bindPlayerInventory(inventoryPlayer);
-	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer player){
-		return tile.isUseableByPlayer(player);
 	}
 	
 	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer){
-		for (int i = 0; i < 3; i++){
+		int startIndex = tile.getSizeInventory()+1;//First index of player inventories.
+		for(int i = 0; i < 3; i++){
 			for (int j = 0; j < 9; j++){
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, (i+1)*9 + j, 8 + j * 18, 84 + i * 18));
 			}
 		}
 		
-		for (int i = 0; i < 9; i++){
+		for(int i = 0; i < 9; i++){
 			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
 		}
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer player){
+		return tile.isUseableByPlayer(player);
 	}
 	
 	@Override

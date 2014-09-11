@@ -1,6 +1,6 @@
 package com.endreman0.endermechanics.render;
 
-import com.endreman0.endermechanics.LogHelper;
+import com.endreman0.endermechanics.util.LogHelper;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

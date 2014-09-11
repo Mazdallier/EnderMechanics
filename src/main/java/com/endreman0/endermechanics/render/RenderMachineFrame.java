@@ -2,9 +2,9 @@ package com.endreman0.endermechanics.render;
 
 import org.lwjgl.opengl.GL11;
 
-import com.endreman0.endermechanics.Utility;
 import com.endreman0.endermechanics.block.ModBlocks;
-import com.endreman0.endermechanics.tile.TileEntityMachineFrame;
+import com.endreman0.endermechanics.tile.TileMachineFrame;
+import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -21,7 +21,7 @@ public class RenderMachineFrame extends TileEntitySpecialRenderer{
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float scale) {
-		TileEntityMachineFrame tileMF = (TileEntityMachineFrame)tile;
+		TileMachineFrame tileMF = (TileMachineFrame)tile;
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.5D, y-0.5D, z+0.5D);
 		GL11.glPushMatrix();

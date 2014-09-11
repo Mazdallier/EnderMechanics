@@ -6,7 +6,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMachineFrame extends TileEntity{
+public class TileMachineFrame extends TileEntity{
 	public byte machine;
 	public byte[] buses = new byte[6];
 	@Override

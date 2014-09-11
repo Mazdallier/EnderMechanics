@@ -1,8 +1,9 @@
 package com.endreman0.endermechanics.tile;
 
-import com.endreman0.endermechanics.LogHelper;
-import com.endreman0.endermechanics.Utility;
 import com.endreman0.endermechanics.block.BlockEnderNode;
+import com.endreman0.endermechanics.util.EnderNodeNetwork;
+import com.endreman0.endermechanics.util.LogHelper;
+import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -11,14 +12,14 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileEntityEnderNode extends TileEntity{
+public class TileEnderNode extends TileEntity{
 	public EnderNodeNetwork network;
 	public long renderTicks;
 	public byte ticks;
 	private int range = Utility.nodeRange;
 	private int cycle = Utility.nodeUpdate;
 	private int scan = 2*range + 1;//Scan time; 1 tick per layer. One layer for the layer this is in, "range" layers above, and "range" layers below.
-	public TileEntityEnderNode(){
+	public TileEnderNode(){
 		super();
 		renderTicks=0;//This constantly goes up.
 		ticks = 0;//This wraps to the cycle length.
@@ -38,8 +39,8 @@ public class TileEntityEnderNode extends TileEntity{
 			for(int i=-range;i<=range;i++){
 				for(int j=-range;j<=range;j++){
 					TileEntity tile = worldObj.getTileEntity(xCoord+i, yCoord+(layer-range), zCoord+j);
-					if(tile instanceof TileEntityEnderNode && tile!=this && ((TileEntityEnderNode)tile).network!=null){
-						this.network = ((TileEntityEnderNode)tile).network;
+					if(tile instanceof TileEnderNode && tile!=this && ((TileEnderNode)tile).network!=null){
+						this.network = ((TileEnderNode)tile).network;
 						network.addNode(this);
 						done = true;
 						break;

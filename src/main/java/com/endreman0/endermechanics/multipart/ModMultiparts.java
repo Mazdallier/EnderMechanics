@@ -5,8 +5,8 @@ import java.util.Arrays;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
-import com.endreman0.endermechanics.Utility;
 import com.endreman0.endermechanics.block.ModBlocks;
+import com.endreman0.endermechanics.util.Utility;
 
 import codechicken.lib.vec.BlockCoord;
 import codechicken.multipart.MultiPartRegistry;
@@ -17,13 +17,13 @@ import codechicken.multipart.TMultiPart;
 public class ModMultiparts implements IPartFactory, IPartConverter{
 	@Override
 	public TMultiPart createPart(String name, boolean client){
-		if(name.equals("endermechanics:machineFrame")) return new PartMachineFrame();
+		if(name.equals(Utility.RESOURCE_PREFIX + ":machineFrame")) return new PartMachineFrame();
 		return null;
 	}
 	public void init(){
 		MultiPartRegistry.registerConverter(this);
 		MultiPartRegistry.registerParts(this, new String[]{
-				"endermechanics:machineFrame"
+				Utility.RESOURCE_PREFIX + ":machineFrame",
 			});
 	}
 	@Override

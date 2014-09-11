@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics;
+package com.endreman0.endermechanics.util;
 
 import org.apache.logging.log4j.Level;
 

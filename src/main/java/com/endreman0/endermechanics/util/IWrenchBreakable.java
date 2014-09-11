@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics.interfaces;
+package com.endreman0.endermechanics.util;
 
 import net.minecraft.world.World;
 
