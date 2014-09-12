@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public class ContainerGeneratorLiving extends ContainerMachineEM{
 	public ContainerGeneratorLiving(InventoryPlayer inventoryPlayer, TileGeneratorLiving tileEntity){
 		super(inventoryPlayer, tileEntity);
-		super.addSlotToContainer(new Slot(tile, 0, 50, 50));
+		super.addSlotToContainer(new Slot(tile, 0, 80, 39));
 		bindPlayerInventory(inventoryPlayer);
 	}
 }

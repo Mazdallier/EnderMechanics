@@ -12,10 +12,7 @@ import net.minecraft.item.ItemStack;
 public class ContainerGeneratorFurnace extends ContainerMachineEM{
 	public ContainerGeneratorFurnace(InventoryPlayer inventoryPlayer, TileMachineEM tileEntity){
 		super(inventoryPlayer, tileEntity);
-		
-		//Add slots
 		super.addSlotToContainer(new Slot(tile, 0, 80, 39));//inventory, slot number, x, y
-		
 		bindPlayerInventory(inventoryPlayer);
 	}
 }
