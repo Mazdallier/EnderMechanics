@@ -8,6 +8,7 @@ import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
@@ -20,6 +21,7 @@ public class Utility{
 	public static final String SERVER_PROXY = "com.endreman0.endermechanics.CommonProxy";
 	public static final String GUI_FACTORY = "com.endreman0.endermechanics.gui.GuiFactory";
 	public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase();
+	public static final ResourceLocation GUI_UTILS = new ResourceLocation(RESOURCE_PREFIX, "textures/gui/utils.png");
 	public static final CreativeTabs EM_TAB = new CreativeTabs(MOD_ID.toLowerCase()){
 		@Override public Item getTabIconItem(){return ModItems.wrench;}
 	};
@@ -49,8 +51,8 @@ public class Utility{
 	private static void readConfig(){
 		wrenchKey = getBoolean(catGeneral, "wrenchKey", true);
 		nodeRange = getInt(catGeneral, "nodeRange", 5, 1, 10);
-		//nodeUpdate = Math.max(getInt(catGeneral, "nodeUpdate", Math.max(40, (2*nodeRange+1)), (2*nodeRange + 1), 200), 2*nodeRange+1);//Make sure it's a legal value. Too small means nodes don't complete all of their scan.
-		nodeUpdate = getInt(catGeneral, "nodeUpdate", Math.max(40, (2*nodeRange+1)), (2*nodeRange + 1), 200);
+		nodeUpdate = Math.max(getInt(catGeneral, "nodeUpdate", Math.max(40, (2*nodeRange+1)), (2*nodeRange + 1), 200), 2*nodeRange+1);//Make sure it's a legal value. Too small means nodes don't complete all of their scan.
+//		nodeUpdate = getInt(catGeneral, "nodeUpdate", Math.max(40, (2*nodeRange+1)), (2*nodeRange + 1), 200);
 		enableWrench = getBoolean(catEnable, "wrench", true);
 		enableFrame = getBoolean(catEnable, "machineFrame", true);
 		enableGenFurnace = getBoolean(catEnable, "generatorFurnace", true);

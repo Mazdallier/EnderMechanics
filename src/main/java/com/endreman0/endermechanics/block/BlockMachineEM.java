@@ -1,13 +1,11 @@
 package com.endreman0.endermechanics.block;
 
 import com.endreman0.endermechanics.util.IWrenchBreakable;
-import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

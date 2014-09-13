@@ -1,10 +1,7 @@
 package com.endreman0.endermechanics.block;
 
-import java.util.Random;
-
 import com.endreman0.endermechanics.tile.TileEnderNode;
 import com.endreman0.endermechanics.util.IWrenchBreakable;
-import com.endreman0.endermechanics.util.LogHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

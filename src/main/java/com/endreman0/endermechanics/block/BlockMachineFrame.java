@@ -2,7 +2,6 @@ package com.endreman0.endermechanics.block;
 
 import com.endreman0.endermechanics.tile.TileMachineFrame;
 import com.endreman0.endermechanics.util.IWrenchBreakable;
-import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -8,7 +8,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerMachineEM extends Container{
+public abstract class ContainerMachineEM extends Container{
 	protected TileMachineEM tile;
 	public ContainerMachineEM(InventoryPlayer inventoryPlayer, TileMachineEM tileEntity){
 		tile = tileEntity;

@@ -1,7 +1,9 @@
 package com.endreman0.endermechanics.tile;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.endreman0.endermechanics.util.IPowerHandler;
 import com.endreman0.endermechanics.util.RecipeEM;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,14 +15,18 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public abstract class TileMachineEM extends TileEntity implements IInventory{
-	private List<RecipeEM> recipes;
+public abstract class TileMachineEM extends TileEntity implements IInventory, IPowerHandler{
 	protected ItemStack[] inv;
+	private List<RecipeEM> recipes;
+	protected int power;
 	public TileMachineEM(){
 		inv = new ItemStack[getInvSlots()];
+		recipes = new ArrayList<RecipeEM>();
+		power=5000;
 	}
 	protected abstract int getInvSlots();
 	
@@ -34,6 +40,7 @@ public abstract class TileMachineEM extends TileEntity implements IInventory{
 		recipes.add(recipe);
 	}
 	
+	//NBT and packets
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
@@ -72,6 +79,7 @@ public abstract class TileMachineEM extends TileEntity implements IInventory{
 	@Override public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet){readFromNBT(packet.func_148857_g());}
 	//func_148857_g gets NBT from packet
 	
+	//IInventory
 	@Override
 	public ItemStack decrStackSize(int slot, int amount){
 		ItemStack stack = getStackInSlot(slot);
@@ -103,11 +111,32 @@ public abstract class TileMachineEM extends TileEntity implements IInventory{
 	@Override public String getInventoryName(){return getBlockType().getUnlocalizedName();}//Use block name as GUI name
 	@Override public boolean hasCustomInventoryName(){return false;}
 	@Override public int getInventoryStackLimit(){return 64;}
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player){
-		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
-	}
+	@Override public boolean isUseableByPlayer(EntityPlayer player){return player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;}
 	@Override public void openInventory(){}
 	@Override public void closeInventory(){}
 	@Override public boolean isItemValidForSlot(int slot, ItemStack stack){return true;}
+	
+	//IPowerHandler
+	@Override
+	public int insert(ForgeDirection from, int amount, boolean actual){
+		int amt = Math.min(amount, getMaxPower(from)-power);
+		if(canInsert(from, amount)){
+			if(actual) power+=amt;
+			return amt;
+		}
+		return 0;
+	}
+	@Override
+	public int extract(ForgeDirection from, int amount, boolean actual){
+		int amt = Math.min(amount, power);
+		if(canExtract(from, amount)){
+			if(actual) power-=amt;
+			return amt;
+		}
+		return 0;
+	}
+	@Override public boolean canInsert(ForgeDirection from, int amount){return true;}
+	@Override public boolean canExtract(ForgeDirection from, int amount){return true;}
+	@Override public int getPower(ForgeDirection from){return power;}
+	@Override public int getMaxPower(ForgeDirection from){return 10000;}
 }

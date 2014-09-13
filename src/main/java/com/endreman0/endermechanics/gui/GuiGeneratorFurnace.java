@@ -1,26 +1,10 @@
 package com.endreman0.endermechanics.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import com.endreman0.endermechanics.container.ContainerGeneratorFurnace;
-import com.endreman0.endermechanics.container.ContainerGeneratorLiving;
-import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
 import com.endreman0.endermechanics.tile.TileMachineEM;
-import com.endreman0.endermechanics.util.Utility;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
@@ -32,8 +16,10 @@ public class GuiGeneratorFurnace extends GuiMachineEM{
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mouseX, int mouseY){
 		super.drawGuiContainerBackgroundLayer(partialTick, mouseX, mouseY);
-		
-		drawFluid(56, 18, 58, getTankInfo());
+		drawFire(80, 57, 0);
+		drawFluid(56, 15, getTankInfo());
+		drawPower(xSize-30, 10, tile.getPower(ForgeDirection.UNKNOWN), tile.getMaxPower(ForgeDirection.UNKNOWN));
+//		drawPower(xSize-30, 10, 60, 0);
 	}
 	
 	@Override
@@ -42,5 +28,4 @@ public class GuiGeneratorFurnace extends GuiMachineEM{
 		drawTankTooltip(getTankInfo(), mouseX, mouseY, 180, 54, 196, 112);//Putting this in drawScreen (after the super) and not in drawGuiForegroundLayer puts tooltips in front of item stacks.
 	}
 	private FluidTankInfo getTankInfo(){return ((IFluidHandler)tile).getTankInfo(ForgeDirection.UNKNOWN)[0];}
-	//tile.getTankInfo takes a direction and returns an array with one FluidTankInfo per tank accessible on that side.
 }

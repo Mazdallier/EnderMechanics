@@ -10,8 +10,9 @@ public class CommonProxy{
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
 	}
 	public void registerTileEntities(){
-		GameRegistry.registerTileEntity(TileMachineFrame.class, "tileMachineFrame");
-		GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generator");
+		GameRegistry.registerTileEntity(TileMachineFrame.class, "machineFrame");
+		GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generatorFurnace");
+		GameRegistry.registerTileEntity(TileGeneratorLiving.class, "generatorLiving");
 		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
 	}
 }

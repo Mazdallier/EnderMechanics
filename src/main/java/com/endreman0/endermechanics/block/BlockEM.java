@@ -1,6 +1,5 @@
 package com.endreman0.endermechanics.block;
 
-import com.endreman0.endermechanics.util.IWrenchBreakable;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.relauncher.Side;
@@ -8,8 +7,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public abstract class BlockEM extends Block{
 	public BlockEM(Material material, String name){

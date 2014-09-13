@@ -1,6 +1,5 @@
 package com.endreman0.endermechanics.container;
 
-import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
 import com.endreman0.endermechanics.tile.TileMachineEM;
 
 import net.minecraft.entity.player.EntityPlayer;
