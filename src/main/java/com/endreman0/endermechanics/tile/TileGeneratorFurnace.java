@@ -1,6 +1,7 @@
 package com.endreman0.endermechanics.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -9,27 +10,21 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileGeneratorFurnace extends TileMachineEM implements IFluidHandler{
+public class TileGeneratorFurnace extends TileGeneratorEM implements IFluidHandler{
 	public FluidTank lavaTank = new FluidTank(10000);//capacity in mB
 	protected int getInvSlots(){return 1;}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
-		
 		int amt = nbt.getInteger("tankAmount");
-		if(amt>0){
-			lavaTank.setFluid(new FluidStack(2, amt));
-		}
+		if(amt>0) lavaTank.setFluid(new FluidStack(2, amt));
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
-		
-		if(lavaTank.getFluid()!=null){
-			nbt.setInteger("tankAmount", lavaTank.getFluid().amount);
-		}
+		if(lavaTank.getFluid()!=null) nbt.setInteger("tankAmount", lavaTank.getFluid().amount);
 	}
 	
 	@Override

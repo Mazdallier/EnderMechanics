@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public abstract class BlockMachineEM extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
-	public BlockMachineEM(Material material, String name){
+	protected BlockMachineEM(Material material, String name){
 		super(material, name);
 	}
 	
@@ -21,7 +21,7 @@ public abstract class BlockMachineEM extends BlockEM implements ITileEntityProvi
 		dropItems(world, x, y, z);
 		super.breakBlock(world, x, y, z, block, meta);
 	}
-	private void dropItems(World world, int x, int y, int z){
+	protected void dropItems(World world, int x, int y, int z){
 		IInventory inventory = (IInventory)world.getTileEntity(x, y, z);
 		for(int i=0;i<inventory.getSizeInventory();i++){
 			ItemStack stack =  inventory.getStackInSlot(i);
@@ -40,5 +40,4 @@ public abstract class BlockMachineEM extends BlockEM implements ITileEntityProvi
 		world.setBlockToAir(x, y, z);
 	}
 	@Override public boolean hasTileEntity(int meta){return true;}
-	@Override public abstract TileEntity createNewTileEntity(World world, int meta);
 }

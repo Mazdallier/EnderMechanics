@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems{
@@ -53,7 +54,10 @@ public class ModItems{
 		
 		//Blocks
 		if(Utility.enableGenFurnace){
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.generatorFurnace), "blb", "rpr", "cfc", 'b', Items.blaze_powder, 'l', Items.lava_bucket, 'r', Items.blaze_rod, 'p', redPearl, 'c', Items.coal, 'f', Blocks.furnace);
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.generatorFurnace), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', redPearl, 'c', Items.coal, 'f', Blocks.furnace);
+		}
+		if(Utility.enableGenFurnace){
+			GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.generatorLiving, " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', redPearl, 'w', "logWood", 'f', Blocks.furnace));
 		}
 		if(Utility.enableFrame){
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.machineFrame), "isi", "sps", "isi", 'i', darkIngot, 's', obsidianStick, 'p', redPearl);

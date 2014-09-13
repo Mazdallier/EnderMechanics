@@ -1,7 +1,7 @@
 package com.endreman0.endermechanics.gui;
 
 import com.endreman0.endermechanics.container.*;
-import com.endreman0.endermechanics.tile.TileMachineEM;
+import com.endreman0.endermechanics.tile.TileGeneratorEM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -11,8 +11,8 @@ public class GuiHandler implements IGuiHandler{
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		switch(id){
-			case(0): return new GuiGeneratorFurnace(player.inventory, (TileMachineEM)world.getTileEntity(x, y, z));
-			case(1): return new GuiGeneratorLiving(player.inventory, (TileMachineEM)world.getTileEntity(x, y, z));
+			case(0): return new GuiGeneratorFurnace(player.inventory, (TileGeneratorEM)world.getTileEntity(x, y, z));
+			case(1): return new GuiGeneratorLiving(player.inventory, (TileGeneratorEM)world.getTileEntity(x, y, z));
 			default: return null;
 		}
 	}
@@ -20,8 +20,8 @@ public class GuiHandler implements IGuiHandler{
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		switch(id){
-			case(0): return new ContainerGeneratorFurnace(player.inventory, (TileMachineEM)world.getTileEntity(x, y, z));
-			case(1): return new ContainerGeneratorLiving(player.inventory, (TileMachineEM)world.getTileEntity(x, y, z));
+			case(0): return new ContainerGeneratorFurnace(player.inventory, (TileGeneratorEM)world.getTileEntity(x, y, z));
+			case(1): return new ContainerGeneratorLiving(player.inventory, (TileGeneratorEM)world.getTileEntity(x, y, z));
 			default: return null;
 		}
 	}	

@@ -5,6 +5,7 @@ import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -14,7 +15,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class BlockGeneratorFurnace extends BlockMachineEM{
-	public BlockGeneratorFurnace() {
+	protected BlockGeneratorFurnace(){
 		super(Material.iron, "generatorFurnace");
 	}
 	@Override
@@ -26,7 +27,7 @@ public class BlockGeneratorFurnace extends BlockMachineEM{
 		FluidStack bucket = FluidContainerRegistry.getFluidForFilledItem(player.inventory.getCurrentItem());
 		if(bucket!=null && bucket.getFluid().equals(FluidRegistry.LAVA) && tile.fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.LAVA, 1000), false)==1000){
 			tile.fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.LAVA, 1000), true);
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.bucket));
 			return true;
 		}else{
 			player.openGui(EnderMechanics.instance, 0, world, x, y, z);

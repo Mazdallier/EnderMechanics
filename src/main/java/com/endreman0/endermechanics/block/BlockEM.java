@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
 public abstract class BlockEM extends Block{
-	public BlockEM(Material material, String name){
+	protected BlockEM(Material material, String name){
 		super(material);
 		setCreativeTab(Utility.EM_TAB);
 		setBlockName(name);

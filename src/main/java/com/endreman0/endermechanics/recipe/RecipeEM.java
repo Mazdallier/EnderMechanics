@@ -1,4 +1,6 @@
-package com.endreman0.endermechanics.util;
+package com.endreman0.endermechanics.recipe;
+
+import com.endreman0.endermechanics.tile.TileGeneratorEM;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -19,4 +21,9 @@ public class RecipeEM{
 	public int power(){return power;}
 	public ItemStack[] itemOutputs(){return outputs;}
 	public FluidStack[] fluidOutputs(){return fluidOutputs;}
+	public boolean canExecute(TileGeneratorEM tile){
+		boolean canExecute = true;
+		
+		return canExecute;
+	}
 }

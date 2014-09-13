@@ -5,20 +5,22 @@ import java.util.Arrays;
 import org.lwjgl.opengl.GL11;
 
 import com.endreman0.endermechanics.container.ContainerMachineEM;
-import com.endreman0.endermechanics.tile.TileMachineEM;
+import com.endreman0.endermechanics.tile.TileGeneratorEM;
+import com.endreman0.endermechanics.util.LogHelper;
 import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 
 public abstract class GuiMachineEM extends GuiContainer{
-	protected TileMachineEM tile;
+	protected TileGeneratorEM tile;
 	protected ResourceLocation texture;
-	public GuiMachineEM(ContainerMachineEM container, TileMachineEM tileEntity){//Constructing the container here causes a crash.
+	public GuiMachineEM(ContainerMachineEM container, TileGeneratorEM tileEntity){//Constructing the container here causes a crash.
 		super(container);
 		tile = tileEntity;
 		texture = new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/gui/" + tileEntity.getInventoryName().substring(tileEntity.getInventoryName().indexOf(':')+1) + ".png");//GUIs folder, texture with machine's name
@@ -77,12 +79,13 @@ public abstract class GuiMachineEM extends GuiContainer{
 		drawTexturedModalRect(xPos, yPos, 0, 0, 16, 16);//Background
 		drawTexturedModalRect(xPos, yPos+(16-v), 0, 32-v, 16, v);//Fire; set upper-left corner at upper-left corner of whatever is to be drawn, be it nothing or full. Then draw a cut-off section.
 	}
-	protected void drawPower(int x, int y, int amount, int max){//Draws the vertical power bar;
+	protected void drawPower(int x, int y){//, int power, int maxPower){//Draws the vertical power bar
 		int xPos = (width-xSize)/2 + x + 1;
 		int yPos = (height-ySize)/2 + y + 1;
-//		float v = amount/max * 60;//0 when empty, 60 when full
-		float amt = amount/max;
-		int v = (int)amt * 60;
+		float amt = (float)tile.getPower(ForgeDirection.UNKNOWN);
+		float max = (float)tile.getMaxPower(ForgeDirection.UNKNOWN);
+		float height = (amt/max * 60F);
+		int v = (int)height;
 		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
 		drawTexturedModalRect(xPos, yPos, 34, 0, 18, 60);//Background
 		drawTexturedModalRect(xPos, yPos+(60-v), 34, 120-v, 60, v);//Power bar
@@ -96,5 +99,29 @@ public abstract class GuiMachineEM extends GuiContainer{
 		}else{
 			drawTooltip(mouseX, mouseY, fluid.getFluid().getLocalizedName(fluid), fluid.amount + "mB/" + tank.capacity + "mB");
 		}
+	}
+	protected void drawPowerTooltip(int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){//Power data comes from 'tile' field
+		if(mouseX<minX || mouseY<minY || mouseX>maxX || mouseY>maxY) return;
+		drawTooltip(mouseX, mouseY, getStringFromPower(tile.getPower(ForgeDirection.UNKNOWN))+'/'+getStringFromPower(tile.getMaxPower(ForgeDirection.UNKNOWN)));
+	}
+	private String getStringFromPower(int power){
+		float scaledPower = power;
+		String unit;
+		if(power>=1000000){//1 million Endergy = 1mE (megaEndergy)
+			scaledPower/=1000000;
+			unit="mE";
+		}else if(power>=1000){//1 thousand Endergy = 1kE (kiloEndergy)
+			scaledPower/=1000;
+			unit="kE";
+		}else{
+			unit = "E";
+		}
+		String string = String.valueOf(scaledPower);
+		if(scaledPower==Math.floor(scaledPower) && string.contains(".")){//If it's a whole number, just return the whole part.
+			string = string.substring(0, string.indexOf('.'));
+		}else{
+			if(string.length()>4) string = string.substring(0, 4);//Truncate to two decimal points
+		}
+		return string + unit;
 	}
 }

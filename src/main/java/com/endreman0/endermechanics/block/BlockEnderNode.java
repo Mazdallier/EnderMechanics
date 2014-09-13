@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockEnderNode extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
-	public BlockEnderNode() {
+	protected BlockEnderNode() {
 		super(Material.iron, "enderNode");
 		setBlockBounds(0.125F, 0.125F, 0.125F, 0.875F, 0.875F, 0.875F);
 	}

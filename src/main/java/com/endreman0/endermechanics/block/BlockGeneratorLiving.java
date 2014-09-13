@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockGeneratorLiving extends BlockMachineEM{
-	public BlockGeneratorLiving(){
+	protected BlockGeneratorLiving(){
 		super(Material.iron, "generatorLiving");
 	}
 	

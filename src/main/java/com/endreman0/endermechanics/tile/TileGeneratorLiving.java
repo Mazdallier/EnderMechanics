@@ -1,5 +1,7 @@
 package com.endreman0.endermechanics.tile;
 
-public class TileGeneratorLiving extends TileMachineEM{
+import net.minecraft.item.ItemStack;
+
+public class TileGeneratorLiving extends TileGeneratorEM{
 	protected int getInvSlots(){return 1;}
 }
