@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 import com.endreman0.endermechanics.recipe.RecipeEM;
 
-public abstract class TileMachineEM extends TileGeneratorEM{
+public abstract class TileMachineEM extends TileFunctionalEM{
 	protected List<RecipeEM> recipes;
 	protected int recipeID;
 	public TileMachineEM(){

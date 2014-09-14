@@ -39,8 +39,8 @@ public class EnderMechanics{
 	public void init(FMLInitializationEvent event){
 		ModItems.initRecipes();
 		//MinecraftForge.EVENT_BUS.register(new Events());
-		MinecraftForge.EVENT_BUS.register(new ItemWrench());
-		FMLCommonHandler.instance().bus().register(new Utility());//ConfigChangedEvent
+		MinecraftForge.EVENT_BUS.register(ModItems.wrench);
+		FMLCommonHandler.instance().bus().register(Utility.instance);//ConfigChangedEvent
 		proxy.registerEntities();
 		proxy.registerTileEntities();
 		proxy.registerRenders();

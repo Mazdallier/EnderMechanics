@@ -8,11 +8,17 @@ import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class Utility{
+	public static final Utility instance = new Utility();
+	private Utility(){}//Disables public constructor
 	//Utility fields
 	public static final String MOD_ID = "EnderMechanics";
 	public static final String MOD_NAME = "Ender Mechanics";
@@ -27,6 +33,18 @@ public class Utility{
 	};
 	
 	//Helper methods
+	public static final String className(Object obj){
+		String string = obj.toString();//"com.endreman0.endermechanics.item.ItemWrench@a1b2c3", "net.minecraft.block.BlockDirt@d4e5f6"
+		string = string.substring(string.lastIndexOf('.')+1, string.indexOf('@'));//"ItemWrench", "BlockDirt"
+		return string;
+	}
+	public static final ItemStack copyStack(ItemStack stack, Item item, int size, int meta, NBTTagCompound nbt){
+		ItemStack newStack = new ItemStack(item==null ? stack.getItem() : item);
+		if(size>0) newStack.stackSize = size;
+		if(meta>=0) newStack.setItemDamage(meta);
+		if(nbt!=null) newStack.setTagCompound(nbt);
+		return newStack;
+	}
 	
 	//Config variables
 	public static boolean wrenchKey = true;

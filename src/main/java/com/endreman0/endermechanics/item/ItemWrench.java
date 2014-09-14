@@ -25,9 +25,7 @@ public class ItemWrench extends ItemEM{
 			if(event.entityPlayer.inventory.getCurrentItem()!=null && event.entityPlayer.inventory.getCurrentItem().getItem().equals(ModItems.wrench)){
 				if(event.entityPlayer.isSneaking()){
 					Block block = event.world.getBlock(event.x, event.y, event.z);
-					String string = block.toString();//"com.endreman0.endermechanics.block.BlockGenerator@a1b2c3", "net.minecraft.block.BlockDirt@d4e5f6"
-					string = string.substring(string.lastIndexOf('.')+6, string.indexOf('@'));//"Generator", "Dirt"
-					//LogHelper.info("Wrench Shift-Clicking " + string);
+					LogHelper.info("Wrench Shift-Clicking " + Utility.className(block).substring(5));//Cut off "Block" to return "Dirt", "GeneratorFurnace" etc.
 					if(block instanceof IWrenchBreakable){
 						IWrenchBreakable machine = (IWrenchBreakable)block;
 						machine.breakWithWrench(event.world, event.x, event.y, event.z);
