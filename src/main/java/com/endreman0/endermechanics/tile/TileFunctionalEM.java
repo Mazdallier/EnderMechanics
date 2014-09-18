@@ -22,11 +22,15 @@ import net.minecraftforge.fluids.IFluidHandler;
 public abstract class TileFunctionalEM extends TileEntity implements IInventory, IPowerHandler{
 	protected ItemStack[] inv;
 	protected int power;
-	public TileFunctionalEM(){
+	protected int maxPower;
+	
+	public TileFunctionalEM(int maxPower){
 		inv = new ItemStack[getInvSlots()];
 		power=0;
+		this.maxPower = maxPower;
 	}
 	protected abstract int getInvSlots();
+	
 	//NBT and packets
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
@@ -127,5 +131,5 @@ public abstract class TileFunctionalEM extends TileEntity implements IInventory,
 	@Override public boolean canInsert(ForgeDirection from, int amount){return true;}
 	@Override public boolean canExtract(ForgeDirection from, int amount){return true;}
 	@Override public int getPower(ForgeDirection from){return power;}
-	@Override public int getMaxPower(ForgeDirection from){return 10000;}
+	@Override public int getMaxPower(ForgeDirection from){return maxPower;}
 }

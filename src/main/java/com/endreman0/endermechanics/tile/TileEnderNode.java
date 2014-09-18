@@ -2,7 +2,6 @@ package com.endreman0.endermechanics.tile;
 
 import com.endreman0.endermechanics.block.BlockEnderNode;
 import com.endreman0.endermechanics.util.EnderNodeNetwork;
-import com.endreman0.endermechanics.util.LogHelper;
 import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,6 +23,7 @@ public class TileEnderNode extends TileEntity{
 		renderTicks=0;//This constantly goes up.
 		ticks = 0;//This wraps to the cycle length.
 	}
+	//TODO save the master's coordinates, and make it look there for a network before looking elsewhere.
 	@Override
 	public void updateEntity(){
 		super.updateEntity();
@@ -34,23 +34,17 @@ public class TileEnderNode extends TileEntity{
 		ticks = (byte)(renderTicks % cycle);
 	}
 	public void scanNetwork(int layer){
-		boolean done = false;
 		if(worldObj!=null){
-			for(int i=-range;i<=range;i++){
+			scan: for(int i=-range;i<=range;i++){
 				for(int j=-range;j<=range;j++){
 					TileEntity tile = worldObj.getTileEntity(xCoord+i, yCoord+(layer-range), zCoord+j);
 					if(tile instanceof TileEnderNode && tile!=this && ((TileEnderNode)tile).network!=null){
 						this.network = ((TileEnderNode)tile).network;
 						network.addNode(this);
-						done = true;
-						break;
+						break scan;
 					}
-					if(done){break;}
 				}
-				if(done){break;}
 			}
-		}else{
-			LogHelper.info("Null World");
 		}
 		if(this.network==null && layer==scan-1){//Last layer, and still nothing
 			this.network = new EnderNodeNetwork(this);
@@ -67,10 +61,27 @@ public class TileEnderNode extends TileEntity{
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
+		if(network==null) return;
+		TileEnderNode master = network.getMaster();
+		if(master==null){
+			nbt.setInteger("masterX", xCoord);
+			nbt.setInteger("masterY", yCoord);
+			nbt.setInteger("masterZ", zCoord);
+		}else{
+			nbt.setInteger("masterX", master.xCoord);
+			nbt.setInteger("masterY", master.yCoord);
+			nbt.setInteger("masterZ", master.zCoord);
+		}
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
+		TileEntity tile = worldObj.getTileEntity(nbt.getInteger("masterX"), nbt.getInteger("masterY"), nbt.getInteger("masterZ"));
+		if(tile instanceof TileEnderNode && tile!=this){
+			network = ((TileEnderNode)tile).network;
+		}else{
+			network = new EnderNodeNetwork(this);
+		}
 	}
 	@Override
 	public Packet getDescriptionPacket(){

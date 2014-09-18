@@ -11,6 +11,8 @@ import com.endreman0.endermechanics.util.LogHelper;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
@@ -19,6 +21,7 @@ public class ItemWrench extends ItemEM{
 		super();
 		setUnlocalizedName("wrench");
 	}
+	@Override @SideOnly(Side.CLIENT) public boolean isFull3D(){return true;}//This makes it render in your hand, like a sword or tool.
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event){
 		if(event.action.equals(Utility.wrenchKey ? event.action.LEFT_CLICK_BLOCK : event.action.RIGHT_CLICK_BLOCK)){

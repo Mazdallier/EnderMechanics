@@ -36,5 +36,7 @@ endermechanics.config.enable.machineFrame.name=Enable Machine Frame
 endermechanics.config.enable.machineFrame.tooltip=Enable Machine Frames, frames that allow automation of blocks.
 endermechanics.config.enable.generatorFurnace.name=Enable Infernal Reactor
 endermechanics.config.enable.generatorFurnace.tooltip=Enable the Infernal Reactor, which creates Endergy from furnace fuel and lava
+endermechanics.config.enable.generatorFurnace.name=Enable Biotic Reactor
+endermechanics.config.enable.generatorFurnace.tooltip=Enable the Biotic Reactor, which creates Endergy from saplings, wood, crops and food
 endermechanics.config.enable.node.name=Enable Ender Nodes
 endermechanics.config.enable.node.tooltip=Enable Ender Nodes, the transport system of Ender Mechanics

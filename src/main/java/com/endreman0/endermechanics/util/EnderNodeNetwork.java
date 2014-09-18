@@ -24,4 +24,5 @@ public class EnderNodeNetwork{
 	public int nodes(){
 		return nodes.size();
 	}
+	public TileEnderNode getMaster(){return (nodes!=null && nodes.size()>0) ? nodes.get(0) : null;}
 }

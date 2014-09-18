@@ -53,6 +53,7 @@ public class Utility{
 	public static boolean enableWrench = true;
 	public static boolean enableFrame = true;
 	public static boolean enableGenFurnace = true;
+	public static boolean enableGenLiving = true;
 	public static boolean enableNode = true;
 	
 	
@@ -74,6 +75,7 @@ public class Utility{
 		enableWrench = getBoolean(catEnable, "wrench", true);
 		enableFrame = getBoolean(catEnable, "machineFrame", true);
 		enableGenFurnace = getBoolean(catEnable, "generatorFurnace", true);
+		enableGenLiving = getBoolean(catEnable, "generatorLiving", true);
 		enableNode = getBoolean(catEnable, "node", true);
 		if(config.hasChanged()){config.save();}
 	}

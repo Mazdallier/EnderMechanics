@@ -1,39 +1,40 @@
 package com.endreman0.endermechanics.tile;
 
-import com.endreman0.endermechanics.util.LogHelper;
-import com.endreman0.endermechanics.util.Utility;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileGeneratorEM extends TileFunctionalEM{
 	protected int ticksRunning;//Increased whenever a fuel is consumed, decremented every tick
-	protected int powerOutput;//Updated whenever a fuel is consumed
-	public TileGeneratorEM(){
-		super();
+	protected int powerOutput;
+	public TileGeneratorEM(int output, int maxEnergy){
+		super(maxEnergy);
 		ticksRunning = 0;
-		powerOutput = 0;
+		powerOutput = output;
 	}
 	@Override protected int getInvSlots(){return 1;}
-	protected abstract int fuelTicks();
-	protected boolean hasFuel(){return inv[0]!=null;}//This method allows IFluidHandlers to keep running when there's no items inside.
-	protected abstract int powerOutput();
+	/**
+	 * hasFuel() and run() in one.
+	 * @param execute Whether to consume fuel or not
+	 * @return The ticks to run with the fuel (potentially) consumed
+	 */
+	protected abstract int consumeFuel(boolean execute);
 	protected boolean canRun(){
 		if(insert(ForgeDirection.UNKNOWN, powerOutput, false)!=powerOutput) return false;//If there's no room for power...
-		if(!hasFuel() && ticksRunning==0) return false; //...or there's no fuel and no power left to get, stop running
+		if(consumeFuel(false)==0 && ticksRunning==0) return false; //...or there's no fuel and no power left to make, stop running
 		return true;
 	}
 	@Override
 	public void updateEntity(){
+		super.updateEntity();
 		if(canRun()){
 			if(ticksRunning>0){
 				insert(ForgeDirection.UNKNOWN, powerOutput, true);
 				ticksRunning--;
-			}else if(fuelTicks()>0){
-				ticksRunning = fuelTicks();
-				powerOutput = powerOutput();
-				decrStackSize(0, 1);//Decrement inventory amount by 1
+			}else if(consumeFuel(false)>0){//If there is fuel to be burned,
+				ticksRunning = consumeFuel(true);//Burn it.
 			}
 		}
 	}

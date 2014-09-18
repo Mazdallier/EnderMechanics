@@ -1,5 +1,6 @@
 package com.endreman0.endermechanics.tile;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -13,14 +14,21 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileGeneratorFurnace extends TileGeneratorEM implements IFluidHandler{
 	public FluidTank lavaTank = new FluidTank(10000);//capacity in mB
+	public TileGeneratorFurnace(){super(10, 10000);}
 	
-	@Override protected int fuelTicks(){return TileEntityFurnace.getItemBurnTime(inv[0])/2;}
-	@Override protected int powerOutput(){return 10;}//Coal: 10E/t*800t=8kE. Perfect.
-	@Override protected boolean hasFuel(){
-		if(super.hasFuel()) return true;
-		FluidTankInfo tank = getTankInfo(ForgeDirection.UNKNOWN)[0];
-		if(tank.fluid!=null && tank.fluid.getFluid().equals(FluidRegistry.LAVA) && tank.fluid.amount>0) return true;
-		return false;
+	@Override
+	protected int consumeFuel(boolean execute){
+		boolean useItem = true;
+		int power = 0;
+		if(inv[0]!=null){//If there are items to burn, 
+			power=TileEntityFurnace.getItemBurnTime(inv[0])/2;
+			if(execute) inv[0].stackSize--;//Use them.
+			if(inv[0].stackSize==0) inv[0] = null;
+		}else if(lavaTank.getFluid()!=null){//If there are no items but there is fluid, use it.
+			power=10;//10t/mB means one bucket lasts 10000t, producing 100kE. This is enough to smelt 100 items, just as a lava bucket in a furnace does.
+			if(execute) lavaTank.getFluid().amount--;//Use some fluid.
+		}
+		return power;
 	}
 	
 	@Override

@@ -1,7 +1,5 @@
 package com.endreman0.endermechanics;
 
-import com.endreman0.endermechanics.block.ModBlocks;
-import com.endreman0.endermechanics.gui.GuiFactory;
 import com.endreman0.endermechanics.gui.GuiHandler;
 import com.endreman0.endermechanics.item.ItemWrench;
 import com.endreman0.endermechanics.item.ModItems;
@@ -29,22 +27,32 @@ public class EnderMechanics{
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
 		Utility.init(event.getSuggestedConfigurationFile());//Config
-		ModItems.initItems();
-		ModBlocks.init();
+		proxy.items();
+		proxy.blocks();
 		if(Loader.isModLoaded("ForgeMultipart")){
 			new ModMultiparts().init();
 		}
 	}
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event){
-		ModItems.initRecipes();
-		//MinecraftForge.EVENT_BUS.register(new Events());
+		//Recipes
+		proxy.crafting();
+		proxy.smelting();
+		proxy.machineRecipes();
+		
+		//Events
 		MinecraftForge.EVENT_BUS.register(ModItems.wrench);
 		FMLCommonHandler.instance().bus().register(Utility.instance);//ConfigChangedEvent
-		proxy.registerEntities();
-		proxy.registerTileEntities();
-		proxy.registerRenders();
+		
+		//Random stuff
+		proxy.entities();
+		proxy.tileEntities();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		
+		//Renderers
+		proxy.itemRenders();
+		proxy.tileRenders();
+		proxy.entityRenders();
 	}
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event){

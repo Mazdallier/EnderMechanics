@@ -1,20 +1,26 @@
 package com.endreman0.endermechanics.item;
 
+import java.util.List;
+
 import com.endreman0.endermechanics.util.Utility;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class ItemVoidArmor extends ItemArmor{
-	public ItemVoidArmor(ArmorMaterial material, int type){
-		super(material, 4, type);
-		setCreativeTab(Utility.EM_TAB);
+	public ItemVoidArmor(int type){
+		super(ModItems.armorMatVoid, 4, type);
+		if(type>=0){setCreativeTab(Utility.EM_TAB);}else{setCreativeTab(null);}
 		switch(type){
 			case(0):
 				setUnlocalizedName("voidHelmet");
@@ -27,6 +33,9 @@ public class ItemVoidArmor extends ItemArmor{
 			break;
 			case(3):
 				setUnlocalizedName("voidBoots");
+			break;
+			default:
+				setUnlocalizedName("voidArmor");
 			break;
 		}
 	}
@@ -46,9 +55,10 @@ public class ItemVoidArmor extends ItemArmor{
 	}
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type){
-		if(stack.getItem().equals(ModItems.voidHelmet) || stack.getItem().equals(ModItems.voidChestplate) || stack.getItem().equals(ModItems.voidLeggings) ||
-				stack.getItem().equals(ModItems.voidBoots)){
+		if(stack.getItem().equals(ModItems.voidHelmet) || stack.getItem().equals(ModItems.voidChestplate) || stack.getItem().equals(ModItems.voidBoots)){
 			return Utility.RESOURCE_PREFIX + ":textures/armor/void1.png";
+		}else if(stack.getItem().equals(ModItems.voidLeggings)){
+			return Utility.RESOURCE_PREFIX + ":textures/armor/void2.png";
 		}
 		return null;
 	}

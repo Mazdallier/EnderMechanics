@@ -12,8 +12,8 @@ import com.endreman0.endermechanics.recipe.RecipeEM;
 public abstract class TileMachineEM extends TileFunctionalEM{
 	protected List<RecipeEM> recipes;
 	protected int recipeID;
-	public TileMachineEM(){
-		super();
+	public TileMachineEM(int maxPower){
+		super(maxPower);
 		recipes = new ArrayList<RecipeEM>();
 		recipeID=-1;
 	}
@@ -28,7 +28,7 @@ public abstract class TileMachineEM extends TileFunctionalEM{
 	
 	@Override
 	public void updateEntity(){
-		if(recipeID==-1){
+		if(recipeID<0){
 			for(int i=0;i<recipes.size();i++){
 				if(recipes.get(0).canExecute(this)){
 					recipeID=i;
