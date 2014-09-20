@@ -18,7 +18,7 @@ public class BlockEnderNode extends BlockEM implements ITileEntityProvider, IWre
 	}
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta){
-		((TileEnderNode)world.getTileEntity(x, y, z)).breakBlock();
+//		((TileEnderNode)world.getTileEntity(x, y, z)).breakBlock();
 		super.breakBlock(world, x, y, z, block, meta);
 	}
 	@Override

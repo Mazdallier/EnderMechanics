@@ -30,18 +30,16 @@ public interface IPowerHandler{
 	/**
 	 * Whether or not power can be inserted from the defined side.
 	 * @param from Direction in question
-	 * @param amount Amount of power that is being inserted
 	 * @return Whether the power can be inserted
 	 */
-	boolean canInsert(ForgeDirection from, int amount);
+	boolean canInsert(ForgeDirection from);
 	
 	/**
 	 * Whether or not power can be extracted from the defined side.
 	 * @param from Direction in question
-	 * @param amount Amount of power that is being extracted
 	 * @return Whether or not the power can be extracted
 	 */
-	boolean canExtract(ForgeDirection from, int amount);
+	boolean canExtract(ForgeDirection from);
 	
 	//Next is FluidTankInfo[] getTankInfo(ForgeDirection), but I'm not going to create a PowerBufferInfo class. There is also only one buffer, so no need of an array.
 	/**

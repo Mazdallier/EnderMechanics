@@ -1,6 +1,5 @@
 package com.endreman0.endermechanics.tile;
 
-import com.endreman0.endermechanics.block.BlockEnderNode;
 import com.endreman0.endermechanics.util.EnderNodeNetwork;
 import com.endreman0.endermechanics.util.Utility;
 
@@ -10,84 +9,84 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEnderNode extends TileEntity{
+public class TileEnderNode extends TileEM{
 	public EnderNodeNetwork network;
 	public long renderTicks;
 	public byte ticks;
 	private int range = Utility.nodeRange;
 	private int cycle = Utility.nodeUpdate;
 	private int scan = 2*range + 1;//Scan time; 1 tick per layer. One layer for the layer this is in, "range" layers above, and "range" layers below.
+	private int masterX, masterY, masterZ;
 	public TileEnderNode(){
-		super();
+		super(1000);
 		renderTicks=0;//This constantly goes up.
 		ticks = 0;//This wraps to the cycle length.
 	}
-	//TODO save the master's coordinates, and make it look there for a network before looking elsewhere.
+	
 	@Override
 	public void updateEntity(){
 		super.updateEntity();
-		if(ticks<scan && (network==null || network.nodes()<=1)){
-			scanNetwork(ticks);
-		}
+		if(ticks<scan && (network==null || network.nodes()<=1)) scanNetwork(ticks);//If it's in the scan cycle and the network is incomplete, scan.
+		if(!(worldObj.getTileEntity(masterX, masterY, masterZ) instanceof TileEnderNode)) createFromTile(null);//If the master is broken, reset.
 		renderTicks++;
 		ticks = (byte)(renderTicks % cycle);
 	}
 	public void scanNetwork(int layer){
-		if(worldObj!=null){
-			scan: for(int i=-range;i<=range;i++){
-				for(int j=-range;j<=range;j++){
-					TileEntity tile = worldObj.getTileEntity(xCoord+i, yCoord+(layer-range), zCoord+j);
-					if(tile instanceof TileEnderNode && tile!=this && ((TileEnderNode)tile).network!=null){
-						this.network = ((TileEnderNode)tile).network;
-						network.addNode(this);
-						break scan;
-					}
+		scan: for(int i=-range;i<=range;i++){
+			for(int j=-range;j<=range;j++){
+				TileEntity tile = worldObj.getTileEntity(xCoord+i, yCoord+(layer-range), zCoord+j);
+				if(tile instanceof TileEnderNode && !tile.equals(this)){
+					createFromTile((TileEnderNode)tile);
+					network.addNode(this);
+					break scan;
 				}
 			}
 		}
 		if(this.network==null && layer==scan-1){//Last layer, and still nothing
-			this.network = new EnderNodeNetwork(this);
-		}
-	}
-	
-	//TODO figure out why the network is always null on server side.
-	public void breakBlock(){
-		if(network!=null){
-			network.removeNode(this);
+			createFromTile(this);
 		}
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
-		if(network==null) return;
-		TileEnderNode master = network.getMaster();
-		if(master==null){
-			nbt.setInteger("masterX", xCoord);
-			nbt.setInteger("masterY", yCoord);
-			nbt.setInteger("masterZ", zCoord);
-		}else{
-			nbt.setInteger("masterX", master.xCoord);
-			nbt.setInteger("masterY", master.yCoord);
-			nbt.setInteger("masterZ", master.zCoord);
-		}
+		nbt.setInteger("masterX", masterX);
+		nbt.setInteger("masterY", masterY);
+		nbt.setInteger("masterZ", masterZ);
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
-		TileEntity tile = worldObj.getTileEntity(nbt.getInteger("masterX"), nbt.getInteger("masterY"), nbt.getInteger("masterZ"));
-		if(tile instanceof TileEnderNode && tile!=this){
-			network = ((TileEnderNode)tile).network;
-		}else{
-			network = new EnderNodeNetwork(this);
-		}
+		if(network!=null) return;
+		createFromTile((TileEnderNode)worldObj.getTileEntity(nbt.getInteger("masterX"), nbt.getInteger("masterY"), nbt.getInteger("masterZ")));
+		if(network!=null) network.addNode(this);
 	}
 	@Override
-	public Packet getDescriptionPacket(){
-		NBTTagCompound tag = new NBTTagCompound();
-		writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
+	public void invalidate(){
+		super.invalidate();
+		if(network!=null) network.removeNode(this);
 	}
-	@Override public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet){readFromNBT(packet.func_148857_g());}
+	public EnderNodeNetwork getNetworkFromMaster(){
+		if(network==null) network = new EnderNodeNetwork(this);
+		return network;
+	}
+	private void createFromTile(TileEnderNode tile){
+		if(tile==null){
+			masterX = xCoord; masterY = yCoord; masterZ = zCoord;
+			network = null;
+		}else{
+			masterX = tile.xCoord; masterY = tile.yCoord; masterZ = tile.zCoord;
+			network = tile.getNetworkFromMaster();
+		}
+		markDirty();
+	}
+	
+	@Override public int insert(ForgeDirection from, int amount, boolean actual){return network!=null ? network.insert(from, amount, actual) : 0;}
+	@Override public int extract(ForgeDirection from, int amount, boolean actual){return network!=null ? network.extract(from, amount, actual) : 0;}
+	@Override public boolean canInsert(ForgeDirection from){return network!=null ? network.canInsert(from) : false;}
+	@Override public boolean canExtract(ForgeDirection from){return network!=null ? network.canExtract(from) : false;}
+	@Override public int getPower(ForgeDirection from){return network!=null ? network.getPower(from) : 0;}
+	@Override public int getMaxPower(ForgeDirection from){return network!=null ? network.getMaxPower(from) : 0;}
 }

@@ -19,23 +19,26 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public abstract class TileFunctionalEM extends TileEntity implements IInventory, IPowerHandler{
+public abstract class TileFunctionalEM extends TileEM implements IInventory, IPowerHandler{
 	protected ItemStack[] inv;
-	protected int power;
-	protected int maxPower;
 	
 	public TileFunctionalEM(int maxPower){
+		super(maxPower);
 		inv = new ItemStack[getInvSlots()];
-		power=0;
-		this.maxPower = maxPower;
 	}
 	protected abstract int getInvSlots();
+	protected void tick(){}
+	
+	@Override
+	public void updateEntity(){
+		super.updateEntity();
+		tick();
+	}
 	
 	//NBT and packets
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
-		power = nbt.getInteger("power");
 		NBTTagList list = nbt.getTagList("Inventory", 10);
 		for(int i=0;i<list.tagCount();i++){
 			NBTTagCompound tag = list.getCompoundTagAt(i);
@@ -48,7 +51,6 @@ public abstract class TileFunctionalEM extends TileEntity implements IInventory,
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
-		nbt.setInteger("power", power);
 		NBTTagList list = new NBTTagList();
 		for(int i=0; i<inv.length; i++){
 			ItemStack stack = inv[i];
@@ -61,16 +63,6 @@ public abstract class TileFunctionalEM extends TileEntity implements IInventory,
 		}
 		nbt.setTag("Inventory", list);
 	}
-	
-	@Override
-	public Packet getDescriptionPacket(){
-		NBTTagCompound nbt = new NBTTagCompound();
-		writeToNBT(nbt);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
-	}
-	
-	@Override public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet){readFromNBT(packet.func_148857_g());}
-	//func_148857_g gets NBT from packet
 	
 	//IInventory
 	@Override
@@ -108,28 +100,4 @@ public abstract class TileFunctionalEM extends TileEntity implements IInventory,
 	@Override public void openInventory(){}
 	@Override public void closeInventory(){}
 	@Override public boolean isItemValidForSlot(int slot, ItemStack stack){return true;}
-	
-	//IPowerHandler
-	@Override
-	public int insert(ForgeDirection from, int amount, boolean actual){
-		int amt = Math.min(amount, getMaxPower(from)-power);
-		if(canInsert(from, amount)){
-			if(actual) power+=amt;
-			return amt;
-		}
-		return 0;
-	}
-	@Override
-	public int extract(ForgeDirection from, int amount, boolean actual){
-		int amt = Math.min(amount, power);
-		if(canExtract(from, amount)){
-			if(actual) power-=amt;
-			return amt;
-		}
-		return 0;
-	}
-	@Override public boolean canInsert(ForgeDirection from, int amount){return true;}
-	@Override public boolean canExtract(ForgeDirection from, int amount){return true;}
-	@Override public int getPower(ForgeDirection from){return power;}
-	@Override public int getMaxPower(ForgeDirection from){return maxPower;}
 }

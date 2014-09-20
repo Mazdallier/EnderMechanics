@@ -1,5 +1,7 @@
 package com.endreman0.endermechanics.tile;
 
+import com.endreman0.endermechanics.util.IPowerHandler;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
@@ -16,7 +18,10 @@ public abstract class TileGeneratorEM extends TileFunctionalEM{
 	}
 	@Override protected int getInvSlots(){return 1;}
 	/**
-	 * hasFuel() and run() in one.
+	 * hasFuel() and run() in one method.
+	 * Similar to IFluidHandler's fill and drain methods, with doFill and doDrain respectively.
+	 * If the boolean is true, one fuel should be consumed.
+	 * Whether or not the fuel is consumed, return the number of ticks this generator can run for with that fuel.
 	 * @param execute Whether to consume fuel or not
 	 * @return The ticks to run with the fuel (potentially) consumed
 	 */
@@ -35,6 +40,16 @@ public abstract class TileGeneratorEM extends TileFunctionalEM{
 				ticksRunning--;
 			}else if(consumeFuel(false)>0){//If there is fuel to be burned,
 				ticksRunning = consumeFuel(true);//Burn it.
+			}
+			markDirty();
+		}
+		for(int i=0;i<6;i++){
+			ForgeDirection dir = ForgeDirection.getOrientation(i);
+			if(worldObj.getTileEntity(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ) instanceof IPowerHandler){
+				IPowerHandler machine = (IPowerHandler)worldObj.getTileEntity(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ);
+				if(machine.canInsert(dir.getOpposite())){
+					power-=machine.insert(dir.getOpposite(), Math.min(power, 1000), true);
+				}
 			}
 		}
 	}

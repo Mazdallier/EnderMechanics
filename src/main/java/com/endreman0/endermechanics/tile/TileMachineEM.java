@@ -28,6 +28,7 @@ public abstract class TileMachineEM extends TileFunctionalEM{
 	
 	@Override
 	public void updateEntity(){
+		super.updateEntity();
 		if(recipeID<0){
 			for(int i=0;i<recipes.size();i++){
 				if(recipes.get(0).canExecute(this)){
