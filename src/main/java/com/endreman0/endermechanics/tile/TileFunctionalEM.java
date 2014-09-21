@@ -22,11 +22,16 @@ import net.minecraftforge.fluids.IFluidHandler;
 public abstract class TileFunctionalEM extends TileEM implements IInventory, IPowerHandler{
 	protected ItemStack[] inv;
 	
-	public TileFunctionalEM(int maxPower){
+	public TileFunctionalEM(int maxPower, int invSlots){
 		super(maxPower);
-		inv = new ItemStack[getInvSlots()];
+		inv = new ItemStack[invSlots];
 	}
-	protected abstract int getInvSlots();
+	/**
+	 * Called every tick in onUpdate().
+	 * Instead of overriding onUpdate, use this method.
+	 * None of my abstract machine templates override this, so it's safe to not call super.tick().
+	 * Do whatever you want.
+	 */
 	protected void tick(){}
 	
 	@Override

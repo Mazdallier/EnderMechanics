@@ -12,11 +12,10 @@ public abstract class TileGeneratorEM extends TileFunctionalEM{
 	protected int ticksRunning;//Increased whenever a fuel is consumed, decremented every tick
 	protected int powerOutput;
 	public TileGeneratorEM(int output, int maxEnergy){
-		super(maxEnergy);
+		super(maxEnergy, 1);
 		ticksRunning = 0;
 		powerOutput = output;
 	}
-	@Override protected int getInvSlots(){return 1;}
 	/**
 	 * hasFuel() and run() in one method.
 	 * Similar to IFluidHandler's fill and drain methods, with doFill and doDrain respectively.
@@ -26,15 +25,17 @@ public abstract class TileGeneratorEM extends TileFunctionalEM{
 	 * @return The ticks to run with the fuel (potentially) consumed
 	 */
 	protected abstract int consumeFuel(boolean execute);
-	protected boolean canRun(){
-		if(insert(ForgeDirection.UNKNOWN, powerOutput, false)!=powerOutput) return false;//If there's no room for power...
-		if(consumeFuel(false)==0 && ticksRunning==0) return false; //...or there's no fuel and no power left to make, stop running
-		return true;
-	}
+	/**
+	 * Whether or not the tile is capable of generating power this tick.
+	 * Multi-blocks would check here if they have a correctly formed structure.
+	 * If a generator needs some power in it to start generating, like a GregTech Fusion Reactor, check for that here too.
+	 * @return true if everything is good to go.
+	 */
+	protected boolean canRun(){return true;}
 	@Override
 	public void updateEntity(){
 		super.updateEntity();
-		if(canRun()){
+		if(canRun() && power+powerOutput<=maxPower){
 			if(ticksRunning>0){
 				insert(ForgeDirection.UNKNOWN, powerOutput, true);
 				ticksRunning--;
@@ -56,13 +57,11 @@ public abstract class TileGeneratorEM extends TileFunctionalEM{
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
-		power = nbt.getInteger("power");
 		ticksRunning = nbt.getInteger("ticksRunning");
 		powerOutput = nbt.getInteger("powerOutput");
 	}
 	@Override public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
-		nbt.setInteger("power", power);
 		nbt.setInteger("ticksRunning", ticksRunning);
 		nbt.setInteger("powerOutput", powerOutput);
 	}

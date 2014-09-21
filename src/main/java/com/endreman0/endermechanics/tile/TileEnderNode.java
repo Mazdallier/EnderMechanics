@@ -82,7 +82,8 @@ public class TileEnderNode extends TileEM{
 		}
 		markDirty();
 	}
-	
+	public int getThisPower(ForgeDirection from){return power;}
+	public int getThisMaxPower(ForgeDirection from){return maxPower;}
 	@Override public int insert(ForgeDirection from, int amount, boolean actual){return network!=null ? network.insert(from, amount, actual) : 0;}
 	@Override public int extract(ForgeDirection from, int amount, boolean actual){return network!=null ? network.extract(from, amount, actual) : 0;}
 	@Override public boolean canInsert(ForgeDirection from){return network!=null ? network.canInsert(from) : false;}

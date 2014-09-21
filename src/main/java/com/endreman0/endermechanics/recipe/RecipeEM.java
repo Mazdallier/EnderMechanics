@@ -21,9 +21,4 @@ public class RecipeEM{
 	public int power(){return power;}
 	public ItemStack[] itemOutputs(){return outputs;}
 	public FluidStack[] fluidOutputs(){return fluidOutputs;}
-	public boolean canExecute(TileFunctionalEM tile){
-		boolean canExecute = true;
-		
-		return canExecute;
-	}
 }

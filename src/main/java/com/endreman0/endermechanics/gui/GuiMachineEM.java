@@ -20,10 +20,10 @@ import net.minecraftforge.fluids.FluidTankInfo;
 public abstract class GuiMachineEM extends GuiContainer{
 	protected TileFunctionalEM tile;
 	protected ResourceLocation texture;
-	public GuiMachineEM(ContainerMachineEM container, TileFunctionalEM tileEntity){//Constructing the container here causes a crash.
+	public GuiMachineEM(ContainerMachineEM container, TileFunctionalEM tileEntity){
 		super(container);
 		tile = tileEntity;
-		texture = new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/gui/" + tileEntity.getInventoryName().substring(tileEntity.getInventoryName().indexOf(':')+1) + ".png");//GUIs folder, texture with machine's name
+		texture = new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/gui/" + tile.getInventoryName().substring(tile.getInventoryName().indexOf(':')+1) + ".png");//GUIs folder, texture with machine's name
 	}
 	
 	@Override
@@ -102,26 +102,6 @@ public abstract class GuiMachineEM extends GuiContainer{
 	}
 	protected void drawPowerTooltip(int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){//Power data comes from 'tile' field
 		if(mouseX<minX || mouseY<minY || mouseX>maxX || mouseY>maxY) return;
-		drawTooltip(mouseX, mouseY, getStringFromPower(tile.getPower(ForgeDirection.UNKNOWN))+'/'+getStringFromPower(tile.getMaxPower(ForgeDirection.UNKNOWN)));
-	}
-	private String getStringFromPower(int power){
-		float scaledPower = power;
-		String unit;
-		if(power>=1000000){//1 million Endergy = 1mE (megaEndergy)
-			scaledPower/=1000000;
-			unit="mE";
-		}else if(power>=1000){//1 thousand Endergy = 1kE (kiloEndergy)
-			scaledPower/=1000;
-			unit="kE";
-		}else{
-			unit = "E";
-		}
-		String string = String.valueOf(scaledPower);
-		if(scaledPower==Math.floor(scaledPower) && string.contains(".")){//If it's a whole number, just return the whole part.
-			string = string.substring(0, string.indexOf('.'));
-		}else{
-			if(string.length()>4) string = string.substring(0, 4);//Truncate to two decimal points
-		}
-		return string + unit;
+		drawTooltip(mouseX, mouseY, Utility.getStringFromPower(tile.getPower(ForgeDirection.UNKNOWN))+'/'+Utility.getStringFromPower(tile.getMaxPower(ForgeDirection.UNKNOWN)));
 	}
 }

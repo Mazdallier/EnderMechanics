@@ -24,7 +24,7 @@ public class EnderNodeNetwork implements IPowerHandler{
 	//IPowerHandler
 	@Override
 	public int insert(ForgeDirection from, int amount, boolean actual) {
-		int amt = Math.min(amount, maxPower-power);
+		int amt = Math.min(amount, getMaxPower(from)-power);
 		if(actual) power+=amt;
 		return amt;
 	}
@@ -41,7 +41,7 @@ public class EnderNodeNetwork implements IPowerHandler{
 		int netPower = power;
 		Iterator<TileEnderNode> iterator = nodes.iterator();
 		while(iterator.hasNext()){
-			netPower+=iterator.next().getPower(from);
+			netPower+=iterator.next().getThisPower(from);
 		}
 		return netPower;
 	}
@@ -50,7 +50,7 @@ public class EnderNodeNetwork implements IPowerHandler{
 		int netPower = maxPower;
 		Iterator<TileEnderNode> iterator = nodes.iterator();
 		while(iterator.hasNext()){
-			netPower+=iterator.next().getMaxPower(from);
+			netPower+=iterator.next().getThisMaxPower(from);
 		}
 		return netPower;
 	}

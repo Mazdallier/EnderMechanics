@@ -45,6 +45,26 @@ public class Utility{
 		if(nbt!=null) newStack.setTagCompound(nbt);
 		return newStack;
 	}
+	public static final String getStringFromPower(int power){
+		float scaledPower = power;
+		String unit;
+		if(power>=1000000){//1 million Endergy = 1mE (megaEndergy)
+			scaledPower/=1000000;
+			unit="mE";
+		}else if(power>=1000){//1 thousand Endergy = 1kE (kiloEndergy)
+			scaledPower/=1000;
+			unit="kE";
+		}else{
+			unit = "E";
+		}
+		String string = String.valueOf(scaledPower);
+		if(scaledPower==Math.floor(scaledPower) && string.contains(".")){//If it's a whole number, just return the whole part.
+			string = string.substring(0, string.indexOf('.'));
+		}else{
+			if(string.length()>4) string = string.substring(0, 4);//Truncate to two decimal points
+		}
+		return string + unit;
+	}
 	
 	//Config variables
 	public static boolean wrenchKey = true;
