@@ -4,7 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileGeneratorLiving extends TileGeneratorEM{
+public class TileGeneratorLiving extends TileGenerator{
 	public TileGeneratorLiving() {
 		super(10, 10000);
 	}

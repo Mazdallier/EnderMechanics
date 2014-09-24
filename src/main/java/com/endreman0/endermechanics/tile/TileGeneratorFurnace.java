@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileGeneratorFurnace extends TileGeneratorEM implements IFluidHandler{
+public class TileGeneratorFurnace extends TileGenerator implements IFluidHandler{
 	public FluidTank lavaTank = new FluidTank(10000);//capacity in mB
 	public TileGeneratorFurnace(){super(10, 10000);}
 	

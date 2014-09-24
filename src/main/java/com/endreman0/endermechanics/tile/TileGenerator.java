@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileGeneratorEM extends TileFunctionalEM{
+public abstract class TileGenerator extends TileInventory{
 	protected int ticksRunning;//Increased whenever a fuel is consumed, decremented every tick
 	protected int powerOutput;
-	public TileGeneratorEM(int output, int maxEnergy){
-		super(maxEnergy, 1);
+	public TileGenerator(int output, int maxEnergy){
+		super(1, maxEnergy);
 		ticksRunning = 0;
 		powerOutput = output;
 	}

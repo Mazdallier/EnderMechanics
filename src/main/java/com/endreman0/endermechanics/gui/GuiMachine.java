@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;
 
-import com.endreman0.endermechanics.container.ContainerMachineEM;
-import com.endreman0.endermechanics.tile.TileFunctionalEM;
+import com.endreman0.endermechanics.container.ContainerMachine;
+import com.endreman0.endermechanics.tile.TileInventory;
 import com.endreman0.endermechanics.util.LogHelper;
 import com.endreman0.endermechanics.util.Utility;
 
@@ -17,10 +17,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 
-public abstract class GuiMachineEM extends GuiContainer{
-	protected TileFunctionalEM tile;
+public abstract class GuiMachine extends GuiContainer{
+	protected TileInventory tile;
 	protected ResourceLocation texture;
-	public GuiMachineEM(ContainerMachineEM container, TileFunctionalEM tileEntity){
+	public GuiMachine(ContainerMachine container, TileInventory tileEntity){
 		super(container);
 		tile = tileEntity;
 		texture = new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/gui/" + tile.getInventoryName().substring(tile.getInventoryName().indexOf(':')+1) + ".png");//GUIs folder, texture with machine's name

@@ -1,6 +1,6 @@
 package com.endreman0.endermechanics.container;
 
-import com.endreman0.endermechanics.tile.TileFunctionalEM;
+import com.endreman0.endermechanics.tile.TileInventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -8,9 +8,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class ContainerMachineEM extends Container{
-	protected TileFunctionalEM tile;
-	public ContainerMachineEM(InventoryPlayer inventoryPlayer, TileFunctionalEM tileEntity){
+public abstract class ContainerMachine extends Container{
+	protected TileInventory tile;
+	public ContainerMachine(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
 		tile = tileEntity;
 	}
 	

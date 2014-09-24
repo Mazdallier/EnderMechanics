@@ -32,8 +32,8 @@ public class BlockEnderNode extends BlockEM implements ITileEntityProvider, IWre
 		if(world.isRemote) return false;
 		if(player.inventory.getCurrentItem()!=null && player.inventory.getCurrentItem().getItem().equals(ModItems.wrench)){
 			TileEnderNode tile = (TileEnderNode)world.getTileEntity(x, y, z);
-			player.addChatMessage(new ChatComponentText(Utility.getStringFromPower(tile.getThisPower(ForgeDirection.UNKNOWN)) + "/" + Utility.getStringFromPower(tile.getThisMaxPower(ForgeDirection.UNKNOWN))));
-			player.addChatMessage(new ChatComponentText("Network: " + Utility.getStringFromPower(tile.getPower(ForgeDirection.UNKNOWN)) + "/" + Utility.getStringFromPower(tile.getMaxPower(ForgeDirection.UNKNOWN))));
+			player.addChatMessage(new ChatComponentText(Utility.getStringFromPower(tile.getPower(ForgeDirection.UNKNOWN)) + "/" + Utility.getStringFromPower(tile.getMaxPower(ForgeDirection.UNKNOWN))));
+			player.addChatMessage(new ChatComponentText("Nodes: " + (tile.getNetwork()!=null ? tile.getNetwork().nodes() : 0)));
 			return true;
 		}
 		return false;

@@ -1,7 +1,7 @@
 package com.endreman0.endermechanics.gui;
 
 import com.endreman0.endermechanics.container.ContainerGeneratorFurnace;
-import com.endreman0.endermechanics.tile.TileFunctionalEM;
+import com.endreman0.endermechanics.tile.TileInventory;
 import com.endreman0.endermechanics.util.LogHelper;
 
 import net.minecraft.entity.player.InventoryPlayer;
@@ -9,8 +9,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class GuiGeneratorFurnace extends GuiMachineEM{
-	public GuiGeneratorFurnace(InventoryPlayer inventoryPlayer, TileFunctionalEM tileEntity){
+public class GuiGeneratorFurnace extends GuiMachine{
+	public GuiGeneratorFurnace(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
 		super(new ContainerGeneratorFurnace(inventoryPlayer, tileEntity), tileEntity);
 	}
 	

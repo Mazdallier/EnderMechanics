@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-public class BlockGeneratorFurnace extends BlockMachineEM{
+public class BlockGeneratorFurnace extends BlockMachine{
 	protected BlockGeneratorFurnace(){
 		super(Material.iron, "generatorFurnace");
 	}

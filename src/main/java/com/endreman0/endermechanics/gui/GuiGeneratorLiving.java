@@ -1,13 +1,13 @@
 package com.endreman0.endermechanics.gui;
 
 import com.endreman0.endermechanics.container.ContainerGeneratorLiving;
-import com.endreman0.endermechanics.tile.TileFunctionalEM;
+import com.endreman0.endermechanics.tile.TileInventory;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class GuiGeneratorLiving extends GuiMachineEM{
-	public GuiGeneratorLiving(InventoryPlayer inventoryPlayer, TileFunctionalEM tileEntity){
+public class GuiGeneratorLiving extends GuiMachine{
+	public GuiGeneratorLiving(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
 		super(new ContainerGeneratorLiving(inventoryPlayer, tileEntity), tileEntity);
 	}
 	@Override

@@ -1,6 +1,6 @@
-package com.endreman0.endermechanics.recipe;
+package com.endreman0.endermechanics.util;
 
-import com.endreman0.endermechanics.tile.TileFunctionalEM;
+import com.endreman0.endermechanics.tile.TileInventory;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

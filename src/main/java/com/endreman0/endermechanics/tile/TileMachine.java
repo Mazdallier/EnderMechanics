@@ -8,11 +8,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import com.endreman0.endermechanics.recipe.RecipeEM;
+import com.endreman0.endermechanics.util.RecipeEM;
 
-//TODO See if I can merge this with TileGeneratorEM
-public abstract class TileMachineEM extends TileFunctionalEM{
-	public TileMachineEM(int maxPower, int invSlots){
+public abstract class TileMachine extends TileInventory{
+	public TileMachine(int maxPower, int invSlots){
 		super(maxPower, invSlots);
 	}
 	/**

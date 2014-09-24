@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class BlockMachineEM extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
-	protected BlockMachineEM(Material material, String name){
+public abstract class BlockMachine extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
+	protected BlockMachine(Material material, String name){
 		super(material, name);
 	}
 	

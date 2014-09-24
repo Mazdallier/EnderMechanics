@@ -6,12 +6,12 @@ import java.util.List;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import com.endreman0.endermechanics.recipe.RecipeEM;
+import com.endreman0.endermechanics.util.RecipeEM;
 
-public abstract class TileRecipeMachineEM extends TileMachineEM{
+public abstract class TileMachineRecipe extends TileMachine{
 	protected List<RecipeEM> recipes;
 	protected int recipeID;
-	public TileRecipeMachineEM(int maxPower, int invSlots) {
+	public TileMachineRecipe(int maxPower, int invSlots) {
 		super(maxPower, invSlots);
 		recipes = new ArrayList<RecipeEM>();
 		recipeID=-1;

@@ -3,7 +3,6 @@ package com.endreman0.endermechanics.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.endreman0.endermechanics.recipe.RecipeEM;
 import com.endreman0.endermechanics.util.IPowerHandler;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,12 +18,15 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public abstract class TileFunctionalEM extends TileEM implements IInventory, IPowerHandler{
+public abstract class TileInventory extends TileEntity implements IInventory, IPowerHandler{
 	protected ItemStack[] inv;
+	protected int power;
+	protected int maxPower;
 	
-	public TileFunctionalEM(int maxPower, int invSlots){
-		super(maxPower);
+	public TileInventory(int invSlots, int maxPower){
 		inv = new ItemStack[invSlots];
+		this.power=0;
+		this.maxPower = maxPower;
 	}
 	/**
 	 * Called every tick in onUpdate().
@@ -44,6 +46,7 @@ public abstract class TileFunctionalEM extends TileEM implements IInventory, IPo
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
+		power = nbt.getInteger("power");
 		NBTTagList list = nbt.getTagList("Inventory", 10);
 		for(int i=0;i<list.tagCount();i++){
 			NBTTagCompound tag = list.getCompoundTagAt(i);
@@ -56,6 +59,7 @@ public abstract class TileFunctionalEM extends TileEM implements IInventory, IPo
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
+		nbt.setInteger("power", power);
 		NBTTagList list = new NBTTagList();
 		for(int i=0; i<inv.length; i++){
 			ItemStack stack = inv[i];
@@ -68,6 +72,13 @@ public abstract class TileFunctionalEM extends TileEM implements IInventory, IPo
 		}
 		nbt.setTag("Inventory", list);
 	}
+	@Override
+	public Packet getDescriptionPacket(){
+		NBTTagCompound nbt = new NBTTagCompound();
+		writeToNBT(nbt);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
+	}
+	@Override public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet){readFromNBT(packet.func_148857_g());}//func_148857_g gets NBT from packet
 	
 	//IInventory
 	@Override
@@ -105,4 +116,28 @@ public abstract class TileFunctionalEM extends TileEM implements IInventory, IPo
 	@Override public void openInventory(){}
 	@Override public void closeInventory(){}
 	@Override public boolean isItemValidForSlot(int slot, ItemStack stack){return true;}
+	
+	//IPowerHandler
+	@Override
+	public int insert(ForgeDirection from, int amount, boolean actual){
+		int amt = Math.min(amount, getMaxPower(from)-power);
+		if(canInsert(from)){
+			if(actual) power+=amt;
+			return amt;
+		}
+		return 0;
+	}
+	@Override
+	public int extract(ForgeDirection from, int amount, boolean actual){
+		int amt = Math.min(amount, power);
+		if(canExtract(from)){
+			if(actual) power-=amt;
+			return amt;
+		}
+		return 0;
+	}
+	@Override public boolean canInsert(ForgeDirection from){return true;}
+	@Override public boolean canExtract(ForgeDirection from){return true;}
+	@Override public int getPower(ForgeDirection from){return power;}
+	@Override public int getMaxPower(ForgeDirection from){return maxPower;}
 }
