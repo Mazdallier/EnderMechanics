@@ -29,13 +29,19 @@ public abstract class TileMachine extends TileInventory{
 	 * @param fluids the FluidStack[] to put in the output tanks
 	 */
 	protected abstract void addOutputs(ItemStack[] items, FluidStack[] fluids);
+	/**
+	 * Whether or not the tile is capable of running this tick.
+	 * Multi-blocks would check here if they have a correctly formed structure.
+	 * @return true if everything is good to go.
+	 */
+	protected boolean canRun(){return true;}
 	
 	@Override
 	public void updateEntity(){
 		super.updateEntity();
+		if(!canRun()) return;//If the machine can't run,
 		RecipeEM recipe = getOutput(false);
-		if(recipe==null) return;//If there is no recipe available,
-		if(recipe.itemOutputs().length==0 && recipe.fluidOutputs().length==0) return;//the recipe has no outputs,
+		if(recipe==null) return;//or there is no recipe available,
 		if(recipe.power()>=power) return;//or there is not enough power, stop.
 		
 		getOutput(true);//Consume items and power

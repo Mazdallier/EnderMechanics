@@ -1,9 +1,5 @@
 package com.endreman0.endermechanics.block;
 
-import com.endreman0.endermechanics.EnderMechanics;
-import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
-
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,10 +10,11 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.endreman0.endermechanics.EnderMechanics;
+import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
+
 public class BlockGeneratorFurnace extends BlockMachine{
-	protected BlockGeneratorFurnace(){
-		super(Material.iron, "generatorFurnace");
-	}
+	protected BlockGeneratorFurnace(){super("generatorFurnace");}
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float partialX, float partialY, float partialZ){
 		TileGeneratorFurnace tile = (TileGeneratorFurnace)world.getTileEntity(x, y, z);

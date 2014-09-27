@@ -1,20 +1,18 @@
 package com.endreman0.endermechanics.block;
 
-import com.endreman0.endermechanics.util.IWrenchBreakable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.endreman0.endermechanics.util.IWrenchBreakable;
+
 public abstract class BlockMachine extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
-	protected BlockMachine(Material material, String name){
-		super(material, name);
-	}
+	protected BlockMachine(Material material, String name){super(material, name);}
+	protected BlockMachine(String name){this(Material.iron, name);}
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta){

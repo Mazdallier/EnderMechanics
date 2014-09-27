@@ -36,6 +36,7 @@ public class CommonProxy{
 		GameRegistry.registerBlock(ModBlocks.generatorFurnace, "generatorFurnace");
 		GameRegistry.registerBlock(ModBlocks.generatorLiving, "generatorLiving");
 		GameRegistry.registerBlock(ModBlocks.enderNode, "enderNode");
+//		GameRegistry.registerBlock(ModBlocks.furnace, "furnace");
 	}
 	public void crafting(){
 		//Items
@@ -56,7 +57,7 @@ public class CommonProxy{
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.enderNode), "sis", "ipi", "sis", 's', ModItems.obsidianStick, 'i', ModItems.darkIngot, 'p', ModItems.redPearl);
 	}
 	public void smelting(){
-		//GameRegistry.addSmelting(Item input, ItemStack output, float xp);
+		//GameRegistry.addSmelting(ItemStack input, ItemStack output, float xp);
 	}
 	public void machineRecipes(){
 		

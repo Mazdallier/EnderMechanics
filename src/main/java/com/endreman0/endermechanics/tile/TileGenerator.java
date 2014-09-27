@@ -44,15 +44,6 @@ public abstract class TileGenerator extends TileInventory{
 			}
 			markDirty();
 		}
-		for(int i=0;i<6;i++){
-			ForgeDirection dir = ForgeDirection.getOrientation(i);
-			if(worldObj.getTileEntity(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ) instanceof IPowerHandler){
-				IPowerHandler machine = (IPowerHandler)worldObj.getTileEntity(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ);
-				if(machine.canInsert(dir.getOpposite())){
-					power-=machine.insert(dir.getOpposite(), Math.min(power, 1000), true);
-				}
-			}
-		}
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){

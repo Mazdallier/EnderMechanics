@@ -16,6 +16,10 @@ public class RecipeEM{
 		this.outputs = (outputs==null ? new ItemStack[0] : outputs);
 		this.fluidOutputs = (fluidOutputs==null ? new FluidStack[0] : fluidOutputs);
 	}
+	public RecipeEM(ItemStack input, FluidStack fluidInput, int power, ItemStack output, FluidStack fluidOutput){
+		this(new ItemStack[]{input}, new FluidStack[]{fluidInput}, power, new ItemStack[]{output}, new FluidStack[]{fluidOutput});
+	}
+	public RecipeEM(ItemStack input, int power, ItemStack output){this(input, null, power, output, null);}
 	public ItemStack[] itemInputs(){return inputs;}
 	public FluidStack[] fluidInputs(){return fluidInputs;}
 	public int power(){return power;}

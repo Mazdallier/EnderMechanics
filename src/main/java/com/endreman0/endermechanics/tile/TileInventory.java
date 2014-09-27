@@ -120,21 +120,19 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	//IPowerHandler
 	@Override
 	public int insert(ForgeDirection from, int amount, boolean actual){
+		if(amount<0) return extract(from, -amount, actual);
+		if(!canInsert(from)) return 0;
 		int amt = Math.min(amount, getMaxPower(from)-power);
-		if(canInsert(from)){
-			if(actual) power+=amt;
-			return amt;
-		}
-		return 0;
+		if(actual) power+=amt;
+		return amt;
 	}
 	@Override
 	public int extract(ForgeDirection from, int amount, boolean actual){
+		if(amount<0) return insert(from, -amount, actual);
+		if(!canExtract(from)) return 0;
 		int amt = Math.min(amount, power);
-		if(canExtract(from)){
-			if(actual) power-=amt;
-			return amt;
-		}
-		return 0;
+		if(actual) power-=amt;
+		return amt;
 	}
 	@Override public boolean canInsert(ForgeDirection from){return true;}
 	@Override public boolean canExtract(ForgeDirection from){return true;}

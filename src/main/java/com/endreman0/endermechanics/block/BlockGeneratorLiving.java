@@ -1,17 +1,14 @@
 package com.endreman0.endermechanics.block;
 
-import com.endreman0.endermechanics.EnderMechanics;
-import com.endreman0.endermechanics.tile.TileGeneratorLiving;
-
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.endreman0.endermechanics.EnderMechanics;
+import com.endreman0.endermechanics.tile.TileGeneratorLiving;
+
 public class BlockGeneratorLiving extends BlockMachine{
-	protected BlockGeneratorLiving(){
-		super(Material.iron, "generatorLiving");
-	}
+	protected BlockGeneratorLiving(){super("generatorLiving");}
 	
 	@Override public TileEntity createNewTileEntity(World world, int meta){return new TileGeneratorLiving();}
 	@Override

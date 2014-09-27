@@ -25,8 +25,6 @@ endermechanics.config.general.wrenchKey.name=Wrench Breaking
 endermechanics.config.general.wrenchKey.tooltip=If true, shift-left-clicking with a wrench on a block will break it. If false, shift-right-clicking will.
 endermechanics.config.general.nodeRange.name=Ender Node Range
 endermechanics.config.general.nodeRange.tooltip=How far, in blocks, the Ender Node's range should be. This might increase lag at high values.
-endermechanics.config.general.nodeUpdate.name=Ender Node Update Frequency
-endermechanics.config.general.nodeUpdate.tooltip=How often, in ticks, the Ender Node should begin an update cycle to check for adjacent nodes. Minimum is 2 times the range, plus one.
 
 endermechanics.config.enable=Enable/Disable Options
 endermechanics.config.enable.tooltip=A bunch of options for enabling or disabling parts of the mod.

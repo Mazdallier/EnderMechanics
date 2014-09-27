@@ -30,12 +30,16 @@ public class EnderNodeNetwork{
 	public boolean isItemValidForSlot(int slot, ItemStack stack){return true;}
 	
 	//IPowerHandler
-	public int insert(ForgeDirection from, int amount, boolean actual) {
+	public int insert(ForgeDirection from, int amount, boolean actual){
+		if(amount<0) return extract(from, -amount, actual);
+		if(!canInsert(from)) return 0;
 		int amt = Math.min(amount, getMaxPower(from)-power);
 		if(actual) power+=amt;
 		return amt;
 	}
-	public int extract(ForgeDirection from, int amount, boolean actual) {
+	public int extract(ForgeDirection from, int amount, boolean actual){
+		if(amount<0) return insert(from, -amount, actual);
+		if(!canExtract(from)) return 0;
 		int amt = Math.min(amount, power);
 		if(actual) power-=amt;
 		return amt;

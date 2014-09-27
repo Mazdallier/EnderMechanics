@@ -7,4 +7,5 @@ public class ModBlocks{
 	public static final BlockEM generatorFurnace = new BlockGeneratorFurnace();
 	public static final BlockEM generatorLiving = new BlockGeneratorLiving();
 	public static final BlockEM enderNode = new BlockEnderNode();
+//	public static final BlockEM furnace = new BlockFurnace();
 }

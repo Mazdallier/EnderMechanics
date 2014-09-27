@@ -7,9 +7,11 @@ import com.endreman0.endermechanics.item.ModItems;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
@@ -33,20 +35,13 @@ public class Utility{
 	};
 	
 	//Helper methods
-	public static final String className(Object obj){
+	public static String className(Object obj){
 		String string = obj.toString();//"com.endreman0.endermechanics.item.ItemWrench@a1b2c3", "net.minecraft.block.BlockDirt@d4e5f6"
 		string = string.substring(string.lastIndexOf('.')+1, string.indexOf('@'));//"ItemWrench", "BlockDirt"
 		return string;
 	}
-	public static final ItemStack copyStack(ItemStack stack, Item item, int size, int meta, NBTTagCompound nbt){
-		ItemStack newStack = new ItemStack(item==null ? stack.getItem() : item);
-		if(size>0) newStack.stackSize = size;
-		if(meta>=0) newStack.setItemDamage(meta);
-		if(nbt!=null) newStack.setTagCompound(nbt);
-		return newStack;
-	}
-	public static final String getStringFromPower(int power){
-		float scaledPower = power;
+	public static String getStringFromPower(int power){
+		float scaledPower = Math.abs(power);
 		String unit;
 		if(power>=1000000){//1 million Endergy = 1mE (megaEndergy)
 			scaledPower/=1000000;
@@ -57,7 +52,7 @@ public class Utility{
 		}else{
 			unit = "E";
 		}
-		String string = String.valueOf(scaledPower);
+		String string = (power<0 ? "-" : "") + String.valueOf(scaledPower);
 		if(scaledPower==Math.floor(scaledPower) && string.contains(".")){//If it's a whole number, just return the whole part.
 			string = string.substring(0, string.indexOf('.'));
 		}else{
@@ -65,11 +60,13 @@ public class Utility{
 		}
 		return string + unit;
 	}
+	public static void addChat(EntityPlayer player, String message){
+		player.addChatMessage(new ChatComponentText(message));
+	}
 	
 	//Config variables
 	public static boolean wrenchKey = true;
 	public static int nodeRange = 5;
-	public static int nodeUpdate = 40;
 	public static boolean enableWrench = true;
 	public static boolean enableFrame = true;
 	public static boolean enableGenFurnace = true;
@@ -90,8 +87,6 @@ public class Utility{
 	private static void readConfig(){
 		wrenchKey = getBoolean(catGeneral, "wrenchKey", true);
 		nodeRange = getInt(catGeneral, "nodeRange", 5, 1, 10);
-		nodeUpdate = Math.max(getInt(catGeneral, "nodeUpdate", Math.max(40, (2*nodeRange+1)), (2*nodeRange + 1), 200), 2*nodeRange+1);//Make sure it's a legal value. Too small means nodes don't complete all of their scan.
-//		nodeUpdate = getInt(catGeneral, "nodeUpdate", Math.max(40, (2*nodeRange+1)), (2*nodeRange + 1), 200);
 		enableWrench = getBoolean(catEnable, "wrench", true);
 		enableFrame = getBoolean(catEnable, "machineFrame", true);
 		enableGenFurnace = getBoolean(catEnable, "generatorFurnace", true);
