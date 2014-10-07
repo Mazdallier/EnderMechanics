@@ -6,11 +6,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileGenerator extends TileInventory{
 	protected int ticksRunning;//Increased whenever a fuel is consumed, decremented every tick
 	protected int powerOutput;
+	protected long ticks;
 	public TileGenerator(int output, int maxEnergy){
 		super(1, maxEnergy);
 		ticksRunning = 0;
@@ -44,6 +46,12 @@ public abstract class TileGenerator extends TileInventory{
 			}
 			markDirty();
 		}
+		
+		ForgeDirection dir = ForgeDirection.getOrientation((int)ticks % 6);
+		TileEntity tile = worldObj.getTileEntity(xCoord+dir.offsetX, yCoord+dir.offsetY, zCoord+dir.offsetZ);
+		if(tile instanceof IPowerHandler && ((IPowerHandler)tile).canInsert(dir.getOpposite()) && canExtract(dir))
+			((IPowerHandler)tile).insert(dir.getOpposite(), extract(dir, 1000, true), true);
+		ticks++;
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
@@ -56,4 +64,5 @@ public abstract class TileGenerator extends TileInventory{
 		nbt.setInteger("ticksRunning", ticksRunning);
 		nbt.setInteger("powerOutput", powerOutput);
 	}
+	@Override public boolean canInsert(ForgeDirection from){return from.equals(ForgeDirection.UNKNOWN);}
 }

@@ -1,44 +1,29 @@
 package com.endreman0.endermechanics.tile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraft.item.ItemStack;
 
-import com.endreman0.endermechanics.util.RecipeEM;
+import com.endreman0.endermechanics.util.LogHelper;
+import com.endreman0.endermechanics.util.Utility;
 
 public abstract class TileMachineRecipe extends TileMachine{
-	protected List<RecipeEM> recipes;
-	protected int recipeID;
+	protected static Map<ItemStack, ItemStack> items = new HashMap<ItemStack, ItemStack>();
+	protected static Map<ItemStack, Integer> powerUse = new HashMap<ItemStack, Integer>();//Apparently primitives are not allowed in <> declarations.
 	public TileMachineRecipe(int maxPower, int invSlots) {
 		super(maxPower, invSlots);
-		recipes = new ArrayList<RecipeEM>();
-		recipeID=-1;
 	}
-	public void addRecipe(RecipeEM recipe){
-		if(recipe==null) return;
-		if(recipes.contains(recipe)) return;
-		//Ignore recipes involving fluids if does not have a tank.
-		if(!(this instanceof IFluidHandler) && (recipe.fluidInputs().length>0 || recipe.fluidOutputs().length>0)) return;
-		recipes.add(recipe);
-	}
-	@Override
-	public RecipeEM getOutput(boolean execute){
-		if(recipeID>=0){
-			return recipes.get(recipeID);
+	public boolean addRecipe(ItemStack input, ItemStack output, int power){
+		if(input==null || input.getItem()==null || input.stackSize<=0 || output==null || output.getItem()==null || output.stackSize<=0) return false;
+		if(items.put(input, output)!=null || powerUse.put(input, new Integer(power))!=null){
+			LogHelper.warn(String.format("Attempting to add recipe for %s using %s and %s in machine %s; recipe already had values assigned to it", output, input, Utility.powerString(power), Utility.className(this)));
 		}
-		return null;
+		return true;
 	}
 	@Override
-	public void readFromNBT(NBTTagCompound nbt){
-		super.readFromNBT(nbt);
-		recipeID = nbt.getInteger("recipeID");
-	}
-	
-	@Override
-	public void writeToNBT(NBTTagCompound nbt){
-		super.writeToNBT(nbt);
-		nbt.setInteger("recipeID", recipeID);
+	public void updateEntity(){
+		super.updateEntity();
+		
 	}
 }

@@ -22,11 +22,13 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	protected ItemStack[] inv;
 	protected int power;
 	protected int maxPower;
+	protected long ticks;
 	
 	public TileInventory(int invSlots, int maxPower){
 		inv = new ItemStack[invSlots];
 		this.power=0;
 		this.maxPower = maxPower;
+		ticks=0;
 	}
 	/**
 	 * Called every tick in onUpdate().
@@ -40,7 +42,9 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	public void updateEntity(){
 		super.updateEntity();
 		tick();
+		ticks++;
 	}
+	public long ticks(){return ticks;}
 	
 	//NBT and packets
 	@Override
@@ -122,7 +126,7 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	public int insert(ForgeDirection from, int amount, boolean actual){
 		if(amount<0) return extract(from, -amount, actual);
 		if(!canInsert(from)) return 0;
-		int amt = Math.min(amount, getMaxPower(from)-power);
+		int amt = Math.min(amount, getMaxPower(from)-getPower(from));
 		if(actual) power+=amt;
 		return amt;
 	}
@@ -130,7 +134,7 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	public int extract(ForgeDirection from, int amount, boolean actual){
 		if(amount<0) return insert(from, -amount, actual);
 		if(!canExtract(from)) return 0;
-		int amt = Math.min(amount, power);
+		int amt = Math.min(amount, getPower(from));
 		if(actual) power-=amt;
 		return amt;
 	}

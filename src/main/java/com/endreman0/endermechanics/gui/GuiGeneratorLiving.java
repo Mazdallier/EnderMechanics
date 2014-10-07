@@ -14,7 +14,7 @@ public class GuiGeneratorLiving extends GuiMachine{
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mouseX, int mouseY){
 		super.drawGuiContainerBackgroundLayer(partialTick, mouseX, mouseY);
 		drawFire(80, 57, 0);
-		drawPower(xSize-30, 10);
+		drawGeneratorPower(xSize-30, 10);
 	}
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTick){

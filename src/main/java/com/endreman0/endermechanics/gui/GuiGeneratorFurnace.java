@@ -1,13 +1,12 @@
 package com.endreman0.endermechanics.gui;
 
-import com.endreman0.endermechanics.container.ContainerGeneratorFurnace;
-import com.endreman0.endermechanics.tile.TileInventory;
-import com.endreman0.endermechanics.util.LogHelper;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import com.endreman0.endermechanics.container.ContainerGeneratorFurnace;
+import com.endreman0.endermechanics.tile.TileInventory;
 
 public class GuiGeneratorFurnace extends GuiMachine{
 	public GuiGeneratorFurnace(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
@@ -19,7 +18,7 @@ public class GuiGeneratorFurnace extends GuiMachine{
 		super.drawGuiContainerBackgroundLayer(partialTick, mouseX, mouseY);
 		drawFire(80, 57, 0);
 		drawFluid(56, 15, getTankInfo());
-		drawPower(xSize-30, 10);
+		drawGeneratorPower(xSize-30, 10);
 	}
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTick){

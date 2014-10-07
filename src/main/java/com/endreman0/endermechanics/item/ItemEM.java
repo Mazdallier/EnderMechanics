@@ -9,19 +9,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public abstract class ItemEM extends Item{
-	public ItemEM() {
+	public ItemEM(){
 		super();
 		maxStackSize=1;
 		setCreativeTab(Utility.EM_TAB);
 	}
 	@Override
     public String getUnlocalizedName(){
-        return String.format("item.%s%s", Utility.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return String.format("item.%s%s", Utility.MOD_ID.toLowerCase() + ":", getBasicName());
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack){
-        return String.format("item.%s%s", Utility.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return String.format("item.%s%s", Utility.MOD_ID.toLowerCase() + ":", getBasicName());
     }
 
     @Override
@@ -29,8 +29,8 @@ public abstract class ItemEM extends Item{
     public void registerIcons(IIconRegister iconRegister){
         itemIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
-
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName){
-        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
+    public String getBasicName(){
+		String name = super.getUnlocalizedName();
+		return name.substring(name.indexOf('.')+1);
     }
 }

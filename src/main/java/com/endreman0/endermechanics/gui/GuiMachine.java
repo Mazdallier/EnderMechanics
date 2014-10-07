@@ -2,13 +2,6 @@ package com.endreman0.endermechanics.gui;
 
 import java.util.Arrays;
 
-import org.lwjgl.opengl.GL11;
-
-import com.endreman0.endermechanics.container.ContainerMachine;
-import com.endreman0.endermechanics.tile.TileInventory;
-import com.endreman0.endermechanics.util.LogHelper;
-import com.endreman0.endermechanics.util.Utility;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
@@ -16,6 +9,12 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
+
+import org.lwjgl.opengl.GL11;
+
+import com.endreman0.endermechanics.container.ContainerMachine;
+import com.endreman0.endermechanics.tile.TileInventory;
+import com.endreman0.endermechanics.util.Utility;
 
 public abstract class GuiMachine extends GuiContainer{
 	protected TileInventory tile;
@@ -79,7 +78,7 @@ public abstract class GuiMachine extends GuiContainer{
 		drawTexturedModalRect(xPos, yPos, 0, 0, 16, 16);//Background
 		drawTexturedModalRect(xPos, yPos+(16-v), 0, 32-v, 16, v);//Fire; set upper-left corner at upper-left corner of whatever is to be drawn, be it nothing or full. Then draw a cut-off section.
 	}
-	protected void drawPower(int x, int y){//, int power, int maxPower){//Draws the vertical power bar
+	protected void drawGeneratorPower(int x, int y){//Draws the vertical power bar used in generators
 		int xPos = (width-xSize)/2 + x + 1;
 		int yPos = (height-ySize)/2 + y + 1;
 		float amt = (float)tile.getPower(ForgeDirection.UNKNOWN);
@@ -89,6 +88,17 @@ public abstract class GuiMachine extends GuiContainer{
 		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
 		drawTexturedModalRect(xPos, yPos, 34, 0, 18, 60);//Background
 		drawTexturedModalRect(xPos, yPos+(60-v), 34, 120-v, 60, v);//Power bar
+	}
+	protected void drawMachinePower(int x, int y){//Draw the horizontal power/progress bar used by machines
+		int xPos = (width-xSize)/2 + x + 1;
+		int yPos = (height-ySize)/2 + y + 1;
+		float amt = (float)tile.getPower(ForgeDirection.UNKNOWN);
+		float max = (float)tile.getMaxPower(ForgeDirection.UNKNOWN);
+		float width = (amt/max * 60F);
+		int u = (int)width;
+		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
+		drawTexturedModalRect(xPos, yPos, 52, 0, 60, 10);//Background
+		drawTexturedModalRect(xPos, yPos, 52, 10, u, 10);//Power Bar
 	}
 	protected void drawTooltip(int mouseX, int mouseY, String... text){drawHoveringText(Arrays.asList(text), mouseX, mouseY, fontRendererObj);}
 	protected void drawTankTooltip(FluidTankInfo tank, int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){
@@ -102,6 +112,6 @@ public abstract class GuiMachine extends GuiContainer{
 	}
 	protected void drawPowerTooltip(int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){//Power data comes from 'tile' field
 		if(mouseX<minX || mouseY<minY || mouseX>maxX || mouseY>maxY) return;
-		drawTooltip(mouseX, mouseY, Utility.getStringFromPower(tile.getPower(ForgeDirection.UNKNOWN))+'/'+Utility.getStringFromPower(tile.getMaxPower(ForgeDirection.UNKNOWN)));
+		drawTooltip(mouseX, mouseY, Utility.powerString(tile.getPower(ForgeDirection.UNKNOWN))+'/'+Utility.powerString(tile.getMaxPower(ForgeDirection.UNKNOWN)));
 	}
 }

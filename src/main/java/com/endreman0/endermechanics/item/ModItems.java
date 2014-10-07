@@ -13,8 +13,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems{
 	//Basic resources
-	public static final ItemEM redPearl = new ItemRedPearl();
-	public static final ItemEM darkIngot = new ItemDarkIngot();
+	public static final ItemEM pearlEM = new ItemPearlEM();
+	public static final ItemEM ingotEM = new ItemIngotEM();
 	public static final ItemEM obsidianStick = new ItemObsidianStick();
 	
 	//Items
@@ -28,6 +28,7 @@ public class ModItems{
 	public static final ItemVoidArmor voidBoots = new ItemVoidArmor(3);
 	
 	//Void items
+	//TODO integrate these with pearlEM and ingotEM; got to figure out item metadata
 	public static final ItemEM voidPearl = new ItemVoidPearl();
 	public static final ItemEM voidIngot = new ItemVoidIngot();
 }

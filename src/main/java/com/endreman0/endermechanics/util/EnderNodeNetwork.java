@@ -12,7 +12,7 @@ public class EnderNodeNetwork{
 	protected ItemStack[] inv = new ItemStack[10];
 	protected int power = 0;
 	protected int maxPower = 10000;
-	private List<TileEnderNode> nodes;
+	protected List<TileEnderNode> nodes;
 	public EnderNodeNetwork(TileEnderNode node){
 		nodes = new LinkedList<TileEnderNode>();
 		addNode(node);

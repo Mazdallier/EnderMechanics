@@ -36,11 +36,11 @@ public class Utility{
 	
 	//Helper methods
 	public static String className(Object obj){
-		String string = obj.toString();//"com.endreman0.endermechanics.item.ItemWrench@a1b2c3", "net.minecraft.block.BlockDirt@d4e5f6"
-		string = string.substring(string.lastIndexOf('.')+1, string.indexOf('@'));//"ItemWrench", "BlockDirt"
+		String string = obj.getClass().getCanonicalName();//"com.endreman0.endermechanics.item.ItemWrench", "net.minecraft.block.BlockDirt", "java.util.List"
+		string = string.substring(string.lastIndexOf('.')+1);//"ItemWrench", "BlockDirt", "List"
 		return string;
 	}
-	public static String getStringFromPower(int power){
+	public static String powerString(int power){
 		float scaledPower = Math.abs(power);
 		String unit;
 		if(power>=1000000){//1 million Endergy = 1mE (megaEndergy)

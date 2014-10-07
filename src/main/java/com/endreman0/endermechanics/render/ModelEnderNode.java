@@ -9,18 +9,18 @@ public class ModelEnderNode extends ModelBase{
 	
 	public ModelEnderNode(){
 		textureWidth = 64;
-		textureHeight = 64;
+		textureHeight = 32;
 		
-		cube1 = new ModelRenderer(this, 0, 32);
+		cube1 = new ModelRenderer(this, 0, 0);
 		cube1.addBox(-6F, -6F, -6F, 12, 12, 12);
 		cube1.setRotationPoint(0F, 16F, 0F);
-		cube1.setTextureSize(64, 64);
+		cube1.setTextureSize(textureWidth, textureHeight);
 		cube1.mirror = true;
 		setRotation(cube1, (float)Math.toRadians(22.5), (float)Math.toRadians(45), (float)Math.toRadians(22.5));
-		cube2 = new ModelRenderer(this, 0, 32);
+		cube2 = new ModelRenderer(this, 0, 0);
 		cube2.addBox(-6F, -6F, -6F, 12, 12, 12);
 		cube2.setRotationPoint(0F, 16F, 0F);
-		cube2.setTextureSize(64, 64);
+		cube2.setTextureSize(textureWidth, textureHeight);
 		cube2.mirror = true;
 		setRotation(cube2, (float)Math.toRadians(-22.5), (float)Math.toRadians(45), (float)Math.toRadians(-22.5));
 	}
