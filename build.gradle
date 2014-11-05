@@ -17,12 +17,13 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-0.0.2"
+version = "1.7.10-0.1.5"
 group= "com.endreman0.endermechanics" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "EnderMechanics"
 
 minecraft {
-    version = "1.7.10-10.13.0.1188"
+    version = "1.7.10-10.13.2.1230"
+    runDir = "eclipse"
 }
 
 dependencies {
