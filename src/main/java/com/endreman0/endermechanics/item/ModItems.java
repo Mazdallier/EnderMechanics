@@ -26,9 +26,4 @@ public class ModItems{
 	public static final ItemVoidArmor voidChestplate = new ItemVoidArmor(1);
 	public static final ItemVoidArmor voidLeggings = new ItemVoidArmor(2);
 	public static final ItemVoidArmor voidBoots = new ItemVoidArmor(3);
-	
-	//Void items
-	//TODO integrate these with pearlEM and ingotEM; got to figure out item metadata
-	public static final ItemEM voidPearl = new ItemVoidPearl();
-	public static final ItemEM voidIngot = new ItemVoidIngot();
 }
