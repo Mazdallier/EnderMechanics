@@ -62,12 +62,13 @@ public class CommonProxy{
 	public void crafting(){
 		//Items - Tier 1
 		GameRegistry.addRecipe(new ItemStack(ModItems.obsidianStick, 4), "o", "o", 'o', Blocks.obsidian);
-		if(Utility.enableWrench)
-			GameRegistry.addRecipe(new ItemStack(ModItems.wrench), "i i", " p ", " i ", 'i', Items.iron_ingot, 'p', Items.ender_pearl);
+		if(Utility.enableWrench){
+			GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 0), "i i", " p ", " i ", 'i', Items.iron_ingot, 'p', Items.ender_pearl);
+		}
 		//Items - Tier 2
-		ItemStack greenDye = new ItemStack(Items.dye, 1, 2);
-		GameRegistry.addRecipe(new ItemStack(ModItems.pearlEM), " l ", "lpl", " l ", 'l', greenDye, 'p', Items.ender_pearl);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ingotEM, 4), Items.iron_ingot, Items.iron_ingot, Items.gold_ingot, Items.gold_ingot, Items.diamond, greenDye, greenDye, greenDye, greenDye);
+		ItemStack lapis = new ItemStack(Items.dye, 1, 4);
+		GameRegistry.addRecipe(new ItemStack(ModItems.pearlEM), " l ", "lpl", " l ", 'l', lapis, 'p', Items.ender_pearl);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ingotEM, 4), Items.iron_ingot, Items.iron_ingot, Items.gold_ingot, Items.gold_ingot, Items.diamond, lapis, lapis, lapis, lapis);
 		//Multi-tool wrench coming soon
 		
 		//Blocks

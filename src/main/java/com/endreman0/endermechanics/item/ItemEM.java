@@ -19,15 +19,11 @@ public abstract class ItemEM extends Item{
         return String.format("item.%s%s", Utility.MOD_ID.toLowerCase() + ":", getBasicName());
     }
 
-    @Override
-    public String getUnlocalizedName(ItemStack itemStack){
-        return String.format("item.%s%s", Utility.MOD_ID.toLowerCase() + ":", getBasicName());
-    }
+    @Override public String getUnlocalizedName(ItemStack itemStack){return getUnlocalizedName();}
 
-    @Override
-    @SideOnly(Side.CLIENT)
+    @Override @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister){
-        itemIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
+        itemIcon = iconRegister.registerIcon(Utility.MOD_ID + ":" + getBasicName());
     }
     public String getBasicName(){
 		String name = super.getUnlocalizedName();

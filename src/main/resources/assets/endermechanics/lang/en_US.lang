@@ -1,11 +1,20 @@
 itemGroup.endermechanics=Ender Mechanics
 
 #Items
-item.endermechanics:pearlEM.name=Kaishi Pearl
-item.endermechanics:ingotEM.name=Kaishi-Reinforced Ingot
+item.endermechanics:pearlEM0.name=Advanced Ender Pearl
+item.endermechanics:pearlEM1.name=Redstone-Infused Advanced Pearl
+item.endermechanics:pearlEM2.name=Diamond-Empowered Advanced Pearl
+item.endermechanics:pearlEM3.name=Glowstone-Imbued Advanced Pearl
+item.endermechanics:ingotEM0.name=Ender Ingot
+item.endermechanics:ingotEM1.name=Iron-Reinforced Ender Ingot
+item.endermechanics:ingotEM2.name=Gold-Etched Ender Ingot
+item.endermechanics:ingotEM3.name=Obsidian-Empowered Ender Ingot
 item.endermechanics:obsidianStick.name=Obsidian Stick
 
-item.endermechanics:wrench.name=Kaishi Wrench
+item.endermechanics:wrench0.name=Ender Wrench
+item.endermechanics:wrench1.name=Ender Tool Wrench
+item.endermechanics:wrench2.name=Upgradable Wrench
+item.endermechanics:wrench3.name=Programmable Wrench
 
 item.endermechanics:voidPearl.name=Void Pearl
 item.endermechanics:voidIngot.name=Voidsteel Ingot
@@ -18,7 +27,7 @@ item.endermechanics:voidBoots.name=Voidsteel Boots
 tile.endermechanics:machineFrame.name=Machine Frame
 tile.endermechanics:generatorFurnace.name=Infernal Reactor
 tile.endermechanics:generatorLiving.name=Biotic Reactor
-tile.endermechanics:enderNode.name=Kaishi Network Node
+tile.endermechanics:enderNode.name=Ender Network Node
 tile.endermechanics:furnaceEM.name=Endergetic Smelter
 
 #Config

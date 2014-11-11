@@ -3,7 +3,6 @@ package com.endreman0.endermechanics;
 import com.endreman0.endermechanics.gui.GuiHandler;
 import com.endreman0.endermechanics.item.ItemWrench;
 import com.endreman0.endermechanics.item.ModItems;
-import com.endreman0.endermechanics.multipart.ModMultiparts;
 import com.endreman0.endermechanics.util.Utility;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -16,7 +15,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid=Utility.MOD_ID, name=Utility.MOD_NAME, version=Utility.VERSION, guiFactory=Utility.GUI_FACTORY, dependencies="after:ForgeMultipart")
+@Mod(modid=Utility.MOD_ID, name=Utility.MOD_NAME, version=Utility.VERSION, guiFactory=Utility.GUI_FACTORY)
 public class EnderMechanics{
 	@Mod.Instance(Utility.MOD_ID)
 	public static EnderMechanics instance;
@@ -29,9 +28,6 @@ public class EnderMechanics{
 		Utility.init(event.getSuggestedConfigurationFile());//Config
 		proxy.items();
 		proxy.blocks();
-		if(Loader.isModLoaded("ForgeMultipart")){
-			new ModMultiparts().init();
-		}
 	}
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event){

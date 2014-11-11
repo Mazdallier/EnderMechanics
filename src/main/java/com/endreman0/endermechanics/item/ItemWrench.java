@@ -1,10 +1,7 @@
 package com.endreman0.endermechanics.item;
 
-import java.util.List;
-
-import codechicken.multipart.BlockMultipart;
-import codechicken.multipart.TMultiPart;
-import codechicken.multipart.TileMultipart;
+import net.minecraft.block.Block;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import com.endreman0.endermechanics.util.IWrenchBreakable;
 import com.endreman0.endermechanics.util.LogHelper;
@@ -13,12 +10,10 @@ import com.endreman0.endermechanics.util.Utility;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class ItemWrench extends ItemEM{
+public class ItemWrench extends ItemMetadataEM{
 	public ItemWrench(){
-		super();
+		super(4);
 		setUnlocalizedName("wrench");
 	}
 	@Override @SideOnly(Side.CLIENT) public boolean isFull3D(){return true;}//This makes it render in your hand, like a sword or tool.
@@ -32,14 +27,6 @@ public class ItemWrench extends ItemEM{
 					if(block instanceof IWrenchBreakable){
 						IWrenchBreakable machine = (IWrenchBreakable)block;
 						machine.breakWithWrench(event.world, event.x, event.y, event.z);
-					}else if(block instanceof BlockMultipart){
-						TileMultipart tile = (TileMultipart)event.world.getTileEntity(event.x, event.y, event.z);
-						List<TMultiPart> list = tile.jPartList();
-						for(int i=0;i<list.size();i++){
-							if(list.get(i) instanceof IWrenchBreakable){
-								((IWrenchBreakable)list.get(i)).breakWithWrench(event.world, event.x, event.y, event.z);
-							}
-						}
 					}
 				}
 			}
