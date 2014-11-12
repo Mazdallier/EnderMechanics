@@ -31,8 +31,8 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 		ticks=0;
 	}
 	/**
-	 * Called every tick in onUpdate().
-	 * Instead of overriding onUpdate, use this method.
+	 * Called every tick in updateEntity().
+	 * Instead of overriding updateEntity, use this method.
 	 * None of my abstract machine templates override this, so it's safe to not call super.tick().
 	 * Do whatever you want.
 	 */

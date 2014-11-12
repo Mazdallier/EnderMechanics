@@ -31,6 +31,7 @@ tile.endermechanics:generatorFurnace.name=Infernal Reactor
 tile.endermechanics:generatorLiving.name=Biotic Reactor
 tile.endermechanics:enderNode.name=Ender Network Node
 tile.endermechanics:furnaceEM.name=Endergetic Smelter
+tile.endermechanics:grinder.name=Endergetic Pulverizer
 
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking

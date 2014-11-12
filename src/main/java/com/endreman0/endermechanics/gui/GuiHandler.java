@@ -15,6 +15,7 @@ public class GuiHandler implements IGuiHandler{
 			case(1): return new GuiGeneratorLiving(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			//cases 2-4: saved for reactors in planning
 			case(5): return new GuiFurnaceEM(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
+			case(6): return new GuiGrinder(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			default: return null;
 		}
 	}
@@ -26,6 +27,7 @@ public class GuiHandler implements IGuiHandler{
 			case(1): return new ContainerGeneratorLiving(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			//cases 2-4: saved for reactors in planning
 			case(5): return new ContainerFurnaceEM(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
+			case(6): return new ContainerGrinder(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			default: return null;
 		}
 	}	

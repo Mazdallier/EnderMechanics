@@ -8,4 +8,5 @@ public class ModBlocks{
 	public static final BlockEM generatorLiving = new BlockGeneratorLiving();
 	public static final BlockEM enderNode = new BlockEnderNode();
 	public static final BlockEM furnace = new BlockFurnaceEM();
+	public static final BlockEM grinder = new BlockGrinder();
 }

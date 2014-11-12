@@ -13,6 +13,7 @@ import com.endreman0.endermechanics.tile.TileEnderNode;
 import com.endreman0.endermechanics.tile.TileFurnaceEM;
 import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
 import com.endreman0.endermechanics.tile.TileGeneratorLiving;
+import com.endreman0.endermechanics.tile.TileGrinder;
 import com.endreman0.endermechanics.tile.TileMachineFrame;
 import com.endreman0.endermechanics.util.Utility;
 
@@ -46,6 +47,7 @@ public class CommonProxy{
 		registerBlock(ModBlocks.generatorLiving);
 		registerBlock(ModBlocks.enderNode);
 		registerBlock(ModBlocks.furnace);
+		registerBlock(ModBlocks.grinder);
 	}
 	protected void registerBlock(BlockEM block){GameRegistry.registerBlock(block, block.getBasicName());}
 	public void tileEntities(){
@@ -54,6 +56,7 @@ public class CommonProxy{
 		GameRegistry.registerTileEntity(TileGeneratorLiving.class, "generatorLiving");
 		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
 		GameRegistry.registerTileEntity(TileFurnaceEM.class, "furnace");
+		GameRegistry.registerTileEntity(TileGrinder.class, "grinder");
 	}
 	public void entities(){
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
@@ -85,6 +88,6 @@ public class CommonProxy{
 		//GameRegistry.addSmelting(ItemStack input, ItemStack output, float xp);
 	}
 	public void machineRecipes(){
-		//For adding recipes to RecipeMachines
+		TileGrinder.addRecipes();
 	}
 }
