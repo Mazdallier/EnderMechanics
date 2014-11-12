@@ -9,12 +9,7 @@ import com.endreman0.endermechanics.block.BlockEM;
 import com.endreman0.endermechanics.block.ModBlocks;
 import com.endreman0.endermechanics.item.ItemEM;
 import com.endreman0.endermechanics.item.ModItems;
-import com.endreman0.endermechanics.tile.TileEnderNode;
-import com.endreman0.endermechanics.tile.TileFurnaceEM;
-import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
-import com.endreman0.endermechanics.tile.TileGeneratorLiving;
-import com.endreman0.endermechanics.tile.TileGrinder;
-import com.endreman0.endermechanics.tile.TileMachineFrame;
+import com.endreman0.endermechanics.tile.*;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.common.registry.GameRegistry;
