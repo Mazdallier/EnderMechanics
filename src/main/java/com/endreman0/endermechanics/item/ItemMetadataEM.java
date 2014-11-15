@@ -12,8 +12,8 @@ import net.minecraft.util.IIcon;
 
 public abstract class ItemMetadataEM extends ItemEM{
 	protected IIcon[] icons;
-	public ItemMetadataEM(int variants){
-		super();
+	ItemMetadataEM(String name, int variants){
+		super(name);
 		maxStackSize=64;
 		icons = new IIcon[variants];
 	}

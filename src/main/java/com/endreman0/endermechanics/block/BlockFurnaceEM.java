@@ -18,4 +18,5 @@ public class BlockFurnaceEM extends BlockMachine{
 		player.openGui(EnderMechanics.instance, 5, world, x, y, z);
 		return true;
 	}
+	@Override public int getTier(int meta){return 0;}
 }

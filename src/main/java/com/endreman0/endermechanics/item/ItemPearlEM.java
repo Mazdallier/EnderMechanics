@@ -1,9 +1,8 @@
 package com.endreman0.endermechanics.item;
 
 public class ItemPearlEM extends ItemMetadataEM{
-	public ItemPearlEM(){
-		super(5);
-		setUnlocalizedName("pearlEM");
+	ItemPearlEM(){
+		super("pearlEM", 5);
 		maxStackSize=16;
 	}
 }

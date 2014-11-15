@@ -1,9 +1,8 @@
 package com.endreman0.endermechanics.item;
 
 public class ItemIngotEM extends ItemMetadataEM{
-	public ItemIngotEM() {
-		super(5);
-		setUnlocalizedName("ingotEM");
+	ItemIngotEM() {
+		super("ingotEM", 5);
 		maxStackSize=64;
 	}
 }

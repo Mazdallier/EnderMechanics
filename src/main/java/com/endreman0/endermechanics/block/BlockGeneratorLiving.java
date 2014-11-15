@@ -20,4 +20,5 @@ public class BlockGeneratorLiving extends BlockMachine{
 			return true;
 		}
 	}
+	@Override public int getTier(int meta){return 1;}
 }

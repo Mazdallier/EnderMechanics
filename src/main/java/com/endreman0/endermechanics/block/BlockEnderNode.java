@@ -9,9 +9,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.endreman0.endermechanics.api.IWrenchBreakable;
 import com.endreman0.endermechanics.item.ModItems;
 import com.endreman0.endermechanics.tile.TileEnderNode;
-import com.endreman0.endermechanics.util.IWrenchBreakable;
 import com.endreman0.endermechanics.util.Utility;
 
 public class BlockEnderNode extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
@@ -24,6 +24,7 @@ public class BlockEnderNode extends BlockEM implements ITileEntityProvider, IWre
 		dropBlockAsItem(world, x, y, z, new ItemStack(this.getItem(world, x, y, z)));
 		world.setBlockToAir(x, y, z);
 	}
+	@Override public int getTier(int meta){return 1;}
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float partialX, float partialY, float partialZ){
 		super.onBlockActivated(world, x, y, z, player, meta, partialX, partialY, partialZ);

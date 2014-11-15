@@ -17,4 +17,5 @@ public class BlockGrinder extends BlockMachine{
 		player.openGui(EnderMechanics.instance, 6, world, x, y, z);
 		return true;
 	}
+	@Override public int getTier(int meta){return 1;}
 }

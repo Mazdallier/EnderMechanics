@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics.util;
+package com.endreman0.endermechanics.api;
 
 import net.minecraftforge.common.util.ForgeDirection;
 

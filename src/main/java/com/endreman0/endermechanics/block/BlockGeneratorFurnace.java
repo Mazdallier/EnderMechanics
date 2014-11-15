@@ -32,4 +32,5 @@ public class BlockGeneratorFurnace extends BlockMachine{
 		}
 	}
 	@Override public TileEntity createNewTileEntity(World world, int meta){return new TileGeneratorFurnace();}
+	@Override public int getTier(int meta){return 0;}
 }

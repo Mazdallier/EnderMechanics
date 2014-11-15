@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.endreman0.endermechanics.util.IWrenchBreakable;
+import com.endreman0.endermechanics.api.IWrenchBreakable;
 
 public abstract class BlockMachine extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
 	protected BlockMachine(Material material, String name){super(material, name);}

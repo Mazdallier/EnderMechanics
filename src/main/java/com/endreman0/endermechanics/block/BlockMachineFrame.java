@@ -1,7 +1,7 @@
 package com.endreman0.endermechanics.block;
 
+import com.endreman0.endermechanics.api.IWrenchBreakable;
 import com.endreman0.endermechanics.tile.TileMachineFrame;
-import com.endreman0.endermechanics.util.IWrenchBreakable;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,4 +31,5 @@ public class BlockMachineFrame extends BlockEM implements ITileEntityProvider, I
 	@Override public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side){return false;}
 	@Override public boolean hasTileEntity(int metadata){return true;}
 	@Override public TileEntity createNewTileEntity(World world, int meta){return new TileMachineFrame();}
+	@Override public int getTier(int meta){return 1;}
 }

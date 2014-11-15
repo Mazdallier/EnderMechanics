@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class ItemVoidArmor extends ItemArmor{
-	public ItemVoidArmor(int type){
+	ItemVoidArmor(int type){
 		super(ModItems.armorMatVoid, 4, type);
 		if(type>=0){setCreativeTab(Utility.EM_TAB);}else{setCreativeTab(null);}
 		switch(type){

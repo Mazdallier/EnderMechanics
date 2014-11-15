@@ -1,6 +1,6 @@
 package com.endreman0.endermechanics.tile;
 
-import com.endreman0.endermechanics.util.IPowerHandler;
+import com.endreman0.endermechanics.api.IPowerHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

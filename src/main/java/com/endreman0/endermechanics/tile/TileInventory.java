@@ -3,7 +3,7 @@ package com.endreman0.endermechanics.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.endreman0.endermechanics.util.IPowerHandler;
+import com.endreman0.endermechanics.api.IPowerHandler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

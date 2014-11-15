@@ -20,6 +20,9 @@ item.endermechanics:wrench1.name=Ender Tool Wrench
 item.endermechanics:wrench2.name=Upgradable Wrench
 item.endermechanics:wrench3.name=Programmable Wrench
 
+item.endermechanics:oreDustIron.name=Iron Dust
+item.endermechanics:oreDustGold.name=Gold Dust
+
 item.endermechanics:voidHelmet.name=Voidsteel Helmet
 item.endermechanics:voidChestplate.name=Voidsteel Chestplate
 item.endermechanics:voidLeggings.name=Voidsteel Leggings
@@ -29,6 +32,7 @@ item.endermechanics:voidBoots.name=Voidsteel Boots
 tile.endermechanics:machineFrame.name=Machine Frame
 tile.endermechanics:generatorFurnace.name=Infernal Reactor
 tile.endermechanics:generatorLiving.name=Biotic Reactor
+tile.endermechanics:generatorCreative.name=Creative Reactor
 tile.endermechanics:enderNode.name=Ender Network Node
 tile.endermechanics:furnaceEM.name=Endergetic Smelter
 tile.endermechanics:grinder.name=Endergetic Pulverizer
@@ -36,13 +40,13 @@ tile.endermechanics:grinder.name=Endergetic Pulverizer
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking
 endermechanics.config.general.wrenchKey.tooltip=If true, shift-left-clicking with a wrench on a block will break it. If false, shift-right-clicking will.
-endermechanics.config.general.nodeRange.name=Kaishi Network Node Range
+endermechanics.config.general.nodeRange.name=Ender Network Node Range
 endermechanics.config.general.nodeRange.tooltip=How far, in blocks, the Network Node's range should be. This might increase lag at high values.
 
 endermechanics.config.enable=Enable/Disable Options
 endermechanics.config.enable.tooltip=A bunch of options for enabling or disabling parts of the mod.
 endermechanics.config.enable.wrench.name=Enable Wrench
-endermechanics.config.enable.wrench.tooltip=Enable the Kaishi Wrench
+endermechanics.config.enable.wrench.tooltip=Enable the Ender Wrench
 endermechanics.config.enable.machineFrame.name=Enable Machine Frame
 endermechanics.config.enable.machineFrame.tooltip=Enable Machine Frames, frames that allow automation of blocks.
 endermechanics.config.enable.generatorFurnace.name=Enable Infernal Reactor
@@ -50,6 +54,6 @@ endermechanics.config.enable.generatorFurnace.tooltip=Enable the Infernal Reacto
 endermechanics.config.enable.generatorFurnace.name=Enable Biotic Reactor
 endermechanics.config.enable.generatorFurnace.tooltip=Enable the Biotic Reactor, which creates Endergy from saplings, wood, crops and food
 endermechanics.config.enable.node.name=Enable Network Nodes
-endermechanics.config.enable.node.tooltip=Enable Kaishi Network Nodes, the transport system of Ender Mechanics
+endermechanics.config.enable.node.tooltip=Enable Ender Network Nodes, the transport system of Ender Mechanics
 endermechanics.config.enable.furnace.name=Enable Endergetic Smelter
 endermechanics.config.enable.furnace.tooltip=Enable the Endergetic Smelter, a block that uses Endergy to smelt items

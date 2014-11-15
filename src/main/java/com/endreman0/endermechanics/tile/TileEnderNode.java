@@ -5,8 +5,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.endreman0.endermechanics.api.IPowerHandler;
 import com.endreman0.endermechanics.util.EnderNodeNetwork;
-import com.endreman0.endermechanics.util.IPowerHandler;
 import com.endreman0.endermechanics.util.LogHelper;
 import com.endreman0.endermechanics.util.Utility;
 
