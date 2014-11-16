@@ -20,8 +20,10 @@ item.endermechanics:wrench1.name=Ender Tool Wrench
 item.endermechanics:wrench2.name=Upgradable Wrench
 item.endermechanics:wrench3.name=Programmable Wrench
 
-item.endermechanics:oreDustIron.name=Iron Dust
-item.endermechanics:oreDustGold.name=Gold Dust
+item.endermechanics:ore0Iron.name=Iron Dust
+item.endermechanics:ore1Iron.name=Iron Clump
+item.endermechanics:ore0Gold.name=Gold Dust
+item.endermechanics:ore1Gold.name=Gold Clump
 
 item.endermechanics:voidHelmet.name=Voidsteel Helmet
 item.endermechanics:voidChestplate.name=Voidsteel Chestplate
@@ -35,7 +37,8 @@ tile.endermechanics:generatorLiving.name=Biotic Reactor
 tile.endermechanics:generatorCreative.name=Creative Reactor
 tile.endermechanics:enderNode.name=Ender Network Node
 tile.endermechanics:furnaceEM.name=Endergetic Smelter
-tile.endermechanics:grinder.name=Endergetic Pulverizer
+tile.endermechanics:grinder.name=Endergetic Grinder
+tile.endermechanics:pulverizer.name=Endergetic Pulverizer
 
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking

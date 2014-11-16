@@ -63,6 +63,26 @@ public class Utility{
 	public static void addChat(EntityPlayer player, String message){
 		player.addChatMessage(new ChatComponentText(message));
 	}
+	public static boolean canConsume(ItemStack recipe, ItemStack actual){
+		if(recipe==null || actual==null) return false;
+		if(!recipe.getItem().equals(actual.getItem())) return false;
+		if(recipe.getItemDamage()!=Recipes.COPY_META && recipe.getItemDamage()!=actual.getItemDamage()) return false;
+		if(recipe.stackSize>actual.stackSize) return false;
+		return true;
+	}
+	public static ItemStack merge(ItemStack stack1, ItemStack stack2){
+		if(stack2==null){return stack1.copy();}
+		if(!stack1.getItem().equals(stack2.getItem())) return null;
+		if(stack1.getItemDamage()!=stack2.getItemDamage()) return null;
+		if(stack1.stackSize + stack2.stackSize > 64) return null;
+		
+		ItemStack ret = stack1.copy();
+		ret.stackSize+=stack2.stackSize;
+		return ret;
+	}
+	public static String stackToString(ItemStack stack){
+		return stack.toString();
+	}
 	
 	//Config variables
 	public static boolean wrenchKey = true;

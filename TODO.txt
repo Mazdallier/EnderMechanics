@@ -1,4 +1,3 @@
-Add machine for ore tripling
 Make ore doubler copy metadata across
 Create ore processing machines up to 5x, with appropriate intermediary processing
 Make generators metadata-based

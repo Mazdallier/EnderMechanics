@@ -5,10 +5,10 @@ import net.minecraft.item.ItemStack;
 
 import com.endreman0.endermechanics.util.Utility;
 
-public class ItemOreDust extends ItemMetadataEM{
+public class ItemProcessedOre extends ItemMetadataEM{
 	private String[] names = new String[]{"Iron", "Gold"};
-	ItemOreDust(){
-		super("oreDust", 2);
+	ItemProcessedOre(int tier){
+		super("ore" + tier, 2);
 	}
 	@Override
 	public void registerIcons(IIconRegister register){

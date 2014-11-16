@@ -27,6 +27,7 @@ public class CommonProxy{
 		registerItem(ModItems.obsidianStick);
 		registerItem(ModItems.wrench);
 		registerItem(ModItems.oreDust);
+		registerItem(ModItems.oreClump);
 		/* Future spoilers
 		registerItem(ModItems.voidHelmet);
 		registerItem(ModItems.voidChestplate);
@@ -43,6 +44,7 @@ public class CommonProxy{
 		registerBlock(ModBlocks.enderNode);
 		registerBlock(ModBlocks.furnace);
 		registerBlock(ModBlocks.grinder);
+		registerBlock(ModBlocks.pulverizer);
 	}
 	protected void registerBlock(BlockEM block){GameRegistry.registerBlock(block, block.getBasicName());}
 	public void tileEntities(){
@@ -53,6 +55,7 @@ public class CommonProxy{
 		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
 		GameRegistry.registerTileEntity(TileFurnaceEM.class, "furnace");
 		GameRegistry.registerTileEntity(TileGrinder.class, "grinder");
+		GameRegistry.registerTileEntity(TilePulverizer.class, "pulverizer");
 	}
 	public void entities(){
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
@@ -92,5 +95,6 @@ public class CommonProxy{
 	}
 	public void machineRecipes(){
 		TileGrinder.addRecipes();
+		TilePulverizer.addRecipes();
 	}
 }
