@@ -1,50 +1,71 @@
-Make ore doubler copy metadata across
-Create ore processing machines up to 5x, with appropriate intermediary processing
+Create process for multiplying ores up to 5x
+Add dynamic metadata-based item creation
+	List<String> unlocalizedNames
+	List<Integer> colors
+	IItemRender with GL.glColor3d
+		Utility.colorGL(int)
 Make generators metadata-based
 Make machines metadata-based
-Make misc. blocks (Machine Frame, Ender Node) metadata-based
-Make machines use Ender Node rendering, distinguished by color, and completely un-automatable
+Make misc. blocks (Ender Node, Machine Frame) metadata-based
 ---Checkpoint---
 Take any ore, from any supported mod, and put it in the 5x-er: recieve 5 correct ingots
 Mod should occupy 6 IDs: ingots, pearls, wrenches, machines, generators, misc. blocks
-Machines should have no interaction with anything
 ----------------
 Make Machine Frames insert a machine on right-click
 Make buses that can automate frames
+Make machines completely un-automatable (remove IInventory)
+Make machines use modified Ender Node renderer
 ---Checkpoint---
 Machines should only be automatable by inserting them into a Machine Frame
-Inserting them into a frame should give near infinite possibilities
+Inserting them into a frame should allow automating all the things
 ----------------
 Add an info book, similar to Thaumonomicon
 Add pages
 Add entries to pages
-Create IWrench
-	getWrenchTier(ItemStack)
-	onValidUse(EntityPlayer, int, int, int)
-	onInvalidUse(EntityPlayer, int, int, int)
-Create IWrenchBreakable
-	getRequiredTier(int)
-	onWrenchBreak(EntityPlayer, int, int, int)
 ---Checkpoint---
 An outside mod should be able to:
 	Add pages and entries to the lore book
-	Create new tiers of wrenches and breakable blocks
 	Create machines that follow nothing of any of my templates, but count anyway
-	Create machines that all they have to do is plug in recipes and watch
 	Create new tiers of Ender Nodes
 ----------------
 Implement everyone else's APIs
-	RF
+	Redstone Flux
+		Power - convert whenever needed on my side
 	ComputerCraft
+		Peripherals
 	Mekanism
-	AE2: removable blocks
+		Power - convert whenever needed on my side
+		Transmitters - all blocks that should accept from and send to Mekanism cables of all types
+	AE2
+		Spatial Storage
 	Thaumcraft
-	EE3?
+		Aspects
 	IC2?
+		EU
+	Ender IO
+		Conduit connections
+	NEI
+		Recipe handling
+Add those reserved generators
+Add tons of things that do everything
+	Tool repairer
+	Fluid Alloy Infuser
+	Inscription Knife(item)/Inscriber(block)
+	"Autonomous Activator"
+	"Elevator"
+		Jump below one, you will fly up and the bottom will have no collision box
+		Hold shift above one, you will sink down and the top will have no collision box
+	"Ritual of Speed"/"Ritual of the High Jump"
+		Precise control over where entities land
+	"Jetpack"
+	"Aerial Interface"
+Add recipes for everything using those new machines
 Open beta
-Add tons of machines that do everything
-Recipes
 Balance (take data from beta testers)
+
 Add magic tier
 Create spells
-Make
+Create armor
+
+Add Magitech tier
+Create Valkyrie Armor

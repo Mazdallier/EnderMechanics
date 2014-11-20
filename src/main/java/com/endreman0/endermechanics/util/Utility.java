@@ -80,9 +80,6 @@ public class Utility{
 		ret.stackSize+=stack2.stackSize;
 		return ret;
 	}
-	public static String stackToString(ItemStack stack){
-		return stack.toString();
-	}
 	
 	//Config variables
 	public static boolean wrenchKey = true;
