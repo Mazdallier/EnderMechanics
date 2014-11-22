@@ -7,7 +7,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import com.endreman0.endermechanics.api.IWrench;
 import com.endreman0.endermechanics.api.IWrenchBreakable;
-import com.endreman0.endermechanics.util.Log;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

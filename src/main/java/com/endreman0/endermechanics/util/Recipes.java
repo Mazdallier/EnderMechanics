@@ -31,13 +31,10 @@ public class Recipes{
 		for(Recipe recipe : recipes)
 			if(Utility.canConsume(recipe.input, input)){
 				if(Math.abs(recipe.output.getItemDamage()-COPY_META)<=16){
-					Log.info("Relative metadata enabled (difference " + (recipe.output.getItemDamage()-COPY_META) + ")");
 					ItemStack output = recipe.output.copy();
 					output.setItemDamage(input.getItemDamage() + (recipe.output.getItemDamage() - COPY_META));
-					Log.info("Setting output metadata to " + output.getItemDamage());
 					return new Recipe(recipe.input, output, recipe.power);
 				}else{
-					Log.info("Relative metadata disabled");
 					return recipe;
 				}
 			}
