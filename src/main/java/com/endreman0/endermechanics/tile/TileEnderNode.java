@@ -7,7 +7,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import com.endreman0.endermechanics.api.IPowerHandler;
 import com.endreman0.endermechanics.util.EnderNodeNetwork;
-import com.endreman0.endermechanics.util.LogHelper;
+import com.endreman0.endermechanics.util.Log;
 import com.endreman0.endermechanics.util.Utility;
 
 public class TileEnderNode extends TileInventory{

@@ -26,5 +26,6 @@ public class TileGrinder extends TileMachineRecipe{
 		recipes.add(new ItemStack(Blocks.glass), new ItemStack(Blocks.sand), 800);
 		recipes.add(new ItemStack(Blocks.log, 1, Recipes.COPY_META), new ItemStack(Blocks.planks, 6, Recipes.COPY_META), 1000);
 		recipes.add(new ItemStack(Blocks.log2, 1, Recipes.COPY_META), new ItemStack(Blocks.planks, 6, Recipes.COPY_META+4), 1000);
+		//The two meta values in log2 (Acacia @0, Dark Oak@1) become planks@5,6. Why not all 6 logs in one item? Beats me.
 	}
 }

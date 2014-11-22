@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class Recipes{
 	/**
@@ -21,7 +22,7 @@ public class Recipes{
 	public void add(ItemStack input, ItemStack output, int power){
 		if(input==null || output==null || power==0) return;
 		if(contains(input)){
-			LogHelper.info(String.format("Overriding recipe with input %s and output %s in favor of output %s", input, getRecipe(input).output, output));
+			Log.info(String.format("Overriding recipe with input %s and output %s in favor of output %s", input, getRecipe(input).output, output));
 			remove(input);
 		}
 		recipes.add(new Recipe(input, output, power));
@@ -30,13 +31,25 @@ public class Recipes{
 	public Recipe getRecipe(ItemStack input){
 		for(Recipe recipe : recipes)
 			if(Utility.canConsume(recipe.input, input)){
-				if(Math.abs(recipe.output.getItemDamage()-COPY_META)<=16){
+				int metaDiff = recipe.output.getItemDamage() - COPY_META;//If this is +/-16, relative metadata will be applied.
+				Log.info("Metadata difference: " + metaDiff);
+				if(Math.abs(metaDiff)<=16){
+					ItemStack output = recipe.output.copy();
+					output.setItemDamage(input.getItemDamage() + metaDiff);
+					Log.info("Output metadata: " + output.getItemDamage());
+					return new Recipe(recipe.input.copy(), output, recipe.power);
+				}else{
+					return new Recipe(recipe.input.copy(), recipe.output.copy(), recipe.power);
+				}
+				/*if(Math.abs(recipe.output.getItemDamage()-COPY_META)<=16){
 					ItemStack out = recipe.output.copy();
-					out.setItemDamage(input.getItemDamage() + (recipe.input.getItemDamage() - COPY_META));
+					LogHelper.info("Metadata value " + out.getItemDamage() + " within range of " + COPY_META + "(difference " + (recipe.output.getItemDamage() - COPY_META) + "). Applying relative metadata rules.");
+					out.setItemDamage(input.getItemDamage() + (recipe.output.getItemDamage() - COPY_META));
+					LogHelper.info("Setting output metadata to " + out.getItemDamage() + " from input metadata of " + input.getItemDamage());
 					return new Recipe(recipe.input, out, recipe.power);
 				}else{
 					return recipe;
-				}
+				}*/
 			}
 		return null;
 	}

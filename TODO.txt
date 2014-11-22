@@ -11,10 +11,10 @@ Make misc. blocks (Ender Node, Machine Frame) metadata-based
 Take any ore, from any supported mod, and put it in the 5x-er: recieve 5 correct ingots
 Mod should occupy 6 IDs: ingots, pearls, wrenches, machines, generators, misc. blocks
 ----------------
+Make machines use modified Ender Node renderer
 Make Machine Frames insert a machine on right-click
 Make buses that can automate frames
 Make machines completely un-automatable (remove IInventory)
-Make machines use modified Ender Node renderer
 ---Checkpoint---
 Machines should only be automatable by inserting them into a Machine Frame
 Inserting them into a frame should allow automating all the things
@@ -26,8 +26,8 @@ Add entries to pages
 An outside mod should be able to:
 	Add pages and entries to the lore book
 	Create machines that follow nothing of any of my templates, but count anyway
-	Create new tiers of Ender Nodes
 ----------------
+Add those reserved generators
 Implement everyone else's APIs
 	Redstone Flux
 		Power - convert whenever needed on my side
@@ -40,13 +40,13 @@ Implement everyone else's APIs
 		Spatial Storage
 	Thaumcraft
 		Aspects
-	IC2?
+	IC2 - Dead? Dying?
 		EU
 	Ender IO
 		Conduit connections
+		Insulated Redstone Conduits
 	NEI
 		Recipe handling
-Add those reserved generators
 Add tons of things that do everything
 	Tool repairer
 	Fluid Alloy Infuser
