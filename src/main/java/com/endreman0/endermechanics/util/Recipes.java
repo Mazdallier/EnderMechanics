@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class Recipes{
 	/**
@@ -31,25 +30,16 @@ public class Recipes{
 	public Recipe getRecipe(ItemStack input){
 		for(Recipe recipe : recipes)
 			if(Utility.canConsume(recipe.input, input)){
-				int metaDiff = recipe.output.getItemDamage() - COPY_META;//If this is +/-16, relative metadata will be applied.
-				Log.info("Metadata difference: " + metaDiff);
-				if(Math.abs(metaDiff)<=16){
+				if(Math.abs(recipe.output.getItemDamage()-COPY_META)<=16){
+					Log.info("Relative metadata enabled (difference " + (recipe.output.getItemDamage()-COPY_META) + ")");
 					ItemStack output = recipe.output.copy();
-					output.setItemDamage(input.getItemDamage() + metaDiff);
-					Log.info("Output metadata: " + output.getItemDamage());
-					return new Recipe(recipe.input.copy(), output, recipe.power);
+					output.setItemDamage(input.getItemDamage() + (recipe.output.getItemDamage() - COPY_META));
+					Log.info("Setting output metadata to " + output.getItemDamage());
+					return new Recipe(recipe.input, output, recipe.power);
 				}else{
-					return new Recipe(recipe.input.copy(), recipe.output.copy(), recipe.power);
-				}
-				/*if(Math.abs(recipe.output.getItemDamage()-COPY_META)<=16){
-					ItemStack out = recipe.output.copy();
-					LogHelper.info("Metadata value " + out.getItemDamage() + " within range of " + COPY_META + "(difference " + (recipe.output.getItemDamage() - COPY_META) + "). Applying relative metadata rules.");
-					out.setItemDamage(input.getItemDamage() + (recipe.output.getItemDamage() - COPY_META));
-					LogHelper.info("Setting output metadata to " + out.getItemDamage() + " from input metadata of " + input.getItemDamage());
-					return new Recipe(recipe.input, out, recipe.power);
-				}else{
+					Log.info("Relative metadata disabled");
 					return recipe;
-				}*/
+				}
 			}
 		return null;
 	}
@@ -66,5 +56,6 @@ public class Recipes{
 			this.output = output;
 			this.power = power;
 		}
+		@Override public String toString(){return input.toString() + " + " + power + " --> " + output.toString();}
 	}
 }

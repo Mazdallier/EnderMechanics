@@ -1,11 +1,11 @@
 package com.endreman0.endermechanics.tile;
 
+import com.endreman0.endermechanics.util.Log;
 import com.endreman0.endermechanics.util.Recipes;
 import com.endreman0.endermechanics.util.Recipes.Recipe;
 import com.endreman0.endermechanics.util.Utility;
 
 public abstract class TileMachineRecipe extends TileMachine{
-	protected Recipe recipe;
 	public TileMachineRecipe(int invSlots, int maxPower){
 		super(invSlots, maxPower);
 	}
@@ -14,11 +14,12 @@ public abstract class TileMachineRecipe extends TileMachine{
 	public void updateEntity(){
 		super.updateEntity();
 		if(inv[0]==null) return;
-		if(recipe==null || !Utility.canConsume(recipe.input, inv[0])) recipe = recipes().getRecipe(inv[0]);
+		Recipe recipe = recipes().getRecipe(inv[0]);
+		Log.info(recipe);
 		if(recipe!=null && inv[0].stackSize>=recipe.input.stackSize && power>=recipe.power
 				&& Utility.merge(recipe.output, inv[1])!=null){
-			//If there is a recipe, there is enough input and power to use it, and the output
-			//can fit in the same ItemStack as what is already in the output, run.
+			//If there is a recipe, there is enough input and power to use it, and the output can fit in the same ItemStack as what
+			//is already in the output, run.
 			power-=recipe.power;
 			inv[1] = Utility.merge(recipe.output, inv[1]);
 			inv[0].stackSize-=recipe.input.stackSize;
