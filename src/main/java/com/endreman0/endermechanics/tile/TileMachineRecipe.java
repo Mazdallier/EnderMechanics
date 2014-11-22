@@ -6,6 +6,7 @@ import com.endreman0.endermechanics.util.Recipes.Recipe;
 import com.endreman0.endermechanics.util.Utility;
 
 public abstract class TileMachineRecipe extends TileMachine{
+	private Recipe recipe;
 	public TileMachineRecipe(int invSlots, int maxPower){
 		super(invSlots, maxPower);
 	}
