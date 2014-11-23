@@ -23,7 +23,7 @@ public abstract class BlockMachine extends BlockEM implements ITileEntityProvide
 	protected void dropItems(World world, int x, int y, int z){
 		IInventory inventory = (IInventory)world.getTileEntity(x, y, z);
 		for(int i=0;i<inventory.getSizeInventory();i++){
-			ItemStack stack =  inventory.getStackInSlot(i);
+			ItemStack stack = inventory.getStackInSlot(i);
 			if(stack!=null && stack.stackSize>0){
 				EntityItem entity = new EntityItem(world, x, y, z, stack.copy());
 				entity.motionY=0.2F;

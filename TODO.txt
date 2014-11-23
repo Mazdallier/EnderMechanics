@@ -1,4 +1,3 @@
-Make generators metadata-based
 Make machines metadata-based
 Make misc. blocks (Machine Frame, Ender Node) metadata-based
 Make machines use Ender Node rendering, distinguished by color, and completely un-automatable
@@ -26,7 +25,6 @@ An outside mod should be able to:
 	Create machines that all they have to do is plug in recipes and watch
 	Create new tiers of Ender Nodes
 ----------------
-Add those reserved generators
 Implement everyone else's APIs
 	RF
 	ComputerCraft

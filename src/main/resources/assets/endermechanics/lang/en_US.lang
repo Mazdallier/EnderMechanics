@@ -29,16 +29,21 @@ item.endermechanics:ore2Gold.name=Enriched Gold Crystal
 item.endermechanics:ore3Gold.name=Purified Gold Crystal
 
 #Blocks
-tile.endermechanics:machineFrame.name=Machine Frame
 tile.endermechanics:generatorFurnace.name=Infernal Reactor
 tile.endermechanics:generatorLiving.name=Biotic Reactor
+tile.endermechanics:generatorTool.name=Instrumental Reactor
+tile.endermechanics:generatorPotion.name=Tonic Reactor
+tile.endermechanics:generatorNetherStar.name=Triumphant Reactor
 tile.endermechanics:generatorCreative.name=Creative Reactor
-tile.endermechanics:enderNode.name=Ender Network Node
+
 tile.endermechanics:furnaceEM.name=Endergetic Smelter
 tile.endermechanics:pulverizer.name=Endergetic Pulverizer
 tile.endermechanics:crystallizer.name=Endergetic Crystallizer
 tile.endermechanics:enrichmentCell.name=Endergetic Enrichment Cell
 tile.endermechanics:purifier.name=Endergetic Purifier
+
+tile.endermechanics:machineFrame.name=Machine Frame
+tile.endermechanics:enderNode.name=Ender Network Node
 
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking

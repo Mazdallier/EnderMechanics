@@ -27,7 +27,7 @@ public abstract class GuiMachine extends GuiContainer{
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
-		fontRendererObj.drawString(StatCollector.translateToLocal(tile.getInventoryName().concat(".name")), 8, 6, 0x404040);
+		fontRendererObj.drawString(StatCollector.translateToLocal(tile.getInventoryName()+".name"), 8, 6, 0x404040);
 		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 92, 0x404040);
 	}
 	

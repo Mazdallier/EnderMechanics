@@ -7,6 +7,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.endreman0.endermechanics.block.BlockEM;
 import com.endreman0.endermechanics.block.ModBlocks;
+import com.endreman0.endermechanics.block.itemblock.ItemBlockGenerator;
 import com.endreman0.endermechanics.item.ItemEM;
 import com.endreman0.endermechanics.item.ModItems;
 import com.endreman0.endermechanics.tile.*;
@@ -30,29 +31,32 @@ public class CommonProxy{
 	}
 	protected void registerItem(ItemEM item){GameRegistry.registerItem(item, item.getBasicName());}
 	public void blocks(){
-		registerBlock(ModBlocks.machineFrame);
-		registerBlock(ModBlocks.generatorFurnace);
-		registerBlock(ModBlocks.generatorLiving);
-		registerBlock(ModBlocks.generatorCreative);
-		registerBlock(ModBlocks.enderNode);
+		GameRegistry.registerBlock(ModBlocks.generator, ItemBlockGenerator.class, ModBlocks.generator.getBasicName());
 		registerBlock(ModBlocks.furnace);
 		registerBlock(ModBlocks.pulverizer);
 		registerBlock(ModBlocks.crystallizer);
 		registerBlock(ModBlocks.enrichmentCell);
 		registerBlock(ModBlocks.purifier);
+		registerBlock(ModBlocks.machineFrame);
+		registerBlock(ModBlocks.enderNode);
 	}
 	protected void registerBlock(BlockEM block){GameRegistry.registerBlock(block, block.getBasicName());}
 	public void tileEntities(){
-		GameRegistry.registerTileEntity(TileMachineFrame.class, "machineFrame");
 		GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generatorFurnace");
 		GameRegistry.registerTileEntity(TileGeneratorLiving.class, "generatorLiving");
+		GameRegistry.registerTileEntity(TileGeneratorTool.class, "generatorTool");
+		GameRegistry.registerTileEntity(TileGeneratorPotion.class, "generatorPotion");
+		GameRegistry.registerTileEntity(TileGeneratorNetherStar.class, "generatorNetherStar");
 		GameRegistry.registerTileEntity(TileGeneratorCreative.class, "generatorCreative");
-		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
+		
 		GameRegistry.registerTileEntity(TileFurnaceEM.class, "furnace");
 		GameRegistry.registerTileEntity(TilePulverizer.class, "pulverizer");
 		GameRegistry.registerTileEntity(TileCrystallizer.class, "crystallizer");
 		GameRegistry.registerTileEntity(TileEnrichmentCell.class, "enrichmentCell");
 		GameRegistry.registerTileEntity(TilePurifier.class, "purifier");
+		
+		GameRegistry.registerTileEntity(TileMachineFrame.class, "machineFrame");
+		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
 	}
 	public void entities(){
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
@@ -78,9 +82,9 @@ public class CommonProxy{
 		
 		//Blocks
 		if(Utility.enableGenFurnace)
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.generatorFurnace), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', ModItems.pearlEM, 'c', Items.coal, 'f', Blocks.furnace);
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 0), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', ModItems.pearlEM, 'c', Items.coal, 'f', Blocks.furnace);
 		if(Utility.enableGenLiving)
-			GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.generatorLiving, " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', ModItems.pearlEM, 'w', "logWood", 'f', Blocks.furnace));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 1), " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', ModItems.pearlEM, 'w', "logWood", 'f', Blocks.furnace));
 		if(Utility.enableFrame)
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.machineFrame), "isi", "sps", "isi", 'i', ModItems.ingotEM, 's', ModItems.obsidianStick, 'p', ModItems.pearlEM);
 		if(Utility.enableNode)

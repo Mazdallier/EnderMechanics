@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.endreman0.endermechanics.api.IPowerHandler;
+import com.endreman0.endermechanics.block.BlockGenerator;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -113,7 +114,7 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	@Override public int getSizeInventory(){return inv.length;}
 	@Override public ItemStack getStackInSlot(int slot){return inv[slot];}
 	@Override public void setInventorySlotContents(int slot, ItemStack stack){inv[slot]=stack;}
-	@Override public String getInventoryName(){return getBlockType().getUnlocalizedName();}//Use block name as GUI name
+	@Override public String getInventoryName(){return getBlockType().getUnlocalizedName() + BlockGenerator.names[blockMetadata>=0 ? blockMetadata : 0];}//Use block name as GUI name
 	@Override public boolean hasCustomInventoryName(){return false;}
 	@Override public int getInventoryStackLimit(){return 64;}
 	@Override public boolean isUseableByPlayer(EntityPlayer player){return player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;}

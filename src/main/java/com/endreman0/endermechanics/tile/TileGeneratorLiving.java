@@ -5,10 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class TileGeneratorLiving extends TileGenerator{
-	public TileGeneratorLiving() {
-		super(10, 10000);
-	}
-
+	public TileGeneratorLiving(){super(25, 10000);}
 	@Override
 	protected int consumeFuel(boolean execute){
 		if(inv[0]==null) return 0;

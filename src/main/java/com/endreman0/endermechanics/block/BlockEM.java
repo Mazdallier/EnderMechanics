@@ -16,14 +16,10 @@ public abstract class BlockEM extends Block{
 		setBlockTextureName(name);
 		blockHardness = 10;
 	}
-	@Override
-	public String getUnlocalizedName(){
-		return "tile." + Utility.RESOURCE_PREFIX + ':' + getBasicName();
-	}
-	@Override
-	@SideOnly(Side.CLIENT)
+	@Override public String getUnlocalizedName(){return "tile." + Utility.RESOURCE_PREFIX + ':' + getBasicName();}
+	@Override @SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
-		blockIcon = iconRegister.registerIcon(Utility.MOD_ID.toLowerCase() + ':' + getBasicName());
+		blockIcon = iconRegister.registerIcon(Utility.RESOURCE_PREFIX + ':' + getBasicName());
 	}
 	public String getBasicName(){
 		String name = super.getUnlocalizedName();

@@ -10,10 +10,13 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler{
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
 		switch(id){
 			case(0): return new GuiGeneratorFurnace(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(1): return new GuiGeneratorLiving(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
-			//cases 2-4: saved for reactors in planning
+			case(2): return new GuiGeneratorTool(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
+			case(3): return new GuiGeneratorPotion(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
+			case(4): return new GuiGeneratorNetherStar(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(5): return new GuiFurnaceEM(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(6): return new GuiPulverizer(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(7): return new GuiCrystallizer(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
@@ -28,7 +31,9 @@ public class GuiHandler implements IGuiHandler{
 		switch(id){
 			case(0): return new ContainerGeneratorFurnace(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(1): return new ContainerGeneratorLiving(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
-			//cases 2-4: saved for reactors in planning
+			case(2): return new ContainerGeneratorTool(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
+			case(3): return new ContainerGeneratorPotion(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
+			case(4): return new ContainerGeneratorNetherStar(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(5): return new ContainerFurnaceEM(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(6): return new ContainerPulverizer(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
 			case(7): return new ContainerCrystallizer(player.inventory, (TileInventory)world.getTileEntity(x, y, z));
