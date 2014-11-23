@@ -8,15 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockFurnaceEM extends BlockMachine{
-	public BlockFurnaceEM(){super("furnaceEM");}
+public class BlockFurnaceEM extends BlockBasicMachine{
+	public BlockFurnaceEM(){super("furnaceEM", 0, 5);}
 	@Override public TileEntity createNewTileEntity(World world, int meta){return new TileFurnaceEM();}
-	
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float partialX, float partialY, float partialZ){
-		if(player.isSneaking()) return false;
-		player.openGui(EnderMechanics.instance, 5, world, x, y, z);
-		return true;
-	}
-	@Override public int getTier(int meta){return 0;}
 }

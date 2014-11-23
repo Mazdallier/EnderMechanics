@@ -1,5 +1,3 @@
-Make ore doubler copy metadata across
-Create ore processing machines up to 5x, with appropriate intermediary processing
 Make generators metadata-based
 Make machines metadata-based
 Make misc. blocks (Machine Frame, Ender Node) metadata-based
@@ -12,10 +10,7 @@ Machines should have no interaction with anything
 Make machines use modified Ender Node renderer
 Make Machine Frames insert a machine on right-click
 Make buses that can automate frames
-<<<<<<< HEAD
 Make machines completely un-automatable (remove IInventory)
-=======
->>>>>>> parent of fed591b... Behaviors 1 and 2 of Recipes.COPY_META work. Minor changes to TileMachineRecipe to make it more efficient. Re-ordering of TODO.txt.
 ---Checkpoint---
 Machines should only be automatable by inserting them into a Machine Frame
 Inserting them into a frame should give near infinite possibilities
@@ -23,23 +18,13 @@ Inserting them into a frame should give near infinite possibilities
 Add an info book, similar to Thaumonomicon
 Add pages
 Add entries to pages
-Create IWrench
-	getWrenchTier(ItemStack)
-	onValidUse(EntityPlayer, int, int, int)
-	onInvalidUse(EntityPlayer, int, int, int)
-Create IWrenchBreakable
-	getRequiredTier(int)
-	onWrenchBreak(EntityPlayer, int, int, int)
 ---Checkpoint---
 An outside mod should be able to:
 	Add pages and entries to the lore book
 	Create new tiers of wrenches and breakable blocks
 	Create machines that follow nothing of any of my templates, but count anyway
-<<<<<<< HEAD
-=======
 	Create machines that all they have to do is plug in recipes and watch
 	Create new tiers of Ender Nodes
->>>>>>> parent of fed591b... Behaviors 1 and 2 of Recipes.COPY_META work. Minor changes to TileMachineRecipe to make it more efficient. Re-ordering of TODO.txt.
 ----------------
 Add those reserved generators
 Implement everyone else's APIs

@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemWrench extends ItemMetadataEM implements IWrench{
 	ItemWrench(){
 		super("wrench", 4);
+		maxStackSize = 1;
 	}
 	@Override @SideOnly(Side.CLIENT) public boolean isFull3D(){return true;}//This makes it render in your hand, like a sword or tool.
 	

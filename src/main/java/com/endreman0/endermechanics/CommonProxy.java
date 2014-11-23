@@ -26,14 +26,7 @@ public class CommonProxy{
 		registerItem(ModItems.ingotEM);
 		registerItem(ModItems.obsidianStick);
 		registerItem(ModItems.wrench);
-		registerItem(ModItems.oreDust);
-		registerItem(ModItems.oreClump);
-		/* Future spoilers
-		registerItem(ModItems.voidHelmet);
-		registerItem(ModItems.voidChestplate);
-		registerItem(ModItems.voidLeggings);
-		registerItem(ModItems.voidBoots);
-		*/
+		for(int i=0;i<ModItems.orePieces.length;i++) registerItem(ModItems.orePieces[i]);
 	}
 	protected void registerItem(ItemEM item){GameRegistry.registerItem(item, item.getBasicName());}
 	public void blocks(){
@@ -43,8 +36,10 @@ public class CommonProxy{
 		registerBlock(ModBlocks.generatorCreative);
 		registerBlock(ModBlocks.enderNode);
 		registerBlock(ModBlocks.furnace);
-		registerBlock(ModBlocks.grinder);
 		registerBlock(ModBlocks.pulverizer);
+		registerBlock(ModBlocks.crystallizer);
+		registerBlock(ModBlocks.enrichmentCell);
+		registerBlock(ModBlocks.purifier);
 	}
 	protected void registerBlock(BlockEM block){GameRegistry.registerBlock(block, block.getBasicName());}
 	public void tileEntities(){
@@ -54,8 +49,10 @@ public class CommonProxy{
 		GameRegistry.registerTileEntity(TileGeneratorCreative.class, "generatorCreative");
 		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
 		GameRegistry.registerTileEntity(TileFurnaceEM.class, "furnace");
-		GameRegistry.registerTileEntity(TileGrinder.class, "grinder");
 		GameRegistry.registerTileEntity(TilePulverizer.class, "pulverizer");
+		GameRegistry.registerTileEntity(TileCrystallizer.class, "crystallizer");
+		GameRegistry.registerTileEntity(TileEnrichmentCell.class, "enrichmentCell");
+		GameRegistry.registerTileEntity(TilePurifier.class, "purifier");
 	}
 	public void entities(){
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
@@ -90,11 +87,13 @@ public class CommonProxy{
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.enderNode), "sis", "ipi", "sis", 's', ModItems.obsidianStick, 'i', ModItems.ingotEM, 'p', ModItems.pearlEM);
 	}
 	public void smelting(){
-		GameRegistry.addSmelting(new ItemStack(ModItems.oreDust, 1, 0), new ItemStack(Items.iron_ingot), 0);
-		GameRegistry.addSmelting(new ItemStack(ModItems.oreDust, 1, 1), new ItemStack(Items.gold_ingot), 0);
+		GameRegistry.addSmelting(new ItemStack(ModItems.orePieces[0], 1, 0), new ItemStack(Items.iron_ingot), 0);
+		GameRegistry.addSmelting(new ItemStack(ModItems.orePieces[0], 1, 1), new ItemStack(Items.gold_ingot), 0);
 	}
 	public void machineRecipes(){
-		TileGrinder.addRecipes();
 		TilePulverizer.addRecipes();
+		TileCrystallizer.addRecipes();
+		TileEnrichmentCell.addRecipes();
+		TilePurifier.addRecipes();
 	}
 }

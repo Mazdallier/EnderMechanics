@@ -5,8 +5,8 @@ import net.minecraft.inventory.Slot;
 
 import com.endreman0.endermechanics.tile.TileInventory;
 
-public class ContainerGrinder extends ContainerMachine{
-	public ContainerGrinder(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
+public class ContainerPurifier extends ContainerMachine{
+	public ContainerPurifier(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
 		super(inventoryPlayer, tileEntity);
 		super.addSlotToContainer(new Slot(tileEntity, 0, 34, 37));
 		super.addSlotToContainer(new Slot(tileEntity, 1, 128, 37));

@@ -11,8 +11,9 @@ import net.minecraft.world.World;
 import com.endreman0.endermechanics.api.IWrenchBreakable;
 
 public abstract class BlockMachine extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
-	protected BlockMachine(Material material, String name){super(material, name);}
-	protected BlockMachine(String name){this(Material.iron, name);}
+	protected int tier;
+	protected BlockMachine(Material material, String name, int tier){super(material, name); this.tier = tier;}
+	protected BlockMachine(String name, int tier){this(Material.iron, name, tier);}
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta){
@@ -37,5 +38,6 @@ public abstract class BlockMachine extends BlockEM implements ITileEntityProvide
 		dropItems(world, x, y, z);
 		world.setBlockToAir(x, y, z);
 	}
+	@Override public int getTier(int meta){return tier;}
 	@Override public boolean hasTileEntity(int meta){return true;}
 }

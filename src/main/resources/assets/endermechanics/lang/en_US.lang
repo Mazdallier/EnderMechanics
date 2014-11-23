@@ -1,17 +1,15 @@
 itemGroup.endermechanics=Ender Mechanics
 
 #Items
-item.endermechanics:pearlEM0.name=Advanced Ender Pearl
-item.endermechanics:pearlEM1.name=Redstone-Infused Advanced Pearl
-item.endermechanics:pearlEM2.name=Diamond-Empowered Advanced Pearl
-item.endermechanics:pearlEM3.name=Glowstone-Imbued Advanced Pearl
-item.endermechanics:pearlEM4.name=Void Pearl
+item.endermechanics:pearlEM0.name=Advanced Pearl I
+item.endermechanics:pearlEM1.name=Advanced Pearl II
+item.endermechanics:pearlEM2.name=Advanced Pearl III
+item.endermechanics:pearlEM3.name=Advanced Pearl IV
 
-item.endermechanics:ingotEM0.name=Ender Ingot
-item.endermechanics:ingotEM1.name=Iron-Reinforced Ender Ingot
-item.endermechanics:ingotEM2.name=Gold-Etched Ender Ingot
-item.endermechanics:ingotEM3.name=Obsidian-Empowered Ender Ingot
-item.endermechanics:ingotEM4.name=Voidsteel Inogt
+item.endermechanics:ingotEM0.name=Ender Ingot I
+item.endermechanics:ingotEM1.name=Ender Ingot II
+item.endermechanics:ingotEM2.name=Ender Ingot III
+item.endermechanics:ingotEM3.name=Ender Ingot IV
 
 item.endermechanics:obsidianStick.name=Obsidian Stick
 
@@ -21,14 +19,14 @@ item.endermechanics:wrench2.name=Upgradable Wrench
 item.endermechanics:wrench3.name=Programmable Wrench
 
 item.endermechanics:ore0Iron.name=Iron Dust
-item.endermechanics:ore1Iron.name=Iron Clump
-item.endermechanics:ore0Gold.name=Gold Dust
-item.endermechanics:ore1Gold.name=Gold Clump
+item.endermechanics:ore1Iron.name=Iron Crystal
+item.endermechanics:ore2Iron.name=Enriched Iron Crystal
+item.endermechanics:ore3Iron.name=Purified Iron Crystal
 
-item.endermechanics:voidHelmet.name=Voidsteel Helmet
-item.endermechanics:voidChestplate.name=Voidsteel Chestplate
-item.endermechanics:voidLeggings.name=Voidsteel Leggings
-item.endermechanics:voidBoots.name=Voidsteel Boots
+item.endermechanics:ore0Gold.name=Gold Dust
+item.endermechanics:ore1Gold.name=Gold Crystal
+item.endermechanics:ore2Gold.name=Enriched Gold Crystal
+item.endermechanics:ore3Gold.name=Purified Gold Crystal
 
 #Blocks
 tile.endermechanics:machineFrame.name=Machine Frame
@@ -37,8 +35,10 @@ tile.endermechanics:generatorLiving.name=Biotic Reactor
 tile.endermechanics:generatorCreative.name=Creative Reactor
 tile.endermechanics:enderNode.name=Ender Network Node
 tile.endermechanics:furnaceEM.name=Endergetic Smelter
-tile.endermechanics:grinder.name=Endergetic Grinder
 tile.endermechanics:pulverizer.name=Endergetic Pulverizer
+tile.endermechanics:crystallizer.name=Endergetic Crystallizer
+tile.endermechanics:enrichmentCell.name=Endergetic Enrichment Cell
+tile.endermechanics:purifier.name=Endergetic Purifier
 
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking

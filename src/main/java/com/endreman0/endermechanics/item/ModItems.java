@@ -21,8 +21,12 @@ public class ModItems{
 	public static final ItemEM wrench = new ItemWrench();
 	
 	//Processed ore items
-	public static final ItemEM oreDust = new ItemProcessedOre(0);
-	public static final ItemEM oreClump = new ItemProcessedOre(1);
+	public static final ItemEM[] orePieces = getProcessedOres();
+	private static ItemEM[] getProcessedOres(){
+		ItemEM[] ores = new ItemEM[4];
+		for(int i=0;i<ores.length;i++) ores[i] = new ItemProcessedOre(i);
+		return ores;
+	}
 	
 	//Armor
 	public static final ArmorMaterial armorMatVoid = EnumHelper.addArmorMaterial("voidsteel", -1, new int[]{4, 10, 7, 4}, 0);
