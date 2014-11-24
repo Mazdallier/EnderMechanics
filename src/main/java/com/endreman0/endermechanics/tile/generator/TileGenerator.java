@@ -1,13 +1,12 @@
-package com.endreman0.endermechanics.tile;
+package com.endreman0.endermechanics.tile.generator;
 
-import com.endreman0.endermechanics.api.IPowerHandler;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.endreman0.endermechanics.api.IPowerHandler;
+import com.endreman0.endermechanics.block.BlockGenerator;
+import com.endreman0.endermechanics.tile.TileInventory;
 
 public abstract class TileGenerator extends TileInventory{
 	protected int ticksRunning;//Increased whenever a fuel is consumed, decremented every tick
@@ -62,5 +61,6 @@ public abstract class TileGenerator extends TileInventory{
 		nbt.setInteger("ticksRunning", ticksRunning);
 		nbt.setInteger("powerOutput", powerOutput);
 	}
+	@Override public String getInventoryName(){return super.getInventoryName() + BlockGenerator.names[blockMetadata>=0 ? blockMetadata : 0];}//Use block name as GUI name
 	@Override public boolean canInsert(ForgeDirection from){return from.equals(ForgeDirection.UNKNOWN);}
 }

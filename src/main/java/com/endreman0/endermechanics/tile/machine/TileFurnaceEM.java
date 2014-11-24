@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics.tile;
+package com.endreman0.endermechanics.tile.machine;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;

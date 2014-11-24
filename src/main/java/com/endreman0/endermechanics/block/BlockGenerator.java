@@ -2,6 +2,7 @@ package com.endreman0.endermechanics.block;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,12 +23,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.endreman0.endermechanics.EnderMechanics;
 import com.endreman0.endermechanics.api.IWrenchBreakable;
-import com.endreman0.endermechanics.tile.TileGeneratorCreative;
-import com.endreman0.endermechanics.tile.TileGeneratorFurnace;
-import com.endreman0.endermechanics.tile.TileGeneratorLiving;
-import com.endreman0.endermechanics.tile.TileGeneratorNetherStar;
-import com.endreman0.endermechanics.tile.TileGeneratorPotion;
-import com.endreman0.endermechanics.tile.TileGeneratorTool;
+import com.endreman0.endermechanics.tile.generator.*;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.relauncher.Side;
@@ -41,7 +37,7 @@ public class BlockGenerator extends BlockEM implements ITileEntityProvider, IWre
 	public BlockGenerator(){super(Material.iron, "generator");}
 	@Override @SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register){
-		String baseName = Utility.MOD_ID + ":" + getBasicName();
+		String baseName = Utility.RESOURCE_PREFIX + ":" + getBasicName();
 		for(int i=0;i<icons.length;i++) icons[i] = register.registerIcon(baseName + names[i]);
 	}
 	@Override public int damageDropped(int meta){return meta;}
@@ -65,6 +61,7 @@ public class BlockGenerator extends BlockEM implements ITileEntityProvider, IWre
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float partialX, float partialY, float partialZ){
 		int meta = world.getBlockMetadata(x, y, z);
 		if(player.isSneaking()) return false;
+		
 		//Metadata-specific activity. For example, Infernal Reactors will take any lava buckets they are right-clicked with.
 		if(meta==0){
 			TileGeneratorFurnace tile = (TileGeneratorFurnace)world.getTileEntity(x, y, z);
@@ -80,11 +77,11 @@ public class BlockGenerator extends BlockEM implements ITileEntityProvider, IWre
 		player.openGui(EnderMechanics.instance, guiIndices[meta], world, x, y, z);
 		return true;
 	}
-	/*@Override
+	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta){
 		dropItems(world, x, y, z);
 		super.breakBlock(world, x, y, z, block, meta);
-	}*/
+	}
 	private void dropItems(World world, int x, int y, int z){
 		IInventory inventory = (IInventory)world.getTileEntity(x, y, z);
 		for(int i=0;i<inventory.getSizeInventory();i++){
@@ -99,7 +96,7 @@ public class BlockGenerator extends BlockEM implements ITileEntityProvider, IWre
 	@Override
 	public void breakWithWrench(World world, int x, int y, int z) {
 		dropBlockAsItem(world, x, y, z, new ItemStack(this.getItem(world, x, y, z), 1, world.getBlockMetadata(x, y, z)));
-//		dropItems(world, x, y, z);
+		dropItems(world, x, y, z);
 		world.setBlockToAir(x, y, z);
 	}
 	@Override public int getTier(int meta){return tiers[meta];}

@@ -7,10 +7,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.endreman0.endermechanics.block.BlockEM;
 import com.endreman0.endermechanics.block.ModBlocks;
-import com.endreman0.endermechanics.block.itemblock.ItemBlockGenerator;
 import com.endreman0.endermechanics.item.ItemEM;
 import com.endreman0.endermechanics.item.ModItems;
-import com.endreman0.endermechanics.tile.*;
+import com.endreman0.endermechanics.itemblock.ItemBlockGenerator;
+import com.endreman0.endermechanics.itemblock.ItemBlockMachine;
+import com.endreman0.endermechanics.tile.TileEnderNode;
+import com.endreman0.endermechanics.tile.TileMachineFrame;
+import com.endreman0.endermechanics.tile.generator.*;
+import com.endreman0.endermechanics.tile.machine.*;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -32,15 +36,10 @@ public class CommonProxy{
 	protected void registerItem(ItemEM item){GameRegistry.registerItem(item, item.getBasicName());}
 	public void blocks(){
 		GameRegistry.registerBlock(ModBlocks.generator, ItemBlockGenerator.class, ModBlocks.generator.getBasicName());
-		registerBlock(ModBlocks.furnace);
-		registerBlock(ModBlocks.pulverizer);
-		registerBlock(ModBlocks.crystallizer);
-		registerBlock(ModBlocks.enrichmentCell);
-		registerBlock(ModBlocks.purifier);
-		registerBlock(ModBlocks.machineFrame);
-		registerBlock(ModBlocks.enderNode);
+		GameRegistry.registerBlock(ModBlocks.machine, ItemBlockMachine.class, ModBlocks.machine.getBasicName());
+		GameRegistry.registerBlock(ModBlocks.machineFrame, ModBlocks.machineFrame.getBasicName());
+		GameRegistry.registerBlock(ModBlocks.enderNode, ModBlocks.enderNode.getBasicName());
 	}
-	protected void registerBlock(BlockEM block){GameRegistry.registerBlock(block, block.getBasicName());}
 	public void tileEntities(){
 		GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generatorFurnace");
 		GameRegistry.registerTileEntity(TileGeneratorLiving.class, "generatorLiving");

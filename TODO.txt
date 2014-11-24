@@ -1,18 +1,18 @@
-Make machines metadata-based
-Make misc. blocks (Machine Frame, Ender Node) metadata-based
-Make machines use Ender Node rendering, distinguished by color, and completely un-automatable
----Checkpoint---
-Take any ore, from any supported mod, and put it in the 5x-er: recieve 5 correct ingots
-Mod should occupy 6 IDs: ingots, pearls, wrenches, machines, generators, misc. blocks
-Machines should have no interaction with anything
-----------------
+Unify GUIs
 Make machines use modified Ender Node renderer
+	Shrink boxes down to 6-8px wide
+	Make Machine Frame's inner box larger
 Make Machine Frames insert a machine on right-click
+	Machine Frame's tile entity holds IMachine, block and byte (meta)
+	NBT I/O: block (by ID) and meta; create new tile when read
+	TESR renders machine as well as itself
 Make buses that can automate frames
-Make machines completely un-automatable (remove IInventory)
+Make machines completely un-automatable
+	Add all of IInventory's methods to IMachine (They will be used when in a frame)
+	Replace all references to IInventory with IMachine
 ---Checkpoint---
 Machines should only be automatable by inserting them into a Machine Frame
-Inserting them into a frame should give near infinite possibilities
+Using a frame, you can automate all the things
 ----------------
 Add an info book, similar to Thaumonomicon
 Add pages

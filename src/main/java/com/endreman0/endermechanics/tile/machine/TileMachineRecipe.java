@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics.tile;
+package com.endreman0.endermechanics.tile.machine;
 
 import com.endreman0.endermechanics.util.Recipes;
 import com.endreman0.endermechanics.util.Recipes.Recipe;

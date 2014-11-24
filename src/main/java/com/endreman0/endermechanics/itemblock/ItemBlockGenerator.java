@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics.block.itemblock;
+package com.endreman0.endermechanics.itemblock;
 
 import com.endreman0.endermechanics.block.BlockGenerator;
 import com.endreman0.endermechanics.util.Utility;

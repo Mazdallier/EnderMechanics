@@ -1,4 +1,4 @@
-package com.endreman0.endermechanics.tile;
+package com.endreman0.endermechanics.tile.generator;
 
 import com.endreman0.endermechanics.util.Log;
 
