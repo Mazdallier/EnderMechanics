@@ -28,6 +28,37 @@ item.endermechanics:ore1Gold.name=Gold Crystal
 item.endermechanics:ore2Gold.name=Enriched Gold Crystal
 item.endermechanics:ore3Gold.name=Purified Gold Crystal
 
+item.endermechanics:ore0Diamond.name=Diamond Dust
+item.endermechanics:ore1Diamond.name=Crystalline Diamond
+item.endermechanics:ore2Diamond.name=Enriched Diamond
+item.endermechanics:ore3Diamond.name=Purified Diamond
+
+item.endermechanics:ore0Emerald.name=Emerald Dust
+item.endermechanics:ore1Emerald.name=Crystalline Emerald
+item.endermechanics:ore2Emerald.name=Enriched Emerald
+item.endermechanics:ore3Emerald.name=Purified Emerald
+
+item.endermechanics:ore0Quartz.name=Quartz Dust
+item.endermechanics:ore1Quartz.name=Crystalline Quartz
+item.endermechanics:ore2Quartz.name=Enriched Quartz
+item.endermechanics:ore3Quartz.name=Purified Quartz
+
+item.endermechanics:ore0Redstone.name=Fine Redstone Powder
+item.endermechanics:ore1Redstone.name=Crystalline Redstone
+item.endermechanics:ore2Redstone.name=Enriched Redstone
+item.endermechanics:ore3Redstone.name=Purified Redstone
+
+
+item.endermechanics:ore0Coal.name=Coal Dust
+item.endermechanics:ore1Coal.name=Crystalline Coal
+item.endermechanics:ore2Coal.name=Enriched Coal
+item.endermechanics:ore3Coal.name=Purified Coal
+
+item.endermechanics:ore0Lapis.name=Lapis Dust
+item.endermechanics:ore1Lapis.name=Crystalline Redstone
+item.endermechanics:ore2Lapis.name=Enriched Redstone
+item.endermechanics:ore3Lapis.name=Purified Redstone
+
 #Blocks
 tile.endermechanics:generatorFurnace.name=Infernal Reactor
 tile.endermechanics:generatorLiving.name=Biotic Reactor
