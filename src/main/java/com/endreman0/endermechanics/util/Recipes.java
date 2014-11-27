@@ -26,7 +26,19 @@ public class Recipes{
 		}
 		recipes.add(new Recipe(input, output, power));
 	}
-	public boolean contains(ItemStack input){return getRecipe(input)!=null;}
+	//Designed for making other ores behave like Lapis and Redstone in the ore processor.
+	public void addOverride(ItemStack input, ItemStack output, int power){
+		if(input==null || output==null || power==0) return;
+		if(contains(input)){
+			Log.info(String.format("Overriding recipe with input %s and output %s in favor of output %s", input, getRecipe(input).output, output));
+			remove(input);
+		}
+		recipes.add(0, new Recipe(input, output, power));
+	}
+	public boolean contains(ItemStack input){
+		for(Recipe recipe : recipes) if(recipe.input.isItemEqual(input)) return true;
+		return false;
+	}
 	public Recipe getRecipe(ItemStack input){
 		for(Recipe recipe : recipes)
 			if(Utility.canConsume(recipe.input, input)){

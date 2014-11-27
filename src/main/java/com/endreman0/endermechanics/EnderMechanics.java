@@ -51,6 +51,7 @@ public class EnderMechanics{
 	}
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event){
+		proxy.postInit();
 		//if(Loader.isModLoaded("modid"){
 		//Update checker, if that ever gets figured out
 	}

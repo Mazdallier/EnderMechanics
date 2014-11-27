@@ -20,7 +20,7 @@ public abstract class ItemMetadataEM extends ItemEM{
 		maxStackSize=64;
 		icons = new IIcon[variants];
 	}
-	@Override public IIcon getIconFromDamage(int meta){if(meta<icons.length) return icons[meta]; else return icons[0]; }
+	@Override public IIcon getIconFromDamage(int meta){if(meta<icons.length) return icons[meta]; else return icons[0];}
 	@Override public String getUnlocalizedName(ItemStack stack){return super.getUnlocalizedName(stack) + stack.getItemDamage();}
 	
 	@Override @SideOnly(Side.CLIENT)

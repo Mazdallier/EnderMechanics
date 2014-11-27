@@ -30,7 +30,6 @@ public class CommonProxy{
 		registerItem(ModItems.ingotEM);
 		registerItem(ModItems.obsidianStick);
 		registerItem(ModItems.wrench);
-		for(int i=0;i<ModItems.orePieces.length;i++) registerItem(ModItems.orePieces[i]);
 	}
 	protected void registerItem(ItemEM item){GameRegistry.registerItem(item, item.getBasicName());}
 	public void blocks(){
@@ -91,5 +90,9 @@ public class CommonProxy{
 		TileCrystallizer.addRecipes();
 		TileEnrichmentCell.addRecipes();
 		TilePurifier.addRecipes();
+	}
+	public void postInit(){
+		//This is done in post-init to allow other mods to add their ore types before it is registered.
+		for(int i=0;i<ModItems.orePieces.length;i++) registerItem(ModItems.orePieces[i]);
 	}
 }
