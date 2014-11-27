@@ -1,13 +1,12 @@
 package com.endreman0.endermechanics;
 
-import com.endreman0.endermechanics.gui.GuiHandler;
-import com.endreman0.endermechanics.item.ItemWrench;
+import net.minecraftforge.common.MinecraftForge;
+
+import com.endreman0.endermechanics.gui.GuiFactory;
 import com.endreman0.endermechanics.item.ModItems;
 import com.endreman0.endermechanics.util.Utility;
 
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -43,7 +42,7 @@ public class EnderMechanics{
 		//Random stuff
 		proxy.entities();
 		proxy.tileEntities();
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiFactory());
 		
 		//Renderers
 		proxy.itemRenders();

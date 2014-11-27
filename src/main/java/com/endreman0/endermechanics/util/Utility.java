@@ -29,9 +29,10 @@ public class Utility{
 	public static final String SERVER_PROXY = "com.endreman0.endermechanics.CommonProxy";
 	public static final String GUI_FACTORY = "com.endreman0.endermechanics.gui.GuiFactory";
 	public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase();
-	public static final ResourceLocation GUI_UTILS = new ResourceLocation(RESOURCE_PREFIX, "textures/gui/utils.png");
 	public static final CreativeTabs EM_TAB = new CreativeTabs(MOD_ID.toLowerCase()){
+		private ItemStack icon = new ItemStack(ModItems.wrench, 1, 3);
 		@Override public Item getTabIconItem(){return ModItems.wrench;}
+		@Override public ItemStack getIconItemStack(){return icon;}
 	};
 	
 	//Helper methods
@@ -87,12 +88,7 @@ public class Utility{
 	//Config variables
 	public static boolean wrenchKey = true;
 	public static int nodeRange = 5;
-	public static boolean enableWrench = true;
 	public static boolean enableFrame = true;
-	public static boolean enableGenFurnace = true;
-	public static boolean enableGenLiving = true;
-	public static boolean enableNode = true;
-	
 	
 	//Config stuff
 	public static Configuration config;
@@ -107,11 +103,7 @@ public class Utility{
 	private static void readConfig(){
 		wrenchKey = getBoolean(catGeneral, "wrenchKey", true);
 		nodeRange = getInt(catGeneral, "nodeRange", 5, 1, 10);
-		enableWrench = getBoolean(catEnable, "wrench", true);
-		enableFrame = getBoolean(catEnable, "machineFrame", true);
-		enableGenFurnace = getBoolean(catEnable, "generatorFurnace", true);
-		enableGenLiving = getBoolean(catEnable, "generatorLiving", true);
-		enableNode = getBoolean(catEnable, "node", true);
+		enableFrame = getBoolean(catEnable, "needFrame", true);
 		if(config.hasChanged()){config.save();}
 	}
 	//Config helper methods

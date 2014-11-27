@@ -3,14 +3,13 @@ package com.endreman0.endermechanics;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import com.endreman0.endermechanics.block.BlockEM;
 import com.endreman0.endermechanics.block.ModBlocks;
+import com.endreman0.endermechanics.item.ItemBlockEM;
 import com.endreman0.endermechanics.item.ItemEM;
 import com.endreman0.endermechanics.item.ModItems;
-import com.endreman0.endermechanics.itemblock.ItemBlockGenerator;
-import com.endreman0.endermechanics.itemblock.ItemBlockMachine;
 import com.endreman0.endermechanics.tile.TileEnderNode;
 import com.endreman0.endermechanics.tile.TileMachineFrame;
 import com.endreman0.endermechanics.tile.generator.*;
@@ -35,8 +34,8 @@ public class CommonProxy{
 	}
 	protected void registerItem(ItemEM item){GameRegistry.registerItem(item, item.getBasicName());}
 	public void blocks(){
-		GameRegistry.registerBlock(ModBlocks.generator, ItemBlockGenerator.class, ModBlocks.generator.getBasicName());
-		GameRegistry.registerBlock(ModBlocks.machine, ItemBlockMachine.class, ModBlocks.machine.getBasicName());
+		GameRegistry.registerBlock(ModBlocks.generator, ItemBlockEM.class, ModBlocks.generator.getBasicName());
+		GameRegistry.registerBlock(ModBlocks.machine, ItemBlockEM.class, ModBlocks.machine.getBasicName());
 		GameRegistry.registerBlock(ModBlocks.machineFrame, ModBlocks.machineFrame.getBasicName());
 		GameRegistry.registerBlock(ModBlocks.enderNode, ModBlocks.enderNode.getBasicName());
 	}
@@ -62,32 +61,26 @@ public class CommonProxy{
 	}
 	
 	public void crafting(){
-		//Items - Tier 1
 		GameRegistry.addRecipe(new ItemStack(ModItems.obsidianStick, 4), "o", "o", 'o', Blocks.obsidian);
-		if(Utility.enableWrench)
-			GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 0), "i i", " p ", " i ", 'i', new ItemStack(ModItems.ingotEM, 1, 0), 'p', new ItemStack(ModItems.pearlEM, 1, 0));
-		//Items - Tier 2
 		ItemStack lapis = new ItemStack(Items.dye, 1, 4);
 		GameRegistry.addRecipe(new ItemStack(ModItems.pearlEM), " l ", "lpl", " l ", 'l', lapis, 'p', Items.ender_pearl);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ingotEM, 4), Items.iron_ingot, Items.iron_ingot, Items.gold_ingot, Items.gold_ingot, Items.diamond, lapis, lapis, lapis, lapis);
-		if(Utility.enableWrench)
-			GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 1), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 1), 'w', new ItemStack(ModItems.wrench, 1, 0), 'p', new ItemStack(ModItems.pearlEM, 1, 1));
-		//Items - Tier 3
-		if(Utility.enableWrench)
-			GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 2), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 2), 'w', new ItemStack(ModItems.wrench, 1, 1), 'p', new ItemStack(ModItems.pearlEM, 1, 2));
-		//Items - Tier 4
-		if(Utility.enableWrench)
-			GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 3), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 3), 'w', new ItemStack(ModItems.wrench, 1, 2), 'p', new ItemStack(ModItems.pearlEM, 1, 3));
+		
+		//Wrenches
+		GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 0), "i i", " s ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 0), 's', new ItemStack(ModItems.obsidianStick), 'p', new ItemStack(ModItems.pearlEM, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 1), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 1), 'w', new ItemStack(ModItems.wrench, 1, 0), 'p', new ItemStack(ModItems.pearlEM, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 2), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 2), 'w', new ItemStack(ModItems.wrench, 1, 1), 'p', new ItemStack(ModItems.pearlEM, 1, 2));
+		GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 3), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 3), 'w', new ItemStack(ModItems.wrench, 1, 2), 'p', new ItemStack(ModItems.pearlEM, 1, 3));
 		
 		//Blocks
-		if(Utility.enableGenFurnace)
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 0), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', ModItems.pearlEM, 'c', Items.coal, 'f', Blocks.furnace);
-		if(Utility.enableGenLiving)
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 1), " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', ModItems.pearlEM, 'w', "logWood", 'f', Blocks.furnace));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 0), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', ModItems.pearlEM, 'c', Items.coal, 'f', Blocks.furnace);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 1), " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', ModItems.pearlEM, 'w', "logWood", 'f', Blocks.furnace));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 2), " s ", "aph", "ifb", 's', Items.golden_sword, 'a', Items.golden_axe, 'p', new ItemStack(ModItems.pearlEM, 1, 2), 'h', Items.golden_shovel, 'i', Items.golden_pickaxe, 'f', Blocks.furnace, 'b', Items.bow);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 3), " o ", "wpn", "rfg", 'o', new ItemStack(Items.potionitem, 1, OreDictionary.WILDCARD_VALUE), 'w', new ItemStack(Items.potionitem, 1, 0)/*water bottle*/, 'p', ModItems.pearlEM, 'n', Items.nether_wart, 'r', Items.redstone, 'f', Blocks.furnace, 'g', Items.glowstone_dust));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 4), " n ", "dpb", "sfw", 'n', Items.nether_star, 'd', Items.diamond_sword, 'p', new ItemStack(ModItems.pearlEM, 1, 3), 'b', Items.bow, 's', Blocks.soul_sand, 'f', Blocks.furnace, 'w', new ItemStack(Items.skull, 1, 1));
 		if(Utility.enableFrame)
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.machineFrame), "isi", "sps", "isi", 'i', ModItems.ingotEM, 's', ModItems.obsidianStick, 'p', ModItems.pearlEM);
-		if(Utility.enableNode)
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.enderNode), "sis", "ipi", "sis", 's', ModItems.obsidianStick, 'i', ModItems.ingotEM, 'p', ModItems.pearlEM);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.enderNode), "sis", "ipi", "sis", 's', ModItems.obsidianStick, 'i', ModItems.ingotEM, 'p', ModItems.pearlEM);
 	}
 	public void smelting(){
 		GameRegistry.addSmelting(new ItemStack(ModItems.orePieces[0], 1, 0), new ItemStack(Items.iron_ingot), 0);

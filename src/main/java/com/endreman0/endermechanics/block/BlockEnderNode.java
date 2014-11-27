@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.endreman0.endermechanics.api.IWrenchBreakable;
 import com.endreman0.endermechanics.item.ModItems;
@@ -29,13 +30,11 @@ public class BlockEnderNode extends BlockEM implements ITileEntityProvider, IWre
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float partialX, float partialY, float partialZ){
 		super.onBlockActivated(world, x, y, z, player, meta, partialX, partialY, partialZ);
 		if(world.isRemote) return false;
-		if(player.inventory.getCurrentItem()!=null && player.inventory.getCurrentItem().getItem().equals(ModItems.wrench)){//Debug print when right-clicked with wrench
+		if(player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem().equals(ModItems.wrench)){//Debug print when right-clicked with wrench
 			TileEnderNode tile = (TileEnderNode)world.getTileEntity(x, y, z);
 			Utility.addChat(player, "Power: " + Utility.powerString(tile.getNodePower()) + "/" + Utility.powerString(tile.getMaxPower(ForgeDirection.UNKNOWN)));
-			if(tile.network()!=null){
+			if(tile.network()!=null)
 				Utility.addChat(player, "Network: " + Utility.powerString(tile.getNetworkPower(ForgeDirection.UNKNOWN)) + " over " + tile.network().nodes() + " nodes");
-			}
-			//Utility.addChat(player, "Power: " + Utility.powerString(tile.getPower(ForgeDirection.UNKNOWN)) + "/" + Utility.powerString(tile.getMaxPower(ForgeDirection.UNKNOWN)));
 			return true;
 		}
 		return false;

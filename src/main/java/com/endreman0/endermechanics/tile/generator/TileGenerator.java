@@ -5,10 +5,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.endreman0.endermechanics.api.IPowerHandler;
-import com.endreman0.endermechanics.block.BlockGenerator;
+import com.endreman0.endermechanics.block.ModBlocks;
+import com.endreman0.endermechanics.block.MultiBlockEM;
 import com.endreman0.endermechanics.tile.TileInventory;
+import com.endreman0.endermechanics.util.Utility;
 
 public abstract class TileGenerator extends TileInventory{
+	protected int ticksLife;//Set whenever fuel is consumed
 	protected int ticksRunning;//Increased whenever a fuel is consumed, decremented every tick
 	protected int powerOutput;
 	public TileGenerator(int output, int maxEnergy){
@@ -40,7 +43,8 @@ public abstract class TileGenerator extends TileInventory{
 				insert(ForgeDirection.UNKNOWN, powerOutput, true);
 				ticksRunning--;
 			}else if(consumeFuel(false)>0){//If there is fuel to be burned,
-				ticksRunning = consumeFuel(true);//Burn it.
+				ticksLife = consumeFuel(true);//Burn it.
+				ticksRunning = ticksLife;
 			}
 			markDirty();
 		}
@@ -50,6 +54,8 @@ public abstract class TileGenerator extends TileInventory{
 				((IPowerHandler)tile).insert(dir.getOpposite(), extract(dir, 1000, true), true);
 		}
 	}
+	public int running(){return ticksRunning;}
+	public int life(){return ticksLife;}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
@@ -61,6 +67,9 @@ public abstract class TileGenerator extends TileInventory{
 		nbt.setInteger("ticksRunning", ticksRunning);
 		nbt.setInteger("powerOutput", powerOutput);
 	}
-	@Override public String getInventoryName(){return super.getInventoryName() + BlockGenerator.names[blockMetadata>=0 ? blockMetadata : 0];}//Use block name as GUI name
+	@Override public String getInventoryName(){
+		String base = super.getInventoryName();
+		return base.substring(0, base.indexOf(':')+1) + ModBlocks.generator.names()[blockMetadata>=0 ? blockMetadata : 0];
+	}
 	@Override public boolean canInsert(ForgeDirection from){return from.equals(ForgeDirection.UNKNOWN);}
 }

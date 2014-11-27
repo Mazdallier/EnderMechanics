@@ -1,4 +1,4 @@
-Unify GUIs
+Dynamic item creation on processed ores
 Make machines use modified Ender Node renderer
 	Shrink boxes down to 6-8px wide
 	Make Machine Frame's inner box larger

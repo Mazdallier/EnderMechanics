@@ -55,9 +55,9 @@ item.endermechanics:ore2Coal.name=Enriched Coal
 item.endermechanics:ore3Coal.name=Purified Coal
 
 item.endermechanics:ore0Lapis.name=Lapis Dust
-item.endermechanics:ore1Lapis.name=Crystalline Redstone
-item.endermechanics:ore2Lapis.name=Enriched Redstone
-item.endermechanics:ore3Lapis.name=Purified Redstone
+item.endermechanics:ore1Lapis.name=Crystalline Lapis
+item.endermechanics:ore2Lapis.name=Enriched Lapis
+item.endermechanics:ore3Lapis.name=Purified Lapis
 
 #Blocks
 tile.endermechanics:generatorFurnace.name=Infernal Reactor
@@ -79,20 +79,9 @@ tile.endermechanics:enderNode.name=Ender Network Node
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking
 endermechanics.config.general.wrenchKey.tooltip=If true, shift-left-clicking with a wrench on a block will break it. If false, shift-right-clicking will.
+
 endermechanics.config.general.nodeRange.name=Ender Network Node Range
 endermechanics.config.general.nodeRange.tooltip=How far, in blocks, the Network Node's range should be. This might increase lag at high values.
 
-endermechanics.config.enable=Enable/Disable Options
-endermechanics.config.enable.tooltip=A bunch of options for enabling or disabling parts of the mod.
-endermechanics.config.enable.wrench.name=Enable Wrench
-endermechanics.config.enable.wrench.tooltip=Enable the Ender Wrench
-endermechanics.config.enable.machineFrame.name=Enable Machine Frame
-endermechanics.config.enable.machineFrame.tooltip=Enable Machine Frames, frames that allow automation of blocks.
-endermechanics.config.enable.generatorFurnace.name=Enable Infernal Reactor
-endermechanics.config.enable.generatorFurnace.tooltip=Enable the Infernal Reactor, which creates Endergy from furnace fuel and lava
-endermechanics.config.enable.generatorFurnace.name=Enable Biotic Reactor
-endermechanics.config.enable.generatorFurnace.tooltip=Enable the Biotic Reactor, which creates Endergy from saplings, wood, crops and food
-endermechanics.config.enable.node.name=Enable Network Nodes
-endermechanics.config.enable.node.tooltip=Enable Ender Network Nodes, the transport system of Ender Mechanics
-endermechanics.config.enable.furnace.name=Enable Endergetic Smelter
-endermechanics.config.enable.furnace.tooltip=Enable the Endergetic Smelter, a block that uses Endergy to smelt items
+endermechanics.config.enable.needFrame=Machine Frame Automation
+endermechanics.confic.enable.needFrame.tooltip=If true, machines cannot be accessed by automation unless placed inside a Machine Frame.

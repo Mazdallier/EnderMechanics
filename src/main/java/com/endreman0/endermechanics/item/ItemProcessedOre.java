@@ -6,19 +6,15 @@ import net.minecraft.item.ItemStack;
 import com.endreman0.endermechanics.util.Utility;
 
 public class ItemProcessedOre extends ItemMetadataEM{
-	private String[] names = new String[]{"Iron", "Gold"};
+	private static String[] names = new String[]{"Iron", "Gold", "Diamond", "Redstone", "Quartz", "Coal", "Emerald", "Lapis"};
 	ItemProcessedOre(int tier){
-		super("ore" + tier, 2);
+		super("ore" + tier, names.length);
 	}
 	@Override
 	public void registerIcons(IIconRegister register){
 		String baseName = Utility.MOD_ID + ":" + getBasicName();
-		for(int i=0;i<names.length;i++){
+		for(int i=0;i<names.length;i++)
 			icons[i] = register.registerIcon(baseName.concat(names[i]));
-		}
 	}
-	@Override
-	public String getUnlocalizedName(ItemStack stack){
-		return super.getUnlocalizedName() + names[stack.getItemDamage()];
-	}
+	@Override public String getUnlocalizedName(ItemStack stack){return super.getUnlocalizedName() + names[stack.getItemDamage()];}
 }

@@ -1,19 +1,16 @@
 package com.endreman0.endermechanics.container;
 
-import com.endreman0.endermechanics.tile.TileInventory;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class ContainerMachine extends Container{
+import com.endreman0.endermechanics.tile.TileInventory;
+
+public abstract class ContainerBase extends Container{
 	protected TileInventory tile;
-	public ContainerMachine(InventoryPlayer inventoryPlayer, TileInventory tileEntity){
-		tile = tileEntity;
-	}
-	
+	public ContainerBase(InventoryPlayer player, TileInventory tile){this.tile = tile;}
 	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer){
 		int startIndex = tile.getSizeInventory()+1;//First index of player inventories.
 		for(int i = 0; i < 3; i++){
@@ -26,11 +23,7 @@ public abstract class ContainerMachine extends Container{
 			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
 		}
 	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player){
-		return tile.isUseableByPlayer(player);
-	}
+	@Override public boolean canInteractWith(EntityPlayer player){return tile.isUseableByPlayer(player);}
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot){

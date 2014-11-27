@@ -12,18 +12,16 @@ import net.minecraftforge.fluids.FluidTankInfo;
 
 import org.lwjgl.opengl.GL11;
 
-import com.endreman0.endermechanics.container.ContainerMachine;
+import com.endreman0.endermechanics.container.ContainerBase;
 import com.endreman0.endermechanics.tile.TileInventory;
+import com.endreman0.endermechanics.util.Log;
 import com.endreman0.endermechanics.util.Utility;
 
-public abstract class GuiMachine extends GuiContainer{
+public abstract class GuiBase extends GuiContainer{
+	public static final int u = 176;
 	protected TileInventory tile;
-	protected ResourceLocation texture;
-	public GuiMachine(ContainerMachine container, TileInventory tileEntity){
-		super(container);
-		tile = tileEntity;
-		texture = new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/gui/" + tile.getInventoryName().substring(tile.getInventoryName().indexOf(':')+1) + ".png");//GUIs folder, texture with machine's name
-	}
+	public static final ResourceLocation texture = new ResourceLocation(Utility.RESOURCE_PREFIX, "textures/gui/base.png");
+	public GuiBase(ContainerBase container, TileInventory tile){super(container); this.tile = tile;}
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
@@ -42,8 +40,8 @@ public abstract class GuiMachine extends GuiContainer{
 		int guiWidth = (width - xSize) / 2;
 		int guiHeight = (height - ySize) / 2;
 		
-		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
-		drawTexturedModalRect(guiWidth+xPos, guiHeight+yPos, 16, 0, 18, 60);//Tank background
+		mc.renderEngine.bindTexture(texture);
+		drawTexturedModalRect(guiWidth+xPos, guiHeight+yPos, u+18, 0, 18, 60);//Tank background
 		
 		if(tank.fluid!=null){//Fluid
 			int scale = tank.fluid.amount*58/tank.capacity;//58 is a constant supplied as an argument in Mekanism.
@@ -68,15 +66,19 @@ public abstract class GuiMachine extends GuiContainer{
 				if(renderRemaining==0 || scale==0){break;}
 			}
 		}
-		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
-		drawTexturedModalRect(guiWidth+xPos, guiHeight+yPos, 16, 60, 18, 60);//Tank bars
+		mc.renderEngine.bindTexture(texture);
+		drawTexturedModalRect(guiWidth+xPos, guiHeight+yPos, u+36, 0, 18, 60);//Tank bars
 	}
-	protected void drawFire(int x, int y, int v){//Draws the furnace's fire icon; v==0 means no fire, just the background, v==16 means full fire
+	protected void drawInvSlot(int x, int y){
+		mc.renderEngine.bindTexture(texture);
+		drawTexturedModalRect((width-xSize)/2 + x-1, (height-ySize)/2 + y-1, u, 32, 18, 18);//Subtracting 1 from the given coordinates accounts for the border.
+	}
+	protected void drawFire(int x, int y, int amt){//Draws the furnace's fire icon; amt=0 means no fire, just the background; amt=16 means full fire
 		int xPos = (width-xSize)/2 + x + 1;//Accounts for 1px of padding on each side
 		int yPos = (height-ySize)/2 + y + 1;
-		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
-		drawTexturedModalRect(xPos, yPos, 0, 0, 16, 16);//Background
-		drawTexturedModalRect(xPos, yPos+(16-v), 0, 32-v, 16, v);//Fire; set upper-left corner at upper-left corner of whatever is to be drawn, be it nothing or full. Then draw a cut-off section.
+		mc.renderEngine.bindTexture(texture);
+		drawTexturedModalRect(xPos, yPos, u+1, 0, 16, 16);//Background
+		drawTexturedModalRect(xPos, yPos+(16-amt), u+1, 32-amt, 16, amt);//Fire; set upper-left corner at upper-left corner of whatever is to be drawn, be it nothing or full. Then draw a cut-off section.
 	}
 	protected void drawGeneratorPower(int x, int y){//Draws the vertical power bar used in generators
 		int xPos = (width-xSize)/2 + x + 1;
@@ -85,20 +87,20 @@ public abstract class GuiMachine extends GuiContainer{
 		float max = (float)tile.getMaxPower(ForgeDirection.UNKNOWN);
 		float height = (amt/max * 60F);
 		int v = (int)height;
-		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
-		drawTexturedModalRect(xPos, yPos, 34, 0, 18, 60);//Background
-		drawTexturedModalRect(xPos, yPos+(60-v), 34, 120-v, 60, v);//Power bar
+		mc.renderEngine.bindTexture(texture);
+		drawTexturedModalRect(xPos, yPos, u+18, 60, 18, 60);//Background
+		drawTexturedModalRect(xPos, yPos+(60-v), u+36, 120-v, 18, v);//Power bar
 	}
 	protected void drawMachinePower(int x, int y){//Draw the horizontal power/progress bar used by machines
 		int xPos = (width-xSize)/2 + x + 1;
 		int yPos = (height-ySize)/2 + y + 1;
 		float amt = (float)tile.getPower(ForgeDirection.UNKNOWN);
 		float max = (float)tile.getMaxPower(ForgeDirection.UNKNOWN);
-		float width = (amt/max * 60F);
-		int u = (int)width;
-		mc.renderEngine.bindTexture(Utility.GUI_UTILS);
-		drawTexturedModalRect(xPos, yPos, 52, 0, 60, 10);//Background
-		drawTexturedModalRect(xPos, yPos, 52, 10, u, 10);//Power Bar
+		float w = (amt/max * 60F);
+		int width = (int)w;
+		mc.renderEngine.bindTexture(texture);
+		drawTexturedModalRect(xPos, yPos, u, 120, 60, 10);//Background
+		drawTexturedModalRect(xPos, yPos, u, 130, width, 10);//Power Bar
 	}
 	protected void drawTooltip(int mouseX, int mouseY, String... text){drawHoveringText(Arrays.asList(text), mouseX, mouseY, fontRendererObj);}
 	protected void drawTankTooltip(FluidTankInfo tank, int mouseX, int mouseY, int minX, int minY, int maxX, int maxY){
