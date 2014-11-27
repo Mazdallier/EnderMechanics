@@ -16,10 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMachineFrame extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
-	protected BlockMachineFrame(){
-		super(Material.iron, "machineFrame");
-		setBlockBounds(0.125F, 0.125F, 0.125F, 0.875F, 0.875F, 0.875F);
-	}
+	protected BlockMachineFrame(){super(Material.iron, "machineFrame");}
 	@Override
 	public void breakWithWrench(World world, int x, int y, int z) {
 		dropBlockAsItem(world, x, y, z, new ItemStack(this.getItem(world, x, y, z)));
