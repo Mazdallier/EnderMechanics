@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public abstract class ItemEM extends Item{
-	ItemEM(String name){
+	protected ItemEM(String name){
 		super();
 		maxStackSize=1;
 		setUnlocalizedName(name);

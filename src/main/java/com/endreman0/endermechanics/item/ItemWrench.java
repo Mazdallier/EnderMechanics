@@ -20,8 +20,6 @@ public class ItemWrench extends ItemMetadataEM implements IWrench{
 	}
 	@Override @SideOnly(Side.CLIENT) public boolean isFull3D(){return true;}//This makes it render in your hand, like a sword or tool.
 	
-	
-	
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event){
 		//Determine if it is a wrench being used to break a block.

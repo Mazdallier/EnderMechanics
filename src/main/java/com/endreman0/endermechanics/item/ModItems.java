@@ -1,15 +1,9 @@
 package com.endreman0.endermechanics.item;
 
-import com.endreman0.endermechanics.block.ModBlocks;
-import com.endreman0.endermechanics.util.Utility;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import com.endreman0.endermechanics.item.focus.ItemFocusEM;
 
 public class ModItems{
 	//Basic resources
@@ -19,6 +13,7 @@ public class ModItems{
 	
 	//Items
 	public static final ItemEM wrench = new ItemWrench();
+	public static final ItemFocusEM focus = new ItemFocusEM();
 	
 	//Processed ore items
 	public static final ItemEM[] orePieces = getProcessedOres();

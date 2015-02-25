@@ -1,14 +1,10 @@
-Make machines use modified Ender Node renderer
-	Shrink boxes down to 6-8px wide
-	Make Machine Frame's inner box larger
 Make Machine Frames insert a machine on right-click
-	Machine Frame's tile entity holds IMachine, block and byte (meta)
+	Machine Frame's tile entity holds IInventory, block and byte (meta)
 	NBT I/O: block (by ID) and meta; create new tile when read
 	TESR renders machine as well as itself
 Make buses that can automate frames
 Make machines completely un-automatable
-	Add all of IInventory's methods to IMachine (They will be used when in a frame)
-	Replace all references to IInventory with IMachine
+	IMachine#setInFrame() to enable automation
 ---Checkpoint---
 Machines should only be automatable by inserting them into a Machine Frame
 Using a frame, you can automate all the things

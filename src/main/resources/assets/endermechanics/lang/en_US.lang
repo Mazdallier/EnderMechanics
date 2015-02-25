@@ -18,6 +18,8 @@ item.endermechanics:wrench1.name=Ender Tool Wrench
 item.endermechanics:wrench2.name=Upgradable Wrench
 item.endermechanics:wrench3.name=Programmable Wrench
 
+item.endermechanics:focus0.name=Infernal Focus
+
 item.endermechanics:ore0Iron.name=Iron Dust
 item.endermechanics:ore1Iron.name=Iron Crystal
 item.endermechanics:ore2Iron.name=Enriched Iron Crystal
@@ -72,8 +74,8 @@ tile.endermechanics:crystallizer.name=Endergetic Crystallizer
 tile.endermechanics:enrichmentCell.name=Endergetic Enrichment Cell
 tile.endermechanics:purifier.name=Endergetic Purifier
 
-tile.endermechanics:machineFrame.name=Machine Frame
-tile.endermechanics:enderNode.name=Ender Network Node
+tile.endermechanics:riftNode.name=Rift Node
+tile.endermechanics:syncFrame.name=Synchronization Frame
 
 #Config
 endermechanics.config.general.wrenchKey.name=Wrench Breaking

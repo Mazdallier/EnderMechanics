@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class ItemMetadataEM extends ItemEM{
 	protected IIcon[] icons;
-	ItemMetadataEM(String name, int variants){
+	protected ItemMetadataEM(String name, int variants){
 		super(name);
 		maxStackSize=64;
 		icons = new IIcon[variants];

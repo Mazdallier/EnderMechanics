@@ -69,7 +69,10 @@ public abstract class TileGenerator extends TileInventory{
 	}
 	@Override public String getInventoryName(){
 		String base = super.getInventoryName();
-		return base.substring(0, base.indexOf(':')+1) + ModBlocks.generator.names()[blockMetadata>=0 ? blockMetadata : 0];
+//		return base.substring(0, base.indexOf(':')+1) + ModBlocks.generator.names()[blockMetadata>=0 ? blockMetadata : 0];
+		return base;
 	}
 	@Override public boolean canInsert(ForgeDirection from){return from.equals(ForgeDirection.UNKNOWN);}
+	@Override public boolean canExtract(ForgeDirection from){return super.canExtract(from) || blockMetadata==6;}
+	@Override public boolean isActive(){return ticksRunning>0;}
 }

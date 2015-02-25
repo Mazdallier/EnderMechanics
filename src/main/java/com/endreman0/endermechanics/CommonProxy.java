@@ -3,17 +3,16 @@ package com.endreman0.endermechanics;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.endreman0.endermechanics.block.ModBlocks;
-import com.endreman0.endermechanics.item.ItemBlockEM;
 import com.endreman0.endermechanics.item.ItemEM;
 import com.endreman0.endermechanics.item.ModItems;
-import com.endreman0.endermechanics.tile.TileEnderNode;
-import com.endreman0.endermechanics.tile.TileMachineFrame;
-import com.endreman0.endermechanics.tile.generator.*;
-import com.endreman0.endermechanics.tile.machine.*;
+import com.endreman0.endermechanics.tile.TileRiftNode;
+import com.endreman0.endermechanics.tile.TileSyncFrame;
+import com.endreman0.endermechanics.tile.machine.TileCrystallizer;
+import com.endreman0.endermechanics.tile.machine.TileEnrichmentCell;
+import com.endreman0.endermechanics.tile.machine.TilePulverizer;
+import com.endreman0.endermechanics.tile.machine.TilePurifier;
 import com.endreman0.endermechanics.util.Utility;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -30,16 +29,15 @@ public class CommonProxy{
 		registerItem(ModItems.ingotEM);
 		registerItem(ModItems.obsidianStick);
 		registerItem(ModItems.wrench);
+		registerItem(ModItems.focus);
 	}
 	protected void registerItem(ItemEM item){GameRegistry.registerItem(item, item.getBasicName());}
 	public void blocks(){
-		GameRegistry.registerBlock(ModBlocks.generator, ItemBlockEM.class, ModBlocks.generator.getBasicName());
-		GameRegistry.registerBlock(ModBlocks.machine, ItemBlockEM.class, ModBlocks.machine.getBasicName());
-		GameRegistry.registerBlock(ModBlocks.machineFrame, ModBlocks.machineFrame.getBasicName());
-		GameRegistry.registerBlock(ModBlocks.enderNode, ModBlocks.enderNode.getBasicName());
+		GameRegistry.registerBlock(ModBlocks.syncFrame, ModBlocks.syncFrame.getBasicName());
+		GameRegistry.registerBlock(ModBlocks.riftNode, ModBlocks.riftNode.getBasicName());
 	}
 	public void tileEntities(){
-		GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generatorFurnace");
+		/*GameRegistry.registerTileEntity(TileGeneratorFurnace.class, "generatorFurnace");
 		GameRegistry.registerTileEntity(TileGeneratorLiving.class, "generatorLiving");
 		GameRegistry.registerTileEntity(TileGeneratorTool.class, "generatorTool");
 		GameRegistry.registerTileEntity(TileGeneratorPotion.class, "generatorPotion");
@@ -50,10 +48,10 @@ public class CommonProxy{
 		GameRegistry.registerTileEntity(TilePulverizer.class, "pulverizer");
 		GameRegistry.registerTileEntity(TileCrystallizer.class, "crystallizer");
 		GameRegistry.registerTileEntity(TileEnrichmentCell.class, "enrichmentCell");
-		GameRegistry.registerTileEntity(TilePurifier.class, "purifier");
+		GameRegistry.registerTileEntity(TilePurifier.class, "purifier");*/
 		
-		GameRegistry.registerTileEntity(TileMachineFrame.class, "machineFrame");
-		GameRegistry.registerTileEntity(TileEnderNode.class, "enderNode");
+		GameRegistry.registerTileEntity(TileSyncFrame.class, "syncFrame");
+		GameRegistry.registerTileEntity(TileRiftNode.class, "riftNode");
 	}
 	public void entities(){
 		//EntityRegistry.registerModEntity(Class EntityClass, String unlocalizedName, int modSpecificID, EnderMechanics.instance, int trackingRange, int updateFrequency, true);
@@ -72,14 +70,14 @@ public class CommonProxy{
 		GameRegistry.addRecipe(new ItemStack(ModItems.wrench, 1, 3), "i i", " w ", " p ", 'i', new ItemStack(ModItems.ingotEM, 1, 3), 'w', new ItemStack(ModItems.wrench, 1, 2), 'p', new ItemStack(ModItems.pearlEM, 1, 3));
 		
 		//Blocks
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 0), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', ModItems.pearlEM, 'c', Items.coal, 'f', Blocks.furnace);
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 1), " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', ModItems.pearlEM, 'w', "logWood", 'f', Blocks.furnace));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 2), " s ", "aph", "ifb", 's', Items.golden_sword, 'a', Items.golden_axe, 'p', new ItemStack(ModItems.pearlEM, 1, 2), 'h', Items.golden_shovel, 'i', Items.golden_pickaxe, 'f', Blocks.furnace, 'b', Items.bow);
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 3), " o ", "wpn", "rfg", 'o', new ItemStack(Items.potionitem, 1, OreDictionary.WILDCARD_VALUE), 'w', new ItemStack(Items.potionitem, 1, 0)/*water bottle*/, 'p', ModItems.pearlEM, 'n', Items.nether_wart, 'r', Items.redstone, 'f', Blocks.furnace, 'g', Items.glowstone_dust));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 4), " n ", "dpb", "sfw", 'n', Items.nether_star, 'd', Items.diamond_sword, 'p', new ItemStack(ModItems.pearlEM, 1, 3), 'b', Items.bow, 's', Blocks.soul_sand, 'f', Blocks.furnace, 'w', new ItemStack(Items.skull, 1, 1));
+//		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 0), " l ", "bpb", "cfc", 'l', Items.lava_bucket, 'b', Items.blaze_rod, 'p', ModItems.pearlEM, 'c', Items.coal, 'f', Blocks.furnace);
+//		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 1), " c ", "sps", "wfw", 'c', Items.cooked_beef, 's', "treeSapling", 'p', ModItems.pearlEM, 'w', "logWood", 'f', Blocks.furnace));
+//		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 2), " s ", "aph", "ifb", 's', Items.golden_sword, 'a', Items.golden_axe, 'p', new ItemStack(ModItems.pearlEM, 1, 2), 'h', Items.golden_shovel, 'i', Items.golden_pickaxe, 'f', Blocks.furnace, 'b', Items.bow);
+//		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.generator, 1, 3), " o ", "wpn", "rfg", 'o', new ItemStack(Items.potionitem, 1, OreDictionary.WILDCARD_VALUE), 'w', new ItemStack(Items.potionitem, 1, 0)/*water bottle*/, 'p', ModItems.pearlEM, 'n', Items.nether_wart, 'r', Items.redstone, 'f', Blocks.furnace, 'g', Items.glowstone_dust));
+//		GameRegistry.addRecipe(new ItemStack(ModBlocks.generator, 1, 4), " n ", "dpb", "sfw", 'n', Items.nether_star, 'd', Items.diamond_sword, 'p', new ItemStack(ModItems.pearlEM, 1, 3), 'b', Items.bow, 's', Blocks.soul_sand, 'f', Blocks.furnace, 'w', new ItemStack(Items.skull, 1, 1));
 		if(Utility.enableFrame)
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.machineFrame), "isi", "sps", "isi", 'i', ModItems.ingotEM, 's', ModItems.obsidianStick, 'p', ModItems.pearlEM);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.enderNode), "sis", "ipi", "sis", 's', ModItems.obsidianStick, 'i', ModItems.ingotEM, 'p', ModItems.pearlEM);
+			GameRegistry.addRecipe(new ItemStack(ModBlocks.syncFrame), "isi", "sps", "isi", 'i', ModItems.ingotEM, 's', ModItems.obsidianStick, 'p', ModItems.pearlEM);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.riftNode), "sis", "ipi", "sis", 's', ModItems.obsidianStick, 'i', ModItems.ingotEM, 'p', ModItems.pearlEM);
 	}
 	public void smelting(){
 		GameRegistry.addSmelting(new ItemStack(ModItems.orePieces[0], 1, 0), new ItemStack(Items.iron_ingot), 0);

@@ -6,11 +6,11 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelEnderNode extends ModelBase{
+public class ModelFramable extends ModelBase{
 	private ModelRenderer[] cubes = new ModelRenderer[2];
 	private Random rand = new Random();
 	private final int size = 10;
-	public ModelEnderNode(){
+	public ModelFramable(){
 		textureWidth = 64;
 		textureHeight = 32;
 		
@@ -24,7 +24,6 @@ public class ModelEnderNode extends ModelBase{
 	}
 	
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5){
-		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		for(ModelRenderer cube: cubes) cube.render(f5);
 	}

@@ -1,39 +1,25 @@
 package com.endreman0.endermechanics.block;
 
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.endreman0.endermechanics.EnderMechanics;
-import com.endreman0.endermechanics.api.IWrenchBreakable;
 import com.endreman0.endermechanics.tile.generator.*;
-import com.endreman0.endermechanics.util.Utility;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockGenerator extends MultiBlockEM{
 	public BlockGenerator(){
 		super(Material.iron, "generator");
 		guiIndices = new int[]{0, 1, 2, 3, 4, -1};
 		tiers = new int[]{0, 1, 2, 2, 3, Integer.MAX_VALUE};
+		setBlockBounds(0.125F, 0.125F, 0.125F, 0.875F, 0.875F, 0.875F);
 	}
 	public String[] names(){return new String[]{"generatorFurnace", "generatorLiving", "generatorTool", "generatorPotion",
 			"generatorNetherStar", "generatorCreative"};}
@@ -61,4 +47,7 @@ public class BlockGenerator extends MultiBlockEM{
 		}
 		return super.onBlockActivated(world, x, y, z, player, side, partialX, partialY, partialZ);
 	}
+	@Override public boolean isOpaqueCube(){return false;}
+	@Override public boolean renderAsNormalBlock(){return false;}
+	@Override public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side){return world.getBlockMetadata(x, y, z)==6;}
 }

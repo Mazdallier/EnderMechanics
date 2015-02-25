@@ -1,13 +1,6 @@
 package com.endreman0.endermechanics.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.endreman0.endermechanics.api.IPowerHandler;
-import com.endreman0.endermechanics.block.BlockGenerator;
-
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -16,14 +9,17 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidHandler;
 
-public abstract class TileInventory extends TileEntity implements IInventory, IPowerHandler{
+import com.endreman0.endermechanics.api.IFramableMachine;
+import com.endreman0.endermechanics.api.IPowerHandler;
+import com.endreman0.endermechanics.util.Utility;
+
+public abstract class TileInventory extends TileEM implements IFramableMachine, IPowerHandler{
 	protected ItemStack[] inv;
 	protected int power;
 	protected int maxPower;
 	protected long ticks;
+	protected boolean inFrame = false;
 	
 	public TileInventory(int invSlots, int maxPower){
 		inv = new ItemStack[invSlots];
@@ -77,14 +73,6 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 		}
 		nbt.setTag("Inventory", list);
 	}
-	@Override
-	public Packet getDescriptionPacket(){
-		NBTTagCompound nbt = new NBTTagCompound();
-		writeToNBT(nbt);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
-	}
-	@Override public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet){readFromNBT(packet.func_148857_g());}//func_148857_g gets NBT from packet
-	
 	//IInventory
 	@Override
 	public ItemStack decrStackSize(int slot, int amount){
@@ -143,4 +131,9 @@ public abstract class TileInventory extends TileEntity implements IInventory, IP
 	@Override public boolean canExtract(ForgeDirection from){return true;}
 	@Override public int getPower(ForgeDirection from){return power;}
 	@Override public int getMaxPower(ForgeDirection from){return maxPower;}
+	@Override public int[] getAccessibleSlotsFromSide(int side){return null;}
+	@Override public boolean canInsertItem(int slot, ItemStack stack, int side){return inFrame && isItemValidForSlot(slot, stack);}
+	@Override public boolean canExtractItem(int slot, ItemStack stack, int side){return inFrame && Utility.canConsume(inv[slot], stack);}
+	@Override public ItemStack getRenderedStack(){return inv[0];}
+	@Override public void setInFrame(boolean inFrame){this.inFrame = inFrame;}
 }

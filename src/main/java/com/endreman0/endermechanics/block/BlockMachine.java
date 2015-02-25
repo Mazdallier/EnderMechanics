@@ -2,6 +2,7 @@ package com.endreman0.endermechanics.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.endreman0.endermechanics.tile.machine.*;
@@ -11,6 +12,7 @@ public class BlockMachine extends MultiBlockEM{
 		super(Material.iron, "machine");
 		guiIndices = new int[]{5, 6, 7, 8, 9};
 		tiers = new int[]{0, 1, 2, 3, 3};
+		setBlockBounds(0.125F, 0.125F, 0.125F, 0.875F, 0.875F, 0.875F);
 	}
 	@Override public String[] names(){return new String[]{"furnaceEM", "pulverizer", "crystallizer", "enrichmentCell", "purifier"};}
 	@Override
@@ -24,4 +26,7 @@ public class BlockMachine extends MultiBlockEM{
 			default: return null;
 		}
 	}
+	@Override public boolean isOpaqueCube(){return false;}
+	@Override public boolean renderAsNormalBlock(){return false;}
+	@Override public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side){return false;}
 }

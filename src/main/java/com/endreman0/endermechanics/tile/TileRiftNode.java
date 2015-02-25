@@ -1,19 +1,24 @@
 package com.endreman0.endermechanics.tile;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.endreman0.endermechanics.api.IFramableMachine;
 import com.endreman0.endermechanics.api.IPowerHandler;
-import com.endreman0.endermechanics.util.EnderNodeNetwork;
+import com.endreman0.endermechanics.item.focus.ItemFocusEM;
+import com.endreman0.endermechanics.util.NodeNetwork;
 import com.endreman0.endermechanics.util.Utility;
 
-public class TileEnderNode extends TileInventory{
-	protected EnderNodeNetwork network;
-	protected int range = Utility.nodeRange;
-	protected int scan = 2*range + 1;//Scan time; 1 tick per layer. One layer for the layer this is in, "range" layers above, and "range" layers below.
-	public TileEnderNode(){
+public class TileRiftNode extends TileInventory implements IFramableMachine{
+	private NodeNetwork network;
+	private int range = Utility.nodeRange;
+	private int scan = 2*range + 1;//Scan time; 1 tick per layer. One layer for the layer this is in, "range" layers above, and "range" layers below.
+	private ItemStack focus;
+	public TileRiftNode(){
 		super(1, 1000);
 	}
 	@Override
@@ -36,25 +41,25 @@ public class TileEnderNode extends TileInventory{
 		scan: for(int i=-range;i<=range;i++){
 			for(int j=-range;j<=range;j++){
 				TileEntity tile = worldObj.getTileEntity(xCoord+i, yCoord+(layer-range), zCoord+j);
-				if(tile instanceof TileEnderNode && !tile.equals(this)){
-					createFromTile((TileEnderNode)tile);
+				if(tile instanceof TileRiftNode && !tile.equals(this)){
+					createFromTile((TileRiftNode)tile);
 					network.addNode(this);
 					break scan;
 				}
 			}
 		}
 	}
-	public EnderNodeNetwork network(){return network;}
+	public NodeNetwork network(){return network;}
 	@Override
 	public void invalidate(){
 		super.invalidate();
 		if(network!=null) network.removeNode(this);
 	}
-	public EnderNodeNetwork getNetworkFromMaster(){
-		if(network==null) network = new EnderNodeNetwork(this);
+	public NodeNetwork getNetworkFromMaster(){
+		if(network==null) network = new NodeNetwork(this);
 		return network;
 	}
-	private void createFromTile(TileEnderNode tile){
+	private void createFromTile(TileRiftNode tile){
 		if(tile==null){
 			network = null;
 		}else{
@@ -67,6 +72,7 @@ public class TileEnderNode extends TileInventory{
 	@Override
 	public void writeToNBT(NBTTagCompound nbt){
 		super.writeToNBT(nbt);
+		if(focus==null) nbt.setTag("focus", null); else nbt.setTag("focus", focus.getTagCompound());
 		if(network!=null && network.getMaster().equals(this)){
 			nbt.setInteger("netPower", network.getPower(ForgeDirection.UNKNOWN));
 		}else{
@@ -77,8 +83,17 @@ public class TileEnderNode extends TileInventory{
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
 		power+=nbt.getInteger("netPower");
+		NBTTagCompound comp = nbt.getCompoundTag("focus");
+		if(comp==null) focus = null; else focus = ItemStack.loadItemStackFromNBT(comp);
 	}
-	
+	public boolean insertFocus(ItemStack focus){
+		if(this.focus==null && focus!=null && focus.getItem() instanceof ItemFocusEM){
+			this.focus = focus;
+			return true;
+		}
+		return false;
+	}
+	public ItemStack focus(){return focus;}
 	//Overrides to make this an extension of the network's inventory, starting with IInventory
 	@Override public int getSizeInventory(){return network!=null ? network.getSizeInventory() : 0;}
 	@Override public ItemStack getStackInSlot(int slot){return network!=null ? network.getStackInSlot(slot) : null;}
@@ -148,4 +163,10 @@ public class TileEnderNode extends TileInventory{
 		}
 		return amt;
 	}
+	@Override public int[] getAccessibleSlotsFromSide(int side){return null;}
+	@Override public boolean canInsertItem(int slot, ItemStack stack, int side){return false;}
+	@Override public boolean canExtractItem(int slot, ItemStack stack, int side){return false;}
+	@Override public ItemStack getRenderedStack(){return null;}
+	@Override public void setInFrame(boolean inFrame){}
+	@Override public boolean isActive(){return network!=null && network.nodes()>1;}
 }

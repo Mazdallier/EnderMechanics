@@ -6,21 +6,21 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.endreman0.endermechanics.tile.TileEnderNode;
+import com.endreman0.endermechanics.tile.TileRiftNode;
 
-public class EnderNodeNetwork{
+public class NodeNetwork{
 	protected ItemStack[] inv = new ItemStack[10];
 	protected int power = 0;
 	protected int maxPower = 10000;
-	protected List<TileEnderNode> nodes;
-	public EnderNodeNetwork(TileEnderNode node){
-		nodes = new LinkedList<TileEnderNode>();
+	protected List<TileRiftNode> nodes;
+	public NodeNetwork(TileRiftNode node){
+		nodes = new LinkedList<TileRiftNode>();
 		addNode(node);
 	}
-	public void addNode(TileEnderNode node){if(!nodes.contains(node)){nodes.add(node); node.markDirty();}}
-	public void removeNode(TileEnderNode node){nodes.remove(node); node.markDirty();}
+	public void addNode(TileRiftNode node){if(!nodes.contains(node)){nodes.add(node); node.markDirty();}}
+	public void removeNode(TileRiftNode node){nodes.remove(node); node.markDirty();}
 	public int nodes(){return nodes.size();}
-	public TileEnderNode getMaster(){return nodes.get(0);}
+	public TileRiftNode getMaster(){return nodes.get(0);}
 	
 	//IInventory
 	public int getSizeInventory(){return inv.length;}
