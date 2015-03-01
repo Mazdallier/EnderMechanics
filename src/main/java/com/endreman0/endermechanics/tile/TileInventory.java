@@ -1,20 +1,16 @@
 package com.endreman0.endermechanics.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.endreman0.endermechanics.api.IFramableMachine;
 import com.endreman0.endermechanics.api.IPowerHandler;
 import com.endreman0.endermechanics.util.Utility;
 
-public abstract class TileInventory extends TileEM implements IFramableMachine, IPowerHandler{
+public abstract class TileInventory extends TileEM implements ISidedInventory, IPowerHandler{
 	protected ItemStack[] inv;
 	protected int power;
 	protected int maxPower;
@@ -134,6 +130,4 @@ public abstract class TileInventory extends TileEM implements IFramableMachine, 
 	@Override public int[] getAccessibleSlotsFromSide(int side){return null;}
 	@Override public boolean canInsertItem(int slot, ItemStack stack, int side){return inFrame && isItemValidForSlot(slot, stack);}
 	@Override public boolean canExtractItem(int slot, ItemStack stack, int side){return inFrame && Utility.canConsume(inv[slot], stack);}
-	@Override public ItemStack getRenderedStack(){return inv[0];}
-	@Override public void setInFrame(boolean inFrame){this.inFrame = inFrame;}
 }

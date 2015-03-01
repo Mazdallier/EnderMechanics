@@ -8,12 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import com.endreman0.endermechanics.api.IWrenchBreakable;
-import com.endreman0.endermechanics.item.ModItems;
+import com.endreman0.endermechanics.item.focus.ItemFocusEM;
 import com.endreman0.endermechanics.tile.TileRiftNode;
-import com.endreman0.endermechanics.util.Utility;
 
 public class BlockRiftNode extends BlockEM implements ITileEntityProvider, IWrenchBreakable{
 	protected BlockRiftNode(){
@@ -32,12 +30,11 @@ public class BlockRiftNode extends BlockEM implements ITileEntityProvider, IWren
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float partialX, float partialY, float partialZ){
 		super.onBlockActivated(world, x, y, z, player, meta, partialX, partialY, partialZ);
 		if(world.isRemote) return false;
-		if(player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem().equals(ModItems.wrench)){
-			TileRiftNode tile = (TileRiftNode)world.getTileEntity(x, y, z);
-			Utility.addChat(player, "Power: " + Utility.powerString(tile.getNodePower()) + "/" + Utility.powerString(tile.getMaxPower(ForgeDirection.UNKNOWN)));
-			if(tile.network()!=null)
-				Utility.addChat(player, "Network: " + Utility.powerString(tile.getNetworkPower(ForgeDirection.UNKNOWN)) + " over " + tile.network().nodes() + " nodes");
-			return true;
+		if(player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem() instanceof ItemFocusEM){
+			if(((TileRiftNode)world.getTileEntity(x, y, z)).insertFocus(player.getCurrentEquippedItem())){
+				player.setCurrentItemOrArmor(0, null);//Clear the stack in hand
+				return true;
+			}
 		}
 		return false;
 	}

@@ -36,11 +36,6 @@ public class Utility{
 	};
 	
 	//Helper methods
-	public static String className(Object obj){
-		String string = obj.getClass().getCanonicalName();//"com.endreman0.endermechanics.item.ItemWrench", "net.minecraft.block.BlockDirt", "java.util.List"
-		string = string.substring(string.lastIndexOf('.')+1);//"ItemWrench", "BlockDirt", "List"
-		return string;
-	}
 	public static String powerString(int power){
 		float scaledPower = Math.abs(power);
 		String unit;
@@ -81,14 +76,10 @@ public class Utility{
 		ret.stackSize+=stack2.stackSize;
 		return ret;
 	}
-	public static String stackToString(ItemStack stack){
-		return stack.toString();
-	}
 	
 	//Config variables
 	public static boolean wrenchKey = true;
 	public static int nodeRange = 5;
-	public static boolean enableFrame = true;
 	
 	//Config stuff
 	public static Configuration config;
@@ -103,7 +94,6 @@ public class Utility{
 	private static void readConfig(){
 		wrenchKey = getBoolean(catGeneral, "wrenchKey", true);
 		nodeRange = getInt(catGeneral, "nodeRange", 5, 1, 10);
-		enableFrame = getBoolean(catEnable, "needFrame", true);
 		if(config.hasChanged()){config.save();}
 	}
 	//Config helper methods

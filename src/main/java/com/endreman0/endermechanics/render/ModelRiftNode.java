@@ -6,11 +6,11 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelFramable extends ModelBase{
+public class ModelRiftNode extends ModelBase{
 	private ModelRenderer[] cubes = new ModelRenderer[2];
 	private Random rand = new Random();
 	private final int size = 10;
-	public ModelFramable(){
+	public ModelRiftNode(){
 		textureWidth = 64;
 		textureHeight = 32;
 		

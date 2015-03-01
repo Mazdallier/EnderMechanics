@@ -16,11 +16,11 @@ public class TileSyncFrame extends TileEM{
 	private TileEntity tile;
 	public byte[] buses = new byte[6];
 	public boolean insertMachine(ItemStack machine){
-		if(this.machine!=null) return false;
-		if(machine!=null && machine.getItem() instanceof ItemBlock){
+		if(this.machine==null && machine!=null && machine.getItem() instanceof ItemBlock){
 			Block block = Block.getBlockFromItem(machine.getItem());
 			if(block.hasTileEntity(machine.getItemDamage())){
 				tile = block.createTileEntity(worldObj, machine.getItemDamage());
+				markDirty();
 				return true;
 			}
 		}

@@ -19,60 +19,7 @@ item.endermechanics:wrench2.name=Upgradable Wrench
 item.endermechanics:wrench3.name=Programmable Wrench
 
 item.endermechanics:focus0.name=Infernal Focus
-
-item.endermechanics:ore0Iron.name=Iron Dust
-item.endermechanics:ore1Iron.name=Iron Crystal
-item.endermechanics:ore2Iron.name=Enriched Iron Crystal
-item.endermechanics:ore3Iron.name=Purified Iron Crystal
-
-item.endermechanics:ore0Gold.name=Gold Dust
-item.endermechanics:ore1Gold.name=Gold Crystal
-item.endermechanics:ore2Gold.name=Enriched Gold Crystal
-item.endermechanics:ore3Gold.name=Purified Gold Crystal
-
-item.endermechanics:ore0Diamond.name=Diamond Dust
-item.endermechanics:ore1Diamond.name=Crystalline Diamond
-item.endermechanics:ore2Diamond.name=Enriched Diamond
-item.endermechanics:ore3Diamond.name=Purified Diamond
-
-item.endermechanics:ore0Emerald.name=Emerald Dust
-item.endermechanics:ore1Emerald.name=Crystalline Emerald
-item.endermechanics:ore2Emerald.name=Enriched Emerald
-item.endermechanics:ore3Emerald.name=Purified Emerald
-
-item.endermechanics:ore0Lapis.name=Lapis Dust
-item.endermechanics:ore1Lapis.name=Crystalline Lapis
-item.endermechanics:ore2Lapis.name=Enriched Lapis
-item.endermechanics:ore3Lapis.name=Purified Lapis
-
-item.endermechanics:ore0Coal.name=Coal Dust
-item.endermechanics:ore1Coal.name=Crystalline Coal
-item.endermechanics:ore2Coal.name=Enriched Coal
-item.endermechanics:ore3Coal.name=Purified Coal
-
-item.endermechanics:ore0Quartz.name=Quartz Dust
-item.endermechanics:ore1Quartz.name=Crystalline Quartz
-item.endermechanics:ore2Quartz.name=Enriched Quartz
-item.endermechanics:ore3Quartz.name=Purified Quartz
-
-#Redstone tier-0 ore processing is just Redstone Dust
-item.endermechanics:ore1Redstone.name=Crystalline Redstone
-item.endermechanics:ore2Redstone.name=Enriched Redstone
-item.endermechanics:ore3Redstone.name=Purified Redstone
-
-#Blocks
-tile.endermechanics:generatorFurnace.name=Infernal Reactor
-tile.endermechanics:generatorLiving.name=Biotic Reactor
-tile.endermechanics:generatorTool.name=Instrumental Reactor
-tile.endermechanics:generatorPotion.name=Tonic Reactor
-tile.endermechanics:generatorNetherStar.name=Triumphant Reactor
-tile.endermechanics:generatorCreative.name=Creative Reactor
-
-tile.endermechanics:furnaceEM.name=Endergetic Smelter
-tile.endermechanics:pulverizer.name=Endergetic Pulverizer
-tile.endermechanics:crystallizer.name=Endergetic Crystallizer
-tile.endermechanics:enrichmentCell.name=Endergetic Enrichment Cell
-tile.endermechanics:purifier.name=Endergetic Purifier
+item.endermechanics:focus0.name=Biotic Focus
 
 tile.endermechanics:riftNode.name=Rift Node
 tile.endermechanics:syncFrame.name=Synchronization Frame
@@ -83,6 +30,3 @@ endermechanics.config.general.wrenchKey.tooltip=If true, shift-left-clicking wit
 
 endermechanics.config.general.nodeRange.name=Ender Network Node Range
 endermechanics.config.general.nodeRange.tooltip=How far, in blocks, the Network Node's range should be. This might increase lag at high values.
-
-endermechanics.config.enable.needFrame=Machine Frame Automation
-endermechanics.confic.enable.needFrame.tooltip=If true, machines cannot be accessed by automation unless placed inside a Machine Frame.

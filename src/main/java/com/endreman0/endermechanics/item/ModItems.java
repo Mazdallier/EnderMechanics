@@ -16,12 +16,8 @@ public class ModItems{
 	public static final ItemFocusEM focus = new ItemFocusEM();
 	
 	//Processed ore items
-	public static final ItemEM[] orePieces = getProcessedOres();
-	private static ItemEM[] getProcessedOres(){
-		ItemEM[] ores = new ItemEM[4];
-		for(int i=0;i<ores.length;i++) ores[i] = new ItemProcessedOre(i);
-		return ores;
-	}
+	public static final ItemProcessedOre[] orePieces = new ItemProcessedOre[4];
+	static{for(int i=0;i<orePieces.length;i++) orePieces[i] = new ItemProcessedOre(i);}
 	
 	//Armor
 	public static final ArmorMaterial armorMatVoid = EnumHelper.addArmorMaterial("voidsteel", -1, new int[]{4, 10, 7, 4}, 0);

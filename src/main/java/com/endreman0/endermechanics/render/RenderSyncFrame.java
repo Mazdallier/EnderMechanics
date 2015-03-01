@@ -11,17 +11,17 @@ import org.lwjgl.opengl.GL11;
 import com.endreman0.endermechanics.tile.TileSyncFrame;
 import com.endreman0.endermechanics.util.Utility;
 
-public class RenderMachineFrame extends TileEntitySpecialRenderer{
-	private final ModelMachineFrame model;
-	public RenderMachineFrame(){
-		model = new ModelMachineFrame();
+public class RenderSyncFrame extends TileEntitySpecialRenderer{
+	private final ModelSyncFrame model;
+	public RenderSyncFrame(){
+		model = new ModelSyncFrame();
 	}
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float scale) {
 		TileSyncFrame tileMF = (TileSyncFrame)tile;
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.5D, y-0.5D, z+0.5D);
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Utility.RESOURCE_PREFIX, "models/machineFrame.png"));
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Utility.RESOURCE_PREFIX, "models/syncFrame.png"));
 		model.render(null, 0F, 0F, -0.1F, 0F, 0F, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();

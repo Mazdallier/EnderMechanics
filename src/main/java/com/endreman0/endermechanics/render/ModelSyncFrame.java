@@ -4,13 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelMachineFrame extends ModelBase{
+public class ModelSyncFrame extends ModelBase{
 	private final int sides = 6;
 	private ModelRenderer[] outer = new ModelRenderer[sides];
 	private ModelRenderer[] inner = new ModelRenderer[sides];
 	private float[][] rotation = {{0, 0, 0, 0, 90, -90}, {0, 0, 0, 0, 0, 0}, {0, 180, 90, -90, 0, 0}};
 	private final int innerSize = 12;
-	public ModelMachineFrame(){
+	public ModelSyncFrame(){
 		textureWidth = 64; textureHeight = 64;
 		for(int i=0;i<sides;i++){
 			outer[i] = new ModelRenderer(this, 0, 0);
