@@ -18,62 +18,11 @@ item.endermechanics:wrench1.name=Vlé d'outils Ender
 item.endermechanics:wrench2.name=Clé extensible
 item.endermechanics:wrench3.name=Clé programmable
 
-item.endermechanics:ore0Iron.name=Poussière de fer
-item.endermechanics:ore1Iron.name=Cristal de fer
-item.endermechanics:ore2Iron.name=Cristal de fer enrichi
-item.endermechanics:ore3Iron.name=Cristal de fer purifié
+item.endermechanics:focus0.name=Foyer infernal
+item.endermechanics:focus0.name=Foyer biotique
 
-item.endermechanics:ore0Gold.name=Poussière d'or
-item.endermechanics:ore1Gold.name=Cristal d'or
-item.endermechanics:ore2Gold.name=Cristal d'or enrichi
-item.endermechanics:ore3Gold.name=Cristal d'or purifié
-
-item.endermechanics:ore0Diamond.name=Poussière de diamant
-item.endermechanics:ore1Diamond.name=Diamant cristalin
-item.endermechanics:ore2Diamond.name=Diamant enrichi
-item.endermechanics:ore3Diamond.name=Diamant purifié
-
-item.endermechanics:ore0Emerald.name=Poussière d'émeraude
-item.endermechanics:ore1Emerald.name=Émeraude cristaline
-item.endermechanics:ore2Emerald.name=Émeraude enrichi
-item.endermechanics:ore3Emerald.name=Émeraude purifié
-
-item.endermechanics:ore0Lapis.name=Poussière de lapis
-item.endermechanics:ore1Lapis.name=Lapis cristalin
-item.endermechanics:ore2Lapis.name=Lapis enrichi
-item.endermechanics:ore3Lapis.name=Lapis purifié
-
-item.endermechanics:ore0Coal.name=Poussière de charbon
-item.endermechanics:ore1Coal.name=Charbon cristalin
-item.endermechanics:ore2Coal.name=Charbon enrichi
-item.endermechanics:ore3Coal.name=Charbon purifié
-
-item.endermechanics:ore0Quartz.name=Poussière de quartz
-item.endermechanics:ore1Quartz.name=Quartz cristalin
-item.endermechanics:ore2Quartz.name=Quartz enrichi
-item.endermechanics:ore3Quartz.name=Quartz purifié
-
-#Redstone tier-0 ore processing is just Redstone Dust
-item.endermechanics:ore1Redstone.name=Redstone cristaline
-item.endermechanics:ore2Redstone.name=Redstone enrichi
-item.endermechanics:ore3Redstone.name=Redstone purifié
-
-#Blocks
-tile.endermechanics:generatorFurnace.name=Réacteur infernal
-tile.endermechanics:generatorLiving.name=Réacteur biotique
-tile.endermechanics:generatorTool.name=Réacteur instrumental
-tile.endermechanics:generatorPotion.name=Réacteur tonique
-tile.endermechanics:generatorNetherStar.name=Réacteur trionphant
-tile.endermechanics:generatorCreative.name=Réacteur créatif
-
-tile.endermechanics:furnaceEM.name=Fonderie Endergetique
-tile.endermechanics:pulverizer.name=Pulvérisateur Endergetique
-tile.endermechanics:crystallizer.name=Cristalliseur Endergetique
-tile.endermechanics:enrichmentCell.name=Cellule d'enrichissement Endergetique
-tile.endermechanics:purifier.name=Purificateur Endergetique
-
-tile.endermechanics:machineFrame.name=Cadre de machine
-tile.endermechanics:enderNode.name=Noeud de réseau Ender
+tile.endermechanics:riftNode.name=Noeud de crevasse
+tile.endermechanics:syncFrame.name=Cadre de synchronisation
 
 #Config
 endermechanics.config.general.wrenchKey.name=clé casseuse
@@ -81,6 +30,3 @@ endermechanics.config.general.wrenchKey.tooltip=Si vrai, Maj-clique-gauche avec 
 
 endermechanics.config.general.nodeRange.name=Portée du noeud de réseau Ender
 endermechanics.config.general.nodeRange.tooltip=À quelle distance, dans des blocs, la porté du noeud de réseau devrait être. ceci risque de provoquer des ralentissements pour de fortes valeurs.
-
-endermechanics.config.enable.needFrame=Automatisation de cadre de machine
-endermechanics.confic.enable.needFrame.tooltip=Si vrai, les machines ne peuvent pas être accédé par automatisation à moins d'être placé à l'intérieur d'un cadre de machine.
